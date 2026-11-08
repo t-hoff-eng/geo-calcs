@@ -12,6 +12,7 @@
   --warn:#8a5300; --warn-soft:#fbefd9; --bad:#a32626; --bad-soft:#fae5e4;
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --sur-band:#fbefd2;
   --clay:#cdbb9f; --clay2:#bda98a; --clay-mark:#77623f; --sand:#ebe0b4; --sand-mark:#94823f; --water:#2a78d6;
+  --c-tan:#d8c3a0; --c-brown:#b08d64; --c-grey:#c5c8c6; --c-bluegrey:#a9bcc8; --c-olive:#b9b98a; --c-yellow:#ece0a6; --c-orange:#e7b98a; --c-red:#c99a86; --c-green:#a9c7a0; --c-dark:#8a8478; --c-white:#f3f1ea;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
   --mono:"IBM Plex Mono",Consolas,monospace;
@@ -22,6 +23,7 @@
   --warn:#f0b65a; --warn-soft:#33280f; --bad:#f29a97; --bad-soft:#3b1d1c;
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --sur-band:#33290f;
   --clay:#55493a; --clay2:#4a3f31; --clay-mark:#94805f; --sand:#514a2d; --sand-mark:#a4934f; --water:#3987e5;
+  --c-tan:#5e4f38; --c-brown:#6b5236; --c-grey:#4d5355; --c-bluegrey:#3f505b; --c-olive:#4f5034; --c-yellow:#5a5230; --c-orange:#6a4a2c; --c-red:#63403a; --c-green:#3d5638; --c-dark:#2f2d29; --c-white:#5d5b55;
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
@@ -30,6 +32,7 @@
   --warn:#f0b65a; --warn-soft:#33280f; --bad:#f29a97; --bad-soft:#3b1d1c;
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --sur-band:#33290f;
   --clay:#55493a; --clay2:#4a3f31; --clay-mark:#94805f; --sand:#514a2d; --sand-mark:#a4934f; --water:#3987e5;
+  --c-tan:#5e4f38; --c-brown:#6b5236; --c-grey:#4d5355; --c-bluegrey:#3f505b; --c-olive:#4f5034; --c-yellow:#5a5230; --c-orange:#6a4a2c; --c-red:#63403a; --c-green:#3d5638; --c-dark:#2f2d29; --c-white:#5d5b55;
   color-scheme:dark;
 }
 [hidden]{display:none!important}
@@ -264,6 +267,49 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
 #fillTable,#embTable{width:auto;min-width:min(100%,620px)}
 #fillTable input:not(.nm),#embTable input{width:110px}
 
+/* Material graphics: pattern + colour pickers */
+.gfx{display:flex;gap:4px;align-items:center}
+.gfx select{min-width:0;width:auto;padding:5px 4px;font-size:12.5px}
+.sw{display:block;flex:none;border:1px solid var(--line);border-radius:2px}
+.unitsel-wrap{display:flex;gap:6px;align-items:center}
+.layers .unitsel-wrap select{min-width:150px}
+
+/* PDF report chooser */
+.reportpanel{border-color:var(--accent);box-shadow:0 6px 18px -12px rgba(10,30,40,.6)}
+.rplocs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 16px}
+.rplocs .check{grid-column:auto;padding-top:0}
+.rplocs .tv{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.rpbtns{margin-top:14px;align-items:center}
+.rpgap{flex:1}
+
+/* GIS and coordinates */
+.zonesel{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted)}
+.zonesel select{width:auto}
+.mapcoords{font:12px var(--mono);color:var(--muted);min-height:18px;font-variant-numeric:tabular-nums}
+.mapbox.leaflet-container{background:var(--band)}
+.mapbox{position:relative;isolation:isolate;z-index:0}
+.gisbox{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.gistable td{vertical-align:middle}
+.gistable .gname{min-width:160px}
+.gistable .gmeta{color:var(--muted);font-size:12px;text-align:left;white-space:normal}
+.gistable select{width:auto}
+.gdot{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.35);vertical-align:middle;margin-right:4px}
+.gispop table{border-collapse:collapse;font-size:12px}
+.gispop td{padding:1px 6px 1px 0;vertical-align:top}
+.gispop td:first-child{color:#4f606a}
+.gislab{background:rgba(255,255,255,.85);border:0;box-shadow:none;padding:0 3px;font:600 11px Arial,sans-serif;color:#14222a}
+.gislab::before{display:none}
+.mgaf[hidden]{display:none}
+
+/* Ground treatment graphics */
+.gtlimits{margin-bottom:0}
+.gtfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;margin-bottom:12px}
+.gtfigs figure{margin:0;border:1px solid var(--line);border-radius:5px;padding:8px 10px}
+.gtfigs figcaption{font-size:12px;color:var(--muted);margin-top:4px}
+.gtfigs svg{display:block;width:100%;max-width:420px;height:auto;overflow:visible;margin:0 auto}
+.gtfigs svg text{font:11.5px var(--body);fill:var(--muted)}
+.gtfigs svg text.ink{fill:var(--ink);font-weight:500}
+
 /* Ground treatment */
 .gtstatus{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;padding:12px 14px;border-radius:5px;border:1px solid var(--line);background:var(--band);margin-bottom:12px}
 .gtstatus.ok{background:var(--accent-soft);border-color:var(--accent)}
@@ -328,8 +374,7 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
     </div>
   </header>
   <div class="toolbar topbar">
-    <button id="btnReportSite" type="button" class="primary">Save site report (PDF)</button>
-    <button id="btnReport" type="button">Save this location (PDF)</button>
+    <button id="btnReportOpen" type="button" class="primary" aria-expanded="false" aria-controls="reportPanel">Save PDF report</button>
     <button id="btnCopy" type="button">Copy results as CSV</button>
     <button id="btnSaveProject" type="button">Save project</button>
     <button id="btnOpenProject" type="button">Open project</button>
@@ -337,6 +382,25 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
     <button id="btnClear" type="button">Clear all</button>
     <input id="projectFile" type="file" accept=".json,application/json" hidden>
   </div>
+
+  <section class="panel reportpanel" id="reportPanel" aria-labelledby="h-report" hidden>
+    <div class="panel-head">
+      <div>
+        <h2 id="h-report">PDF report</h2>
+        <p>Choose what to include. Each location starts on a new A4 page. Methods, assumptions and limitations are added once, on the last page.</p>
+      </div>
+    </div>
+    <label class="check surcheck"><input id="rpSite" type="checkbox" checked><span><b>Site summary</b> with the plan and a results table for the chosen locations</span></label>
+    <h3 class="grouphead secthead">Locations</h3>
+    <div class="rplocs" id="rpLocs"></div>
+    <div class="toolbar rpbtns">
+      <button id="rpAll" type="button">Select all</button>
+      <button id="rpNone" type="button">Clear</button>
+      <span class="rpgap"></span>
+      <button id="rpCancel" type="button">Cancel</button>
+      <button id="rpGo" type="button" class="primary">Create PDF</button>
+    </div>
+  </section>
 
   <nav class="maintabs" id="mainTabs" aria-label="Sections">
     <button type="button" data-view="methods">Methods &amp; information</button>
@@ -431,17 +495,33 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
       <div class="seg" role="group" aria-label="Map imagery">
         <button id="baseSat" type="button" data-base="sat">Satellite</button>
         <button id="baseStreet" type="button" data-base="street">Street</button>
+        <button id="baseNone" type="button" data-base="none">None</button>
       </div>
+      <label class="zonesel"><span>Coordinates</span><select id="zone" aria-label="Coordinate system for eastings and northings"></select></label>
     </div>
     <div class="siteGrid">
       <div class="planCol">
         <div id="planArea"></div>
+        <div class="mapcoords" id="mapCoords" hidden></div>
         <div class="planFoot">
           <div class="ramp" id="planLegend"></div>
           <button id="btnGoInputs" type="button">Edit inputs for this location</button>
         </div>
       </div>
       <div class="tablewrap sumCol"><table class="data" id="siteTable"></table></div>
+    </div>
+    <div class="gisbox" id="gisBox" hidden>
+      <div class="panel-head">
+        <div>
+          <h3>GIS layers</h3>
+          <p id="gisHint">Add points, lines and polygons from GeoJSON, KML or KMZ, a zipped shapefile, or a CSV of points. Eastings and northings are read as GDA2020 in the MGA zone chosen above. Latitude and longitude are read directly.</p>
+        </div>
+        <div class="toolbar">
+          <button id="btnAddGis" type="button" class="primary">Add GIS layer</button>
+          <input id="gisFile" type="file" accept=".geojson,.json,.kml,.kmz,.zip,.csv,application/geo+json,application/json,application/vnd.google-earth.kml+xml,application/vnd.google-earth.kmz,application/zip,text/csv" hidden>
+        </div>
+      </div>
+      <div class="tablewrap"><table class="data gistable" id="gisTable"></table></div>
     </div>
   </section>
 
@@ -463,6 +543,8 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
       <div class="field"><label for="gwt">Groundwater depth (m)</label><input id="gwt" type="number" step="any" inputmode="decimal"></div>
       <div class="field"><label for="tc">Loading period (years)</label><input id="tc" type="number" step="any" inputmode="decimal"></div>
       <div class="field"><label for="q">Extra surface load, q (kPa)</label><input id="q" type="number" min="0" step="any" inputmode="decimal" placeholder="Blank = 0"></div>
+      <div class="field mgaf"><label for="locE" id="locELab">Easting (m)</label><input id="locE" type="number" step="any" inputmode="decimal" placeholder="Not on the map"></div>
+      <div class="field mgaf"><label for="locN" id="locNLab">Northing (m)</label><input id="locN" type="number" step="any" inputmode="decimal" placeholder="Not on the map"></div>
     </div>
     <p class="hintline">PCS is post-construction settlement: total settlement between handover and the design life. Extra surface load is anything on top of the embankment, such as pavement or long-term traffic.</p>
 
@@ -533,10 +615,14 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
     <div class="panel-head">
       <div>
         <h2 id="h-gt">Ground treatment</h2>
-        <p>Compares post-construction settlement (PCS) without treatment against this location’s requirement, and sizes vertical drains and a temporary surcharge where they are needed.</p>
+        <p>Compares post-construction settlement (PCS) without treatment against this location’s requirement, and sizes a preload wait, vertical drains and a temporary surcharge where they are needed.</p>
       </div>
     </div>
     <div class="gtstatus" id="gtStatus"></div>
+    <div class="fields gtlimits">
+      <div class="field"><label for="twMax">Longest extra wait the programme allows (years)</label><input id="twMax" type="number" min="0" step="any" inputmode="decimal" placeholder="Blank = no wait"></div>
+    </div>
+    <p class="hintline">The suggestion considers waiting (preload) up to this time after construction before handover, as well as drains and a surcharge.</p>
     <div id="gtSuggest"></div>
     <div id="gtBody">
       <div class="seg gtmode" role="group" aria-label="Treatment to apply">
@@ -545,6 +631,13 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
       </div>
       <p class="hintline" id="gtModeHint"></p>
       <div class="gtgrid">
+        <fieldset class="gtbox" id="gtPre">
+          <legend><label class="check surcheck"><input id="preOn" type="checkbox"><span><b>Preload</b>, a wait after construction before handover</span></label></legend>
+          <div class="fields">
+            <div class="field"><label for="tw">Extra wait, t<sub>w</sub> (years)</label><input id="tw" type="number" step="any" inputmode="decimal"></div>
+          </div>
+          <p class="hintline">Handover moves to the planned handover plus t<sub>w</sub>. PCS is counted from then.</p>
+        </fieldset>
         <fieldset class="gtbox" id="gtDrains">
           <legend><label class="check surcheck"><input id="drOn" type="checkbox"><span><b>Vertical drains</b> (wick drains)</span></label></legend>
           <div class="fields">
@@ -566,6 +659,7 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
         </fieldset>
       </div>
       <h3 class="grouphead secthead">Comparison</h3>
+      <div class="gtfigs" id="gtFigs"></div>
       <div class="tablewrap"><table class="data" id="gtTable"></table></div>
       <div id="surCheck" hidden>
         <h3 class="grouphead secthead">Surcharge check</h3>
@@ -686,12 +780,35 @@ t′ = t − tc</div>
         <div class="eq">PCS0 = S(td) − S(th), no treatment
 treatment needed when PCS0 &gt; requirement
 
-surcharge: qs in 5 kPa steps from 20% of Q
-           (at least 10 kPa), removed at th
-drains:    s in 0.1 m steps, 1.0 to 3.5 m,
+order tried, least to most costly:
+  1 wait (preload) alone
+  2 surcharge up to Q/2
+  3 drains alone
+  4 surcharge up to Q
+  5 drains + surcharge
+each with the shortest wait that works,
+in 3-month steps up to the programme limit
+
+surcharge: 5 kPa steps from 20% of Q
+           (at least 10 kPa), removed at handover
+drains:    0.1 m steps, 1.0 to 3.5 m,
            triangular, dw = 50 mm, ds/dw = 2,
            kh/ks = 2, ch/cv = 1</div>
-        <p>The calculator first looks for the smallest surcharge (up to the permanent load Q) that meets the requirement, then the widest drain spacing, then drains with the smallest surcharge. A surcharge of up to half of Q is preferred to drains. Otherwise drains are preferred to a large surcharge. Where nothing meets the requirement, the closest option is shown with alternatives. This is preliminary sizing only, so check stability, programme and cost. <span class="ref">Ref: Johnson (1970); Rixner et al. (1986).</span></p>
+        <p>The first option in the list that meets the requirement is suggested. Where nothing does, the strongest option is shown with alternatives. This is preliminary sizing only, so check stability, programme and cost. <span class="ref">Ref: Johnson (1970); Rixner et al. (1986).</span></p>
+      </div>
+      <div>
+        <h3>Preload (wait before handover)</h3>
+        <div class="eq">th′ = th + tw
+PCS = S(td) − S(th′)</div>
+        <p>Leaving the embankment in place for a time t<sub>w</sub> after construction lets consolidation continue before the asset is handed over. Handover, surcharge removal by default, and the start of PCS all move to t<sub>h</sub> + t<sub>w</sub>. The design life still counts from the start of loading. <span class="ref">Ref: Johnson (1970).</span></p>
+      </div>
+      <div>
+        <h3>Coordinates and GIS layers</h3>
+        <div class="eq">GDA2020, MGA zones 46–59
+GRS80, k0 = 0.9996, E0 = 500 000 m,
+N0 = 10 000 000 m, CM = 6·zone − 183°
+Krüger series (4th order)</div>
+        <p>Eastings and northings in GIS files and in each location’s inputs are converted to latitude and longitude with the transverse Mercator formulas used for MGA2020. The zone named in a shapefile’s .prj or a GeoJSON crs takes priority over the zone chosen. GDA2020 is shown on the map as if it were WGS84, a difference well under a metre. <span class="ref">Ref: ICSM (2021) GDA2020 Technical Manual.</span></p>
       </div>
     </div>
     </div>
@@ -730,15 +847,22 @@ drains:    s in 0.1 m steps, 1.0 to 3.5 m,
           <tr><td>Extra surface load, q (kPa)</td><td>Permanent load on top of the embankment, added to the embankment weight. The total load Q applies uniformly at every depth.</td><td>Pavement, structures or long-term traffic. Short-term traffic is usually left out. Use 0 where the embankment is the only load.</td></tr>
           <tr><td>Groundwater depth (m)</td><td>The level below which water pressure is hydrostatic. It sets the initial effective stress.</td><td>From piezometers or standpipes. Use the long-term design level, and check seasonal highs and lows.</td></tr>
           <tr><td>Loading period, t<sub>c</sub> (years)</td><td>The time over which the load builds up linearly. It delays the consolidation curve.</td><td>From the construction programme for placing fill. Use 0 for instant loading.</td></tr>
+          <tr><td>Graphic (pattern and colour)</td><td>How a soil unit or fill material is drawn in the soil column, on the page and in reports. It doesn’t affect the calculation.</td><td>Choose a pattern that matches the soil description on the borehole logs, and colours that tell neighbouring layers apart.</td></tr>
+          <tr><td>Easting and northing</td><td>The location’s position in GDA2020, in the MGA zone chosen on the site map. Shown when the plan is a map.</td><td>From the borehole or CPT survey. Typing both places the point on the map. Dragging the point updates them.</td></tr>
           <tr><td>Embankment zones</td><td>A fill material and thickness for each zone, top to bottom. The zones’ weight loads the ground, and each zone creeps.</td><td>From design levels minus existing ground levels at the location, and the earthworks zoning (for example a working platform under general fill).</td></tr>
           <tr><td>Layer thickness and drainage</td><td>Thickness of each layer in the profile. Drainage sets the drainage path H<sub>dr</sub>, which is H/2 for two-way and H for one-way.</td><td>From borehole and CPT logs. Use two-way where there are permeable layers above and below, and one-way where one boundary is impermeable, such as rock or stiff clay.</td></tr>
           <tr class="grp"><td colspan="3">Calculations tab: ground treatment</td></tr>
+          <tr><td>Longest extra wait the programme allows (years)</td><td>The longest preload wait the suggestion may use, after construction and before handover.</td><td>From the construction programme and the client’s required opening date. Leave it blank if handover can’t move.</td></tr>
+          <tr><td>Preload wait, t<sub>w</sub> (years)</td><td>Time the embankment stays in place after construction before handover. Handover and the start of PCS move later by t<sub>w</sub>.</td><td>Set from the programme. Confirm with settlement plates and piezometers before handover.</td></tr>
           <tr><td>Drain spacing, s, and pattern</td><td>Centre-to-centre distance between drains. It sets the unit cell diameter d<sub>e</sub>, and the time for radial drainage grows roughly with d<sub>e</sub>².</td><td>Usually 1.0–3.0 m on a triangular grid. Choose from the time available before handover.</td></tr>
           <tr><td>Equivalent drain diameter, d<sub>w</sub> (mm)</td><td>The band drain treated as a circular drain.</td><td>d<sub>w</sub> = (a + b)/2 for a band of width a and thickness b, so about 50 mm for a 100 × 4 mm wick drain (Hansbo, 1981).</td></tr>
           <tr><td>Smear zone ratio, d<sub>s</sub>/d<sub>w</sub>, and k<sub>h</sub>/k<sub>s</sub></td><td>Size of the disturbed zone around the drain from installation, and how much its permeability is reduced.</td><td>d<sub>s</sub>/d<sub>w</sub> is often 2–3 and k<sub>h</sub>/k<sub>s</sub> 2–5, depending on the mandrel and the clay’s sensitivity. Back-analyse a trial area where possible.</td></tr>
           <tr><td>c<sub>h</sub>/c<sub>v</sub></td><td>Horizontal consolidation coefficient as a multiple of c<sub>v</sub>.</td><td>From CPTu dissipation tests or Rowe cell tests. Layered clays often give 1–3. Use 1 if there is no data.</td></tr>
           <tr><td>Surcharge, q<sub>s</sub> (kPa) and removal time, t<sub>r</sub></td><td>Extra temporary load placed with the permanent load, and when it is taken off.</td><td>Chosen so that U at removal reaches the U needed shown in the surcharge check. Confirm on site with settlement monitoring.</td></tr>
           <tr><td>C<sub>α</sub>′/C<sub>α</sub> after removal</td><td>The secondary rate after surcharging, as a fraction of C<sub>α</sub>.</td><td>Leave it blank to use C<sub>r</sub>/C<sub>c</sub>, or set it from long-term tests or published data such as Mesri et al. (1997).</td></tr>
+          <tr class="grp"><td colspan="3">Calculations tab: site map and GIS layers</td></tr>
+          <tr><td>Coordinates (MGA zone)</td><td>The GDA2020 MGA zone used to read eastings and northings in files and inputs, and to show them for the map and the reports.</td><td>The zone your survey and design drawings use, for example zone 56 for Brisbane and Sydney or zone 55 for Melbourne.</td></tr>
+          <tr><td>GIS layers</td><td>Points, lines and polygons drawn on the map and on the report’s site plan. They don’t affect the calculation.</td><td>GeoJSON, KML or KMZ, a zipped shapefile (.shp, .shx, .dbf, .prj), or a CSV of points with Easting and Northing (or Latitude and Longitude) columns. Clip large datasets to the site first.</td></tr>
         </tbody>
       </table>
     </div>
@@ -756,6 +880,7 @@ drains:    s in 0.1 m steps, 1.0 to 3.5 m,
       <li>Gibson, R.E., England, G.L. &amp; Hussey, M.J.L. (1967) The theory of one-dimensional consolidation of saturated clays. Géotechnique 17(3), 261–273.</li>
       <li>Hansbo, S. (1981) Consolidation of fine-grained soils by prefabricated drains. Proc. 10th ICSMFE, Stockholm, Vol. 3, 677–682.</li>
       <li>Holtz, R.D., Kovacs, W.D. &amp; Sheahan, T.C. (2011) An Introduction to Geotechnical Engineering, 2nd ed. Pearson.</li>
+      <li>ICSM (2021) Geocentric Datum of Australia 2020 Technical Manual. Intergovernmental Committee on Surveying and Mapping.</li>
       <li>Johnson, S.J. (1970) Precompression for improving foundation soils. J. Soil Mech. Found. Div. ASCE 96(SM1), 111–144.</li>
       <li>Ladd, C.C., Foott, R., Ishihara, K., Schlosser, F. &amp; Poulos, H.G. (1977) Stress-deformation and strength characteristics. State-of-the-art report, Proc. 9th ICSMFE, Tokyo, Vol. 2, 421–494.</li>
       <li>Mesri, G. &amp; Castro, A. (1987) C<sub>α</sub>/C<sub>c</sub> concept and K<sub>0</sub> during secondary compression. J. Geotech. Eng. ASCE 113(3), 230–247.</li>
@@ -858,6 +983,12 @@ drains:    s in 0.1 m steps, 1.0 to 3.5 m,
         <p><b>To address.</b> Add locations where the ground or loading changes. Use characteristic or cautious design values, and fill gaps in the investigation where differential settlement matters.</p>
       </article>
       <article>
+        <h3>GIS layers and coordinates</h3>
+        <p class="dir either">Position only, no effect on results</p>
+        <p><b>Impact.</b> GIS layers are for reference and don’t change any calculation. GDA94 data is not converted to GDA2020, so it can sit about 1.5–1.8 m out. Map imagery may not line up exactly with survey data, and large layers are simplified to the first 20,000 features.</p>
+        <p><b>To address.</b> Export GIS data in GDA2020 with the correct MGA zone, check a few known points against the survey, and clip layers to the site before adding them.</p>
+      </article>
+      <article>
         <h3>Suggested ground treatment is preliminary</h3>
         <p class="dir either">Either way, sizing only</p>
         <p><b>Impact.</b> The suggestion searches a fixed set of drain spacings and surcharge heights, using default drain parameters and a removal time at handover. It doesn’t check embankment stability under the surcharge, the cost, the programme, or other methods such as lightweight fill, rigid inclusions or excavation and replacement.</p>
@@ -917,7 +1048,8 @@ const Engine = (() => {
   function analyse(inp) {
     const errors = [], advisories = [];
     const err = (msg, field, layer, extra) => errors.push({ msg, field, layer, ...extra });
-    const gwt = num(inp.gwt), td = num(inp.td), th = num(inp.th), tc = num(inp.tc), n = num(inp.sub), eop = num(inp.eop);
+    const gwt = num(inp.gwt), td = num(inp.td), tc = num(inp.tc), n = num(inp.sub), eop = num(inp.eop);
+    let th = num(inp.th);
     const qAdd = blank(inp.q) ? 0 : num(inp.q);
     if (!(qAdd >= 0)) err("Enter an extra surface load of 0 kPa or more, or leave it blank.", "q");
     if (!(gwt >= 0)) err("Enter a groundwater depth of 0 m or more.", "gwt");
@@ -927,6 +1059,13 @@ const Engine = (() => {
     if (!(tc >= 0)) err("Enter a loading period of 0 years or more.", "tc");
     else if (td > 0 && tc > td) err("Loading period must not be longer than the design life.", "tc");
     if (!(Number.isInteger(n) && n >= 1 && n <= 200)) err("Sublayers must be a whole number from 1 to 200.", "sub");
+    // Preload: an extra wait after construction moves handover, and so the start of PCS, later.
+    const preOn = !!inp.preOn, tw = num(inp.tw), thBase = th;
+    if (preOn) {
+      if (!(tw > 0)) err("Enter a preload wait greater than 0 years.", "tw");
+      else if (th >= 0 && td > 0 && th + tw > td) err("Handover after the preload wait must not be later than the design life.", "tw");
+      else th = th + tw;
+    }
 
     /* Embankment zones: their weight loads the ground and each zone creeps. */
     const E = (inp.emb || []).map(z => ({ ...z, h: num(z.h), gamma: num(z.gamma), alpha: num(z.alpha) }));
@@ -1178,36 +1317,96 @@ const Engine = (() => {
 
     const drainLen = drOn && clays.length ? Math.max(...clays.map(l => l.bot)) : 0;
     const drainArea = drOn ? (drPattern === "sq" ? drS * drS : Math.sqrt(3) / 2 * drS * drS) : 0;
-    const pcs = at(td).total - at(th).total, pcsBase = atBase(td).total - atBase(th).total;
-    return { errors, advisories, q, qAdd: qAdd > 0 ? qAdd : 0, qEmb, emb: E, he, gwt, td, th, tc, eop, L, clays, depth: top, sigma0, sigmaP, at, atPerm, atBase, layerAt, immAt, immOn, SiTot, SpTot, t90All, surOn, qs, tr, caRatio, treq, embT1, creepAt, zoneCreep, drOn, drS, drPattern, drDw, drSmear, drKhKs, drChCv, de, mu, drainLen, drainArea, pcs, pcsBase, treated: surOn || drOn };
+    const pcs = at(td).total - at(th).total;
+    return { errors, advisories, preOn, tw: preOn ? tw : 0, thBase, q, qAdd: qAdd > 0 ? qAdd : 0, qEmb, emb: E, he, gwt, td, th, tc, eop, L, clays, depth: top, sigma0, sigmaP, at, atPerm, atBase, layerAt, immAt, immOn, SiTot, SpTot, t90All, surOn, qs, tr, caRatio, treq, embT1, creepAt, zoneCreep, drOn, drS, drPattern, drDw, drSmear, drKhKs, drChCv, de, mu, drainLen, drainArea, pcs, pcsBase: atBase(td).total - atBase(thBase).total, treated: surOn || drOn || preOn };
   }
   return { GW, U, TvForU, tForU, hansboMu, analyse };
 })();
 
+/* ---------- GDA2020 / MGA2020 coordinates (GRS80, Krüger series to 4th order, accurate to about a millimetre) ---------- */
+const MGA = (() => {
+  const a = 6378137, f = 1 / 298.257222101, k0 = 0.9996, FE = 500000, FN = 10000000;
+  const n = f / (2 - f), n2 = n * n, n3 = n2 * n, n4 = n3 * n, e = Math.sqrt(f * (2 - f));
+  const A = a / (1 + n) * (1 + n2 / 4 + n4 / 64);
+  const al = [n / 2 - 2 * n2 / 3 + 5 * n3 / 16 + 41 * n4 / 180, 13 * n2 / 48 - 3 * n3 / 5 + 557 * n4 / 1440, 61 * n3 / 240 - 103 * n4 / 140, 49561 * n4 / 161280];
+  const be = [n / 2 - 2 * n2 / 3 + 37 * n3 / 96 - n4 / 360, n2 / 48 + n3 / 15 - 437 * n4 / 1440, 17 * n3 / 480 - 37 * n4 / 840, 4397 * n4 / 161280];
+  const rad = Math.PI / 180, cm = z => (6 * z - 183) * rad;
+  function fromLL(lat, lng, zone) {
+    const phi = lat * rad, dl = lng * rad - cm(zone);
+    const t = Math.sinh(Math.atanh(Math.sin(phi)) - e * Math.atanh(e * Math.sin(phi)));
+    const xi1 = Math.atan2(t, Math.cos(dl)), eta1 = Math.atanh(Math.sin(dl) / Math.sqrt(1 + t * t));
+    let xi = xi1, eta = eta1;
+    for (let j = 1; j <= 4; j++) { xi += al[j - 1] * Math.sin(2 * j * xi1) * Math.cosh(2 * j * eta1); eta += al[j - 1] * Math.cos(2 * j * xi1) * Math.sinh(2 * j * eta1); }
+    return { E: FE + k0 * A * eta, N: FN + k0 * A * xi };
+  }
+  function toLL(E, N, zone) {
+    const xi = (N - FN) / (k0 * A), eta = (E - FE) / (k0 * A);
+    let xi1 = xi, eta1 = eta;
+    for (let j = 1; j <= 4; j++) { xi1 -= be[j - 1] * Math.sin(2 * j * xi) * Math.cosh(2 * j * eta); eta1 -= be[j - 1] * Math.cos(2 * j * xi) * Math.sinh(2 * j * eta); }
+    const tp = Math.sin(xi1) / Math.sqrt(Math.sinh(eta1) ** 2 + Math.cos(xi1) ** 2);
+    let t = tp;
+    for (let i = 0; i < 8; i++) { // Newton's method for tan(phi) from the conformal latitude
+      const s = Math.sinh(e * Math.atanh(e * t / Math.sqrt(1 + t * t)));
+      const tc = t * Math.sqrt(1 + s * s) - s * Math.sqrt(1 + t * t);
+      const d = (tp - tc) / Math.sqrt(1 + tc * tc) * (1 + (1 - e * e) * t * t) / ((1 - e * e) * Math.sqrt(1 + t * t));
+      t += d; if (Math.abs(d) < 1e-14) break;
+    }
+    return { lat: Math.atan(t) / rad, lng: (cm(zone) + Math.atan2(Math.sinh(eta1), Math.cos(xi1))) / rad };
+  }
+  return { fromLL, toLL };
+})();
+
 /* ---------- App state ---------- */
-const drainUnit = (id, name, gamma, E) => ({ id, name, type: "drain", gamma, E, nu: "0.3", e0: "", Cc: "", Cr: "", ocr: "", pop: "", Ca: "", cv: "" });
-const clayUnit = (id, name, gamma, E, e0, Cc, Cr, ocr, pop, Ca, cv) => ({ id, name, type: "clay", gamma, E, nu: "0.5", e0, Cc, Cr, ocr, pop, Ca, cv });
+/* Material graphics. Patterns are drawn in ink at low opacity over a colour, so they read in both themes and in print. */
+const PATTERNS = {
+  clay: ["Clay (dashes)", 14, 8, `<line x1="1" x2="9" y1="4" y2="4"/>`],
+  silt: ["Silt (dashes, dots)", 16, 8, `<line x1="1" x2="8" y1="2" y2="2"/><circle cx="12" cy="6" r="1" style="fill:var(--ink);fill-opacity:.55;stroke:none"/>`],
+  sand: ["Sand (dots)", 9, 9, `<circle cx="2" cy="2" r="1" style="fill:var(--ink);fill-opacity:.55;stroke:none"/><circle cx="6.5" cy="6.5" r="1" style="fill:var(--ink);fill-opacity:.55;stroke:none"/>`],
+  gravel: ["Gravel (circles)", 12, 10, `<circle cx="3.5" cy="3.5" r="2.2"/><circle cx="9" cy="8" r="1.5"/>`],
+  peat: ["Peat, organic (tufts)", 14, 10, `<path d="M3 9V5M1 9L2 6M5 9L4 6M10 4V1M8 4L9 2M12 4L11 2"/>`],
+  rock: ["Rock (blocks)", 16, 10, `<path d="M0 .5H16M0 5.5H16M4 .5V5.5M12 5.5V10"/>`],
+  fill: ["Fill (hatch)", 8, 8, `<path d="M-2 10L10 -2M-2 2L2 -2M6 10L10 6"/>`],
+  cross: ["Cross-hatch", 8, 8, `<path d="M0 8L8 0M0 0L8 8"/>`],
+  plain: ["Plain", 8, 8, ""],
+};
+const COLOURS = { tan: "Tan", brown: "Brown", grey: "Grey", bluegrey: "Blue-grey", olive: "Olive", yellow: "Yellow", orange: "Orange", red: "Red-brown", green: "Green", dark: "Dark grey", white: "Off-white" };
+const GFX_DEFAULT = { clay: { pat: "clay", col: "tan" }, drain: { pat: "sand", col: "yellow" }, fill: { pat: "fill", col: "brown" } };
+const patternDefs = prefix => Object.entries(PATTERNS).filter(([, p]) => p[3]).map(([k, [, w, h, inner]]) =>
+  `<pattern id="${prefix}${k}" width="${w}" height="${h}" patternUnits="userSpaceOnUse"><g style="stroke:var(--ink);stroke-opacity:.5;stroke-width:.9;fill:none">${inner}</g></pattern>`).join("");
+/* Draws one rectangle in a material's colour and pattern. defsPrefix is where the chart's pattern definitions live. */
+const matRect = (x, y, w, h, m, defsPrefix, stroke = "var(--clay-mark)") => {
+  const col = COLOURS[m.col] ? m.col : "tan", pat = PATTERNS[m.pat] ? m.pat : "plain";
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" style="fill:var(--c-${col})"/>` + (PATTERNS[pat][3] ? `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${defsPrefix}${pat})" style="stroke:none"/>` : "") + `<rect x="${x}" y="${y}" width="${w}" height="${h}" style="fill:none;stroke:${stroke};stroke-width:.75"/>`;
+};
+const swatch = (id, m) => { const pat = PATTERNS[m.pat] ? m.pat : "plain"; return `<svg class="sw" width="34" height="20" viewBox="0 0 34 20" aria-hidden="true"><defs>${PATTERNS[pat][3] ? `<pattern id="${id}${pat}" width="${PATTERNS[pat][1]}" height="${PATTERNS[pat][2]}" patternUnits="userSpaceOnUse"><g style="stroke:var(--ink);stroke-opacity:.5;stroke-width:.9;fill:none">${PATTERNS[pat][3]}</g></pattern>` : ""}</defs>${matRect(0, 0, 34, 20, m, id, "none")}</svg>`; };
+/* Pattern and colour drop-downs for one material row. idp is the row's id prefix, such as "u3" or "f2". */
+const gfxPicker = (idp, id, m, label) => `<div class="gfx"><span id="${idp}-sw">${swatch(`sw-${idp}-`, m)}</span>
+  <select id="${idp}-pat" data-id="${id}" data-key="pat" aria-label="Graphic for ${esc(label)}">${Object.entries(PATTERNS).map(([k, p]) => `<option value="${k}"${k === m.pat ? " selected" : ""}>${p[0]}</option>`).join("")}</select>
+  <select id="${idp}-col" data-id="${id}" data-key="col" aria-label="Colour for ${esc(label)}">${Object.entries(COLOURS).map(([k, n]) => `<option value="${k}"${k === m.col ? " selected" : ""}>${n}</option>`).join("")}</select></div>`;
+
+const drainUnit = (id, name, gamma, E, pat = "sand", col = "yellow") => ({ id, name, type: "drain", gamma, E, nu: "0.3", e0: "", Cc: "", Cr: "", ocr: "", pop: "", Ca: "", cv: "", pat, col });
+const clayUnit = (id, name, gamma, E, e0, Cc, Cr, ocr, pop, Ca, cv, pat = "clay", col = "tan") => ({ id, name, type: "clay", gamma, E, nu: "0.5", e0, Cc, Cr, ocr, pop, Ca, cv, pat, col });
 const layerOf = (id, unitId, h) => ({ id, unitId, h, drainage: "two" });
 const zoneOf = (id, fillId, h) => ({ id, fillId, h });
 /* Default drain parameters: a 100 × 4 mm band drain, moderate smear, and ch taken equal to cv. */
-const GT_DEFAULTS = { mode: "auto", drOn: false, drS: "1.5", drPattern: "tri", drDw: "50", drSmear: "2", drKhKs: "2", drChCv: "1", surOn: false, qs: "20", tr: "", caRatio: "" };
+const GT_DEFAULTS = { mode: "auto", preOn: false, tw: "0.5", drOn: false, drS: "1.5", drPattern: "tri", drDw: "50", drSmear: "2", drKhKs: "2", drChCv: "1", surOn: false, qs: "20", tr: "", caRatio: "" };
 const GT_KEYS = Object.keys(GT_DEFAULTS).filter(k => k !== "mode");
 const newGt = () => ({ ...GT_DEFAULTS });
-const LOC_DEFAULTS = { x: null, y: null, lat: null, lng: null, q: "0", gwt: "1", tc: "0.5", pcsReq: "" };
+const LOC_DEFAULTS = { x: null, y: null, lat: null, lng: null, q: "0", gwt: "1", tc: "0.5", pcsReq: "", twMax: "1" };
 /* claude.ai blocks map imagery inside artifacts, so the live map works only when this file is opened directly. */
 const MAP_OK = !window.claude;
 const EXAMPLE = () => ({
   td: "50", th: "3", eop: "0.95", histMode: "ocr", sub: "10", reduce: false, immOn: true, isExample: true,
-  project: "Example embankment", jobRef: "", author: "", planMode: "image", planSample: true, hasPlan: true, plan: null, map: null, active: 1, view: "loc", embT1: "1",
-  fills: [{ id: 1, name: "General fill", gamma: "20", alpha: "0.5" }, { id: 2, name: "Working platform", gamma: "21", alpha: "0.2" }],
+  project: "Example embankment", jobRef: "", author: "", planMode: "image", zone: "56", gis: [], hasGis: false, planSample: true, hasPlan: true, plan: null, map: null, active: 1, view: "loc", embT1: "1",
+  fills: [{ id: 1, name: "General fill", gamma: "20", alpha: "0.5", pat: "fill", col: "brown" }, { id: 2, name: "Working platform", gamma: "21", alpha: "0.2", pat: "gravel", col: "grey" }],
   units: [
-    drainUnit(1, "Sandy fill", "18", "15"),
-    clayUnit(2, "Soft clay", "16", "5", "1.6", "0.6", "0.06", "1.2", "10", "0.018", "1.5"),
-    drainUnit(3, "Sand lens", "19", "30"),
-    clayUnit(4, "Stiff silty clay", "18.5", "25", "0.9", "0.25", "0.04", "2", "60", "0.006", "4"),
-    drainUnit(5, "Dense sand", "20", "60"),
-    clayUnit(6, "Very soft clay", "15.5", "4", "1.9", "0.75", "0.08", "1.1", "5", "0.022", "1.2"),
-    clayUnit(7, "Silty clay", "17.5", "10", "1.1", "0.3", "0.04", "1.5", "20", "0.01", "3"),
+    drainUnit(1, "Sandy fill", "18", "15", "sand", "orange"),
+    clayUnit(2, "Soft clay", "16", "5", "1.6", "0.6", "0.06", "1.2", "10", "0.018", "1.5", "clay", "bluegrey"),
+    drainUnit(3, "Sand lens", "19", "30", "sand", "yellow"),
+    clayUnit(4, "Stiff silty clay", "18.5", "25", "0.9", "0.25", "0.04", "2", "60", "0.006", "4", "silt", "tan"),
+    drainUnit(5, "Dense sand", "20", "60", "sand", "olive"),
+    clayUnit(6, "Very soft clay", "15.5", "4", "1.9", "0.75", "0.08", "1.1", "5", "0.022", "1.2", "clay", "grey"),
+    clayUnit(7, "Silty clay", "17.5", "10", "1.1", "0.3", "0.04", "1.5", "20", "0.01", "3", "silt", "brown"),
   ],
   locations: [
     { ...LOC_DEFAULTS, id: 1, name: "BH-01", x: 0.27, y: 0.63, q: "10", pcsReq: "100", emb: [zoneOf(1, 1, "1.5"), zoneOf(2, 2, "0.5")], gt: newGt(), layers: [layerOf(1, 1, "1"), layerOf(2, 2, "6"), layerOf(3, 3, "1"), layerOf(4, 4, "4"), layerOf(5, 5, "2")] },
@@ -1218,7 +1417,7 @@ const EXAMPLE = () => ({
 /* A new or cleared project: one empty location, no materials, ready to fill in. */
 const BLANK = (name = "", keep = {}) => ({
   td: "50", th: "", eop: "0.95", histMode: "ocr", sub: "10", reduce: false, immOn: false, isExample: false,
-  project: name, jobRef: "", author: "", ...keep, planMode: MAP_OK ? "map" : "image", planSample: false, hasPlan: false, plan: null, map: null, active: 1, view: "units", embT1: "1",
+  project: name, jobRef: "", author: "", ...keep, planMode: "map", zone: "56", gis: [], hasGis: false, planSample: false, hasPlan: false, plan: null, map: null, active: 1, view: "units", embT1: "1",
   fills: [], units: [],
   locations: [{ ...LOC_DEFAULTS, id: 1, name: "Location 1", q: "", gwt: "", tc: "", emb: [], gt: newGt(), layers: [] }],
 });
@@ -1229,7 +1428,7 @@ const resolveEmb = loc => (loc.emb || []).map(z => { const f = P.fills.find(x =>
 
 /* A project holds whole-site settings plus a list of locations. S always reads and writes the
    selected location's own fields, and the project's fields for everything else. */
-const LOCAL_KEYS = new Set(["id", "name", "x", "y", "lat", "lng", "q", "gwt", "tc", "pcsReq", "emb", "gt", "layers"]);
+const LOCAL_KEYS = new Set(["id", "name", "x", "y", "lat", "lng", "q", "gwt", "tc", "pcsReq", "twMax", "emb", "gt", "layers"]);
 const KEY3 = "settlement-1d-v3", KEY = "settlement-1d-v2", KEY_OLD = "settlement-1d-v1";
 let P = null, R = null, ALL = [];
 const activeLoc = () => P.locations.find(l => l.id === P.active) || P.locations[0];
@@ -1245,7 +1444,8 @@ function normalizeProject(o) {
   const str = (v, d = "") => (v === undefined || v === null ? d : String(v).slice(0, 200));
   const frac = v => (typeof v === "number" && v >= 0 && v <= 1 ? v : null);
   const coord = (v, lim) => (typeof v === "number" && Math.abs(v) <= lim ? v : null);
-  const unitOf = (u, id, name) => ({ id, name, type: u.type === "drain" ? "drain" : "clay", ...Object.fromEntries(UNIT_PARAMS.map(k => [k, str(u[k])])) });
+  const gfxOf = (m, d) => ({ pat: PATTERNS[m.pat] ? m.pat : d.pat, col: COLOURS[m.col] ? m.col : d.col });
+  const unitOf = (u, id, name) => { const type = u.type === "drain" ? "drain" : "clay"; return { id, name, type, ...Object.fromEntries(UNIT_PARAMS.map(k => [k, str(u[k])])), ...gfxOf(u, GFX_DEFAULT[type]) }; };
   const units = [], unitIds = new Map(), bySignature = new Map();
   if (Array.isArray(o.units)) o.units.forEach((u, i) => {
     if (!u) throw new Error("bad unit");
@@ -1254,12 +1454,12 @@ function normalizeProject(o) {
   const fills = [], fillIds = new Map();
   if (Array.isArray(o.fills)) o.fills.forEach((f, i) => {
     if (!f) throw new Error("bad fill");
-    fillIds.set(f.id, i + 1); fills.push({ id: i + 1, name: str(f.name), gamma: str(f.gamma), alpha: str(f.alpha) });
+    fillIds.set(f.id, i + 1); fills.push({ id: i + 1, name: str(f.name), gamma: str(f.gamma), alpha: str(f.alpha), ...gfxOf(f, GFX_DEFAULT.fill) });
   });
   // Version 2 projects had one fill for the site and a thickness at each location, with the fill's weight inside q.
   let legacyFill = 0;
   const legacyFillId = () => {
-    if (!legacyFill) { legacyFill = fills.length + 1; fills.push({ id: legacyFill, name: "Embankment fill", gamma: str(o.embGamma, "20"), alpha: str(o.embAlpha, "0.5") }); }
+    if (!legacyFill) { legacyFill = fills.length + 1; fills.push({ id: legacyFill, name: "Embankment fill", gamma: str(o.embGamma, "20"), alpha: str(o.embAlpha, "0.5"), ...GFX_DEFAULT.fill }); }
     return legacyFill;
   };
   // Projects saved before soil units existed carry full parameters on every layer. Identical layers merge into one unit.
@@ -1295,9 +1495,9 @@ function normalizeProject(o) {
     }
     const g = l.gt && typeof l.gt === "object" ? l.gt : null, src = g || l;
     const gt = { ...GT_DEFAULTS, mode: g ? (g.mode === "manual" ? "manual" : "auto") : (l.surOn ? "manual" : "auto") };
-    GT_KEYS.forEach(k => { if (k === "drOn" || k === "surOn") gt[k] = !!src[k]; else if (src[k] !== undefined && src[k] !== null) gt[k] = str(src[k]); });
+    GT_KEYS.forEach(k => { if (k === "drOn" || k === "surOn" || k === "preOn") gt[k] = !!src[k]; else if (src[k] !== undefined && src[k] !== null) gt[k] = str(src[k]); });
     gt.drPattern = gt.drPattern === "sq" ? "sq" : "tri";
-    return { id: i + 1, name: str(l.name, `Location ${i + 1}`), x: frac(l.x), y: frac(l.y), lat: coord(l.lat, 90), lng: coord(l.lng, 180), q, gwt: str(l.gwt), tc: str(l.tc, "0"), pcsReq: str(l.pcsReq), emb, gt, layers: l.layers.map(layer) };
+    return { id: i + 1, name: str(l.name, `Location ${i + 1}`), x: frac(l.x), y: frac(l.y), lat: coord(l.lat, 90), lng: coord(l.lng, 180), q, gwt: str(l.gwt), tc: str(l.tc, "0"), pcsReq: str(l.pcsReq), twMax: str(l.twMax, "1"), emb, gt, layers: l.layers.map(layer) };
   });
   const plan = o.plan && typeof o.plan.src === "string" && /^data:image\/(jpeg|png|webp);base64,/.test(o.plan.src) && o.plan.w > 0 && o.plan.h > 0
     ? { src: o.plan.src, w: +o.plan.w, h: +o.plan.h } : null;
@@ -1306,7 +1506,8 @@ function normalizeProject(o) {
   return {
     td: str(o.td, "50"), th: str(o.th, "0"), eop: ["0.9", "0.95", "0.99"].includes(String(o.eop)) ? String(o.eop) : "0.95",
     histMode: o.histMode === "pop" ? "pop" : "ocr", sub: str(o.sub, "10"), reduce: !!o.reduce, immOn: o.immOn !== false, isExample: !!o.isExample,
-    project: str(o.project), jobRef: str(o.jobRef), author: str(o.author), planMode: o.planMode === "map" ? "map" : "image", planSample: !!o.planSample, hasPlan: !!(o.hasPlan || plan), plan, map,
+    project: str(o.project), jobRef: str(o.jobRef), author: str(o.author), planMode: o.planMode === "map" ? "map" : "image",
+    zone: +o.zone >= 46 && +o.zone <= 59 ? String(Math.round(+o.zone)) : "56", gis: Array.isArray(o.gis) && o.gis.length ? normalizeGis(o.gis) : [], hasGis: !!(o.hasGis || (Array.isArray(o.gis) && o.gis.length)), planSample: !!o.planSample, hasPlan: !!(o.hasPlan || plan), plan, map,
     active: ids.get(o.active) || 1, view: ["methods", "limits", "units"].includes(o.view) ? o.view : "loc", embT1: str(o.embT1, "1"), fills, units, locations,
   };
 }
@@ -1316,7 +1517,7 @@ const fromOldDraft = p => normalizeProject({
 
 /* ---------- Projects: every project is kept in this browser, without its plan image ---------- */
 const STORE = { current: 1, projects: {} };
-const stripPlan = p => { const { plan, ...rest } = p; return rest; };
+const stripPlan = p => { const { plan, gis, ...rest } = p; return rest; }; // the plan image and GIS layers live in IndexedDB
 const persist = () => { try { localStorage.setItem(KEY3, JSON.stringify(STORE)); } catch (e) { /* storage unavailable */ } };
 const save = () => { if (P) { STORE.projects[STORE.current] = stripPlan(P); persist(); } };
 (function loadStore() {
@@ -1399,6 +1600,7 @@ function renderUnits() {
       <td><select class="ty" id="u${u.id}-type" data-id="${u.id}" data-key="type" aria-label="Type of soil unit ${i + 1}">
         <option value="clay"${u.type === "clay" ? " selected" : ""}>Clay / silt</option>
         <option value="drain"${u.type !== "clay" ? " selected" : ""}>Free-draining</option></select></td>
+      <td>${gfxPicker(`u${u.id}`, u.id, u, u.name || "unit " + (i + 1))}</td>
       ${cells}
       <td class="used">${used.length ? esc(used.map(l => l.name || "Unnamed").join(", ")) : "Not used"}</td>
       <td><div class="rowbtns">
@@ -1406,7 +1608,7 @@ function renderUnits() {
         <button class="icon" type="button" data-act="del" data-id="${u.id}"${used.length ? ` disabled title="Remove it from ${esc(used.map(l => l.name || "Unnamed").join(", "))} first"` : ""} aria-label="Delete soil unit ${esc(u.name)}">✕</button>
       </div></td></tr>`;
   }).join("");
-  $("unitTable").innerHTML = `<thead><tr><th>#</th><th class="l">Name</th><th class="l">Type</th>${head}<th class="l">Used at</th><th></th></tr></thead><tbody>${rows}</tbody>`;
+  $("unitTable").innerHTML = `<thead><tr><th>#</th><th class="l">Name</th><th class="l">Type</th><th class="l">Graphic</th>${head}<th class="l">Used at</th><th></th></tr></thead><tbody>${rows}</tbody>`;
 }
 
 /* Soil profile table on each location's tab: a unit, a thickness and drainage per layer. */
@@ -1423,7 +1625,7 @@ function renderLayers() {
     const u = unitById(l.unitId), clay = u && u.type === "clay";
     return `<tr>
       <td>${i + 1}</td>
-      <td><select class="unitsel" id="l${l.id}-unitId" data-id="${l.id}" data-key="unitId" aria-label="Soil unit for layer ${i + 1}">${options(l.unitId)}</select></td>
+      <td><div class="unitsel-wrap">${u ? swatch(`sw-l${l.id}-`, u) : ""}<select class="unitsel" id="l${l.id}-unitId" data-id="${l.id}" data-key="unitId" aria-label="Soil unit for layer ${i + 1}">${options(l.unitId)}</select></div></td>
       <td><input id="l${l.id}-h" data-id="${l.id}" data-key="h" type="number" step="any" inputmode="decimal" value="${esc(l.h)}" aria-label="Thickness of layer ${i + 1} in metres"></td>
       <td class="base" id="l${l.id}-base"></td>
       <td>${clay ? `<select class="dr" id="l${l.id}-drainage" data-id="${l.id}" data-key="drainage" aria-label="Drainage of layer ${i + 1}">
@@ -1457,6 +1659,7 @@ function renderFills() {
     return `<tr>
       <td>${i + 1}</td>
       <td><input class="nm" id="f${f.id}-name" data-id="${f.id}" data-key="name" value="${esc(f.name)}" aria-label="Name of fill material ${i + 1}"></td>
+      <td>${gfxPicker(`f${f.id}`, f.id, f, f.name || "fill " + (i + 1))}</td>
       <td><input id="f${f.id}-gamma" data-id="${f.id}" data-key="gamma" type="number" step="any" inputmode="decimal" value="${esc(f.gamma)}" aria-label="Unit weight for ${nm}"></td>
       <td><input id="f${f.id}-alpha" data-id="${f.id}" data-key="alpha" type="number" step="any" inputmode="decimal" value="${esc(f.alpha)}" aria-label="Creep rate alpha for ${nm}"></td>
       <td class="used">${used.length ? esc(used.map(l => l.name || "Unnamed").join(", ")) : "Not used"}</td>
@@ -1465,7 +1668,7 @@ function renderFills() {
         <button class="icon" type="button" data-act="del" data-id="${f.id}"${used.length ? ` disabled title="Remove it from ${esc(used.map(l => l.name || "Unnamed").join(", "))} first"` : ""} aria-label="Delete fill material ${nm}">✕</button>
       </div></td></tr>`;
   }).join("");
-  $("fillTable").innerHTML = `<thead><tr><th>#</th><th class="l">Name</th><th>γ<span class="u">kN/m³</span></th><th>α<span class="u">% per log cycle</span></th><th class="l">Used at</th><th></th></tr></thead><tbody>${rows || `<tr><td colspan="6" class="l" style="color:var(--muted)">No fill materials yet. Add one to build embankments.</td></tr>`}</tbody>`;
+  $("fillTable").innerHTML = `<thead><tr><th>#</th><th class="l">Name</th><th class="l">Graphic</th><th>γ<span class="u">kN/m³</span></th><th>α<span class="u">% per log cycle</span></th><th class="l">Used at</th><th></th></tr></thead><tbody>${rows || `<tr><td colspan="7" class="l" style="color:var(--muted)">No fill materials yet. Add one to build embankments.</td></tr>`}</tbody>`;
 }
 
 /* Embankment zones on each location's tab: a fill material and thickness per zone, top to bottom. */
@@ -1476,7 +1679,7 @@ function renderEmb() {
     const f = fillById(z.fillId);
     return `<tr>
       <td>${i + 1}</td>
-      <td><select class="unitsel" id="e${z.id}-fillId" data-id="${z.id}" data-key="fillId" aria-label="Fill material for embankment zone ${i + 1}">${f ? "" : `<option value="" selected>Choose a fill</option>`}${options(z.fillId)}</select></td>
+      <td><div class="unitsel-wrap">${f ? swatch(`sw-e${z.id}-`, f) : ""}<select class="unitsel" id="e${z.id}-fillId" data-id="${z.id}" data-key="fillId" aria-label="Fill material for embankment zone ${i + 1}">${f ? "" : `<option value="" selected>Choose a fill</option>`}${options(z.fillId)}</select></div></td>
       <td><input id="e${z.id}-h" data-id="${z.id}" data-key="h" type="number" step="any" inputmode="decimal" value="${esc(z.h)}" aria-label="Thickness of embankment zone ${i + 1} in metres"></td>
       <td class="base" id="e${z.id}-w"></td>
       <td class="summary">${f ? esc(`γ ${f.gamma || "?"} · α ${f.alpha || "?"}%`) : ""}</td>
@@ -1537,6 +1740,7 @@ function setMethodsTab(t) {
 
 /* Version keeping: add a row at the top of VERSIONS with each change. Reports and project files record APP_VERSION. */
 const VERSIONS = [
+  ["3.1", "2026-11-08", "Pattern and colour for each soil unit and fill material, shown in the soil column and reports. Preload (a wait before handover) as a ground treatment, included in the suggestions with a programme limit. GIS layers on the site map from GeoJSON, KML/KMZ, zipped shapefiles and CSV, with GDA2020 MGA zones and easting/northing entry for locations. The map now works inside claude.ai without imagery. PDF report: choose the locations, ground treatment graphics and summary table, one shared methods, assumptions and limitations page, and tables sized to fit the page."],
   ["3.0", "2026-11-07", "Several projects kept in the browser, with a project menu and Clear all. Embankment zones with their own fill materials: their weight now loads the ground, added to any extra surface load. Post-construction settlement requirement and a Ground treatment section that suggests and checks vertical drains and surcharge. Live satellite or street map for the site plan in the standalone file. Methods sub-tabs with a new Learning tab."],
   ["2.0", "2026-11-07", "Four parent tabs: Methods & information, Limitations, Project & materials, and Calculations with a sub-tab per location. Added input guidance, a full reference list, limitations with advice, and this version history."],
   ["1.7", "", "Embankment thickness at each location, and secondary creep of the fill added to total settlement."],
@@ -1587,6 +1791,7 @@ function syncGeneral() {
   $("btnDeleteLoc").disabled = P.locations.length < 2;
   $("reduce").checked = !!S.reduce;
   $("immOn").checked = !!S.immOn;
+  $("zone").value = P.zone || "56";
   $("exampleNote").hidden = !S.isExample;
   syncGt();
 }
@@ -1614,7 +1819,8 @@ const pcsPill = (pcs, req) => req === null ? "" : pcs * 1000 <= req + 1e-9 ? `<s
 const gtLabel = (r, long) => !r.treated ? "None" : [
   r.drOn ? `Drains at ${+r.drS} m${long ? (r.drPattern === "sq" ? ", square grid" : ", triangular grid") : ""}` : "",
   r.surOn ? `${+r.qs} kPa surcharge to ${fmtYr(r.tr)} yr` : "",
-].filter(Boolean).join(" + ");
+  r.preOn ? `wait ${fmtWait(r.tw)}` : "",
+].filter(Boolean).join(" + ").replace(/^w/, "W");
 function renderStrip(res) {
   if (res.errors.length) {
     $("heroK").textContent = `${S.name || "Unnamed"}: total settlement`;
@@ -1671,7 +1877,7 @@ function renderTables(res) {
 }
 function timeRows(res) {
   const set = new Set([0.1, 0.5, 1, 2, 5, 10, 20, 50, 100, 200].filter(t => t < res.td));
-  set.add(res.td); if (res.th > 0) set.add(res.th); if (res.tc > 0) set.add(res.tc); if (res.surOn) set.add(res.tr);
+  set.add(res.td); if (res.th > 0) set.add(res.th); if (res.tc > 0) set.add(res.tc); if (res.surOn) set.add(res.tr); if (res.preOn && res.thBase > 0) set.add(res.thBase);
   return [...set].sort((a, b) => a - b);
 }
 function buildCsv(res) {
@@ -1709,56 +1915,85 @@ function buildCsv(res) {
 const DR_GRID = Array.from({ length: 26 }, (_, i) => +(1 + i * 0.1).toFixed(1));
 const DR_SUGGEST = { drPattern: "tri", drDw: "50", drSmear: "2", drKhKs: "2", drChCv: "1" };
 const PROJ_KEYS = ["td", "th", "eop", "histMode", "sub", "reduce", "immOn", "embT1"];
+const fmtWait = w => (w < 1 ? `${Math.round(w * 12)} months` : `${+w.toFixed(2)} yr`);
+const twOf = loc => { const v = Number(loc.twMax); return loc.twMax !== "" && v > 0 ? Math.min(v, 20) : 0; };
 /* Engine input for a location with no treatment. Kept small, because it is also the suggestion cache key. */
 function baseInput(loc) {
   const o = {}; PROJ_KEYS.forEach(k => { o[k] = P[k]; });
-  return { ...o, q: loc.q, gwt: loc.gwt, tc: loc.tc, layers: resolveLayers(loc), emb: resolveEmb(loc), surOn: false, drOn: false };
+  return { ...o, q: loc.q, gwt: loc.gwt, tc: loc.tc, layers: resolveLayers(loc), emb: resolveEmb(loc), surOn: false, drOn: false, preOn: false };
 }
 const sugCache = new Map();
 function suggestFor(loc) {
-  const base = baseInput(loc), req = reqOf(loc), key = JSON.stringify([base, req]);
-  if (!sugCache.has(key)) { if (sugCache.size > 300) sugCache.clear(); sugCache.set(key, computeSuggestion(base, req)); }
+  const base = baseInput(loc), req = reqOf(loc), tw = twOf(loc), key = JSON.stringify([base, req, tw]);
+  if (!sugCache.has(key)) { if (sugCache.size > 300) sugCache.clear(); sugCache.set(key, computeSuggestion(base, req, tw)); }
   return sugCache.get(key);
 }
-function computeSuggestion(base, req) {
+/* Options are tried from least to most costly: waiting, a modest surcharge, drains, a large surcharge,
+   then drains with a surcharge. Each uses the shortest wait (preload) up to the programme limit that works. */
+function computeSuggestion(base, req, twMax) {
   const r0 = Engine.analyse(base);
   if (r0.errors.length) return { state: "error" };
   if (req === null) return { state: "none", reason: "blank", r0 };
   if (r0.pcs * 1000 <= req + 1e-9) return { state: "none", reason: "meets", r0 };
   const lim = req / 1000 + 1e-12;
   const pcsOf = extra => { const r = Engine.analyse({ ...base, ...extra }); return r.errors.length ? Infinity : r.pcs; };
-  const th = r0.th, Q = r0.q, clayOK = r0.clays.length > 0;
-  const surOK = clayOK && th > 0 && th >= r0.tc; // the surcharge comes off at handover, after construction
-  const sur = qs => ({ surOn: true, qs: String(qs), tr: String(th), caRatio: "" });
+  const th0 = r0.th, Q = r0.q, clayOK = r0.clays.length > 0;
+  const waits = [0];
+  for (let w = 0.25; w <= twMax + 1e-9; w += 0.25) if (th0 + w <= r0.td) waits.push(+w.toFixed(2));
+  if (twMax > waits[waits.length - 1] + 1e-9 && th0 + twMax <= r0.td) waits.push(+twMax.toFixed(3));
+  const wm = waits[waits.length - 1];
+  const wait = w => (w > 0 ? { preOn: true, tw: String(w) } : { preOn: false });
+  const surOK = w => clayOK && th0 + w > 0 && th0 + w >= r0.tc; // the surcharge comes off at handover
+  const sur = (qs, w) => ({ surOn: true, qs: String(qs), tr: String(+(th0 + w).toFixed(4)), caRatio: "" });
   const drn = s => ({ drOn: true, drS: String(s), ...DR_SUGGEST });
   // Surcharges below 20% of Q aren't suggested: the reduced Cα′ assumed after removal needs a real surcharge ratio.
   const qsMin = Math.max(10, Math.ceil(0.2 * Q / 5) * 5), qsMax = Math.max(qsMin, Math.ceil(Q / 5) * 5), qsSteps = [];
   for (let x = qsMin; x <= qsMax; x += 5) qsSteps.push(x);
+  const findQs = (w, maxQs) => { if (!surOK(w)) return null; for (const x of qsSteps) { if (x > maxQs + 1e-9) break; if (pcsOf({ ...wait(w), ...sur(x, w) }) <= lim) return x; } return null; };
   // Widest spacing that meets the limit. PCS falls as drains get closer, so a binary search over the grid works.
-  const widest = extra => {
-    if (pcsOf({ ...extra, ...drn(DR_GRID[0]) }) > lim) return null;
+  const widest = (w, extra) => {
+    if (!clayOK) return null;
+    const f = i => pcsOf({ ...wait(w), ...extra, ...drn(DR_GRID[i]) }) <= lim;
+    if (!f(0)) return null;
     let lo = 0, hi = DR_GRID.length - 1;
-    if (pcsOf({ ...extra, ...drn(DR_GRID[hi]) }) <= lim) return DR_GRID[hi];
-    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (pcsOf({ ...extra, ...drn(DR_GRID[m]) }) <= lim) lo = m; else hi = m; }
+    if (f(hi)) return DR_GRID[hi];
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (f(m)) lo = m; else hi = m; }
     return DR_GRID[lo];
   };
-  let A = null, B = null, pick = null;
-  if (surOK) for (const x of qsSteps) if (pcsOf(sur(x)) <= lim) { A = x; break; }
-  if (clayOK) B = widest({});
-  if (A !== null && A <= Q / 2) pick = { kind: "sur", qs: A };
-  else if (B !== null) pick = { kind: "drains", s: B };
-  else if (A !== null) pick = { kind: "sur", qs: A };
-  else if (surOK) for (const x of qsSteps) { const s = widest(sur(x)); if (s !== null) { pick = { kind: "both", qs: x, s }; break; } }
+  const halfQ = Math.floor(Q / 2 / 5) * 5;
+  const strategies = [
+    { kind: "pre", ok: clayOK && wm > 0, label: `waiting up to ${fmtWait(wm)} alone`, test: w => (w > 0 && pcsOf(wait(w)) <= lim ? {} : null) },
+    { kind: "sur", ok: surOK(wm) && halfQ >= qsMin, label: `a surcharge up to half the permanent load (${halfQ} kPa)`, test: w => { const x = findQs(w, Q / 2); return x === null ? null : { qs: x }; } },
+    { kind: "drains", ok: clayOK, label: "drains alone, down to 1.0 m spacing", test: w => { const s = widest(w, {}); return s === null ? null : { s }; } },
+    { kind: "sur", ok: surOK(wm), label: `a surcharge up to the full permanent load (${qsMax} kPa)`, test: w => { const x = findQs(w, qsMax); return x === null ? null : { qs: x }; } },
+    { kind: "both", ok: clayOK && surOK(wm), label: "drains with a surcharge", test: w => { if (!surOK(w)) return null; for (const x of qsSteps) { const s = widest(w, sur(x, w)); if (s !== null) return { qs: x, s }; } return null; } },
+  ];
+  // Shortest wait at which an option works. A longer wait never increases PCS, so a binary search over the waits works.
+  const minWait = st => {
+    const first = st.test(waits[0]); if (first) return { w: waits[0], ...first };
+    if (waits.length < 2) return null;
+    let best = st.test(wm); if (!best) return null;
+    let lo = 0, hi = waits.length - 1;
+    while (hi - lo > 1) { const m = (lo + hi) >> 1, r = st.test(waits[m]); if (r) { hi = m; best = r; } else lo = m; }
+    return { w: waits[hi], ...best };
+  };
+  const tried = []; let pick = null;
+  for (const st of strategies) {
+    if (!st.ok) continue;
+    const r = minWait(st);
+    if (r) { pick = { kind: st.kind, ...r }; break; }
+    tried.push(st.label);
+  }
   const met = !!pick;
-  if (!pick) pick = !clayOK ? { kind: "nothing" } : surOK ? { kind: "both", qs: qsMax, s: DR_GRID[0] } : { kind: "drains", s: DR_GRID[0] };
-  const fields = { surOn: false, drOn: false, ...(pick.qs ? sur(pick.qs) : {}), ...(pick.s ? drn(pick.s) : {}) };
+  if (!pick) pick = !clayOK ? { kind: "nothing", w: 0 } : surOK(wm) ? { kind: "both", w: wm, qs: qsMax, s: DR_GRID[0] } : { kind: "drains", w: wm, s: DR_GRID[0] };
+  const fields = { surOn: false, drOn: false, ...wait(pick.w), ...(pick.qs ? sur(pick.qs, pick.w) : {}), ...(pick.s ? drn(pick.s) : {}) };
   const r1 = pick.kind === "nothing" ? r0 : Engine.analyse({ ...base, ...fields });
-  return { state: "need", met, pick, fields, r0, r1, req, A, B, Q, qsMax, surOK, clayOK };
+  return { state: "need", met, pick, fields, r0, r1, req, Q, qsMax, twMax: wm, tried };
 }
 /* The treatment the results use: the suggestion, or the user's own settings. */
 function treatmentOf(loc, sug) {
   if (loc.gt.mode === "manual") { const f = {}; GT_KEYS.forEach(k => { f[k] = loc.gt[k]; }); return f; }
-  return sug && sug.state === "need" && sug.pick.kind !== "nothing" ? sug.fields : { surOn: false, drOn: false };
+  return sug && sug.state === "need" && sug.pick.kind !== "nothing" ? sug.fields : { surOn: false, drOn: false, preOn: false };
 }
 /* Parts of PCS, and how far primary has got at handover. */
 function pcsParts(r) {
@@ -1766,21 +2001,28 @@ function pcsParts(r) {
   return { i: a.i - b.i, p: a.p - b.p, s: a.s - b.s, e: a.e - b.e, uh: r.SpTot > 0 ? b.p / r.SpTot : 1 };
 }
 const pct = u => `${(u * 100).toFixed(0)}%`;
+const fillGamma = r => (r.emb && r.emb.length ? r.emb[r.emb.length - 1].gamma : 20);
 function gtExplain(sug) {
   const r0 = sug.r0, r1 = sug.r1, k0 = pcsParts(r0), k1 = pcsParts(r1), pk = sug.pick, out = [];
   const govern = r0.clays.slice().sort((a, b) => b.tp - a.tp)[0];
   out.push(`Without treatment, PCS is ${mm(r0.pcs)} mm against the ${sug.req} mm requirement: primary ${mm(k0.p)} mm, secondary ${mm(k0.s)} mm${r0.he > 0 ? `, fill creep ${mm(k0.e)} mm` : ""}${k0.i > 5e-4 ? `, immediate ${mm(k0.i)} mm` : ""}. Primary is ${pct(k0.uh)} complete at handover${govern ? `, and ${esc(govern.name || "the slowest layer")} with a ${+govern.Hdr.toFixed(2)} m drainage path takes ${fmtYr(govern.t90)} years to reach 90%` : ""}.`);
-  if (pk.kind === "sur") out.push(`A surcharge of ${pk.qs} kPa (${pk.qs / sug.Q < 0.5 ? "less than half" : "about " + pct(pk.qs / sug.Q) + " of"} the ${kpa(sug.Q)} kPa permanent load), left on until handover at ${fmtYr(r0.th)} years, compresses the clay further than the permanent load would by itself. After removal, little primary settlement is left, and secondary compression continues at the reduced rate C<sub>α</sub>′ = C<sub>α</sub>·C<sub>r</sub>/C<sub>c</sub>.${sug.B !== null ? ` Drains alone would also work at ${sug.B} m spacing, but the surcharge avoids installing drains.` : " Drains alone can’t meet the requirement, because secondary compression after handover is too large."}`);
-  if (pk.kind === "drains") out.push(`Vertical drains at ${pk.s} m on a triangular grid (unit cell d<sub>e</sub> = ${(1.05 * pk.s).toFixed(2)} m) let water flow sideways into the drains, so primary is ${pct(k1.uh)} complete at handover and only ${mm(k1.p)} mm of primary is left.${sug.A !== null ? ` A surcharge alone would need ${sug.A} kPa, more than half the permanent load, which raises stability risk and fill volume.` : sug.surOK ? ` A surcharge alone up to ${sug.qsMax} kPa can’t meet the requirement by handover.` : " A surcharge isn’t possible, because handover comes before construction ends."}`);
-  if (pk.kind === "both") out.push(`Neither drains alone (even at 1.0 m spacing) nor a surcharge alone (up to ${sug.qsMax} kPa) ${sug.met ? "meets" : "can meet"} the requirement. Drains at ${pk.s} m on a triangular grid bring primary to ${pct(k1.uh)} at handover, and a ${pk.qs} kPa surcharge left on until handover at ${fmtYr(r0.th)} years reduces the secondary compression that follows.`);
-  if (pk.kind === "nothing") out.push("The profile has no clay layers, so drains and a surcharge can’t reduce settlement after handover.");
+  if (pk.kind === "nothing") out.push("The profile has no clay layers, so a wait, drains or a surcharge can’t reduce settlement after handover.");
+  else {
+    const parts = [];
+    if (pk.s) parts.push(`vertical drains at ${pk.s} m on a triangular grid (unit cell d<sub>e</sub> = ${(1.05 * pk.s).toFixed(2)} m), so water flows sideways a short distance into the drains instead of to the top or base of the clay`);
+    if (pk.qs) parts.push(`a temporary surcharge of ${pk.qs} kPa (about ${(pk.qs / fillGamma(r0)).toFixed(1)} m of fill), removed at handover, which compresses the clay further than the permanent load would and leaves it overconsolidated, so secondary compression afterwards is slower (C<sub>α</sub>′ = C<sub>α</sub>·C<sub>r</sub>/C<sub>c</sub>)`);
+    if (pk.w > 0) parts.push(`a preload wait of ${fmtWait(pk.w)} after construction, which moves handover from ${fmtYr(r0.th)} to ${fmtYr(r1.th)} years and lets consolidation continue under the full embankment first`);
+    out.push(`${sug.met ? "Suggested" : "Strongest option considered"}: ${parts.join("; and ")}. Primary is then ${pct(k1.uh)} complete at handover.`);
+  }
+  if (sug.tried.length) out.push(`Cheaper options were checked first and don’t meet the requirement: ${sug.tried.join("; ")}.`);
   if (sug.met) out.push(`With this treatment, PCS is ${mm(r1.pcs)} mm, ${mm(sug.req / 1000 - r1.pcs)} mm inside the requirement: primary ${mm(k1.p)} mm, secondary ${mm(k1.s)} mm${r1.he > 0 ? `, fill creep ${mm(k1.e)} mm` : ""}.`);
   else {
-    out.push(`No option considered meets the requirement.${pk.kind !== "nothing" ? ` The strongest, shown here, still leaves PCS at ${mm(r1.pcs)} mm.` : ""}${k1.e + k1.s > sug.req / 1000 ? ` Secondary compression and fill creep after handover (${mm(k1.s + k1.e)} mm) are more than the requirement, and drains can’t remove them.` : ""}`);
-    out.push("Consider a later handover, lightweight fill to reduce the load, rigid inclusions or piles, or excavating and replacing the compressible clay.");
+    out.push(`No option considered meets the requirement.${pk.kind !== "nothing" ? ` The strongest still leaves PCS at ${mm(r1.pcs)} mm.` : ""}${k1.e + k1.s > sug.req / 1000 ? ` Secondary compression and fill creep after handover (${mm(k1.s + k1.e)} mm) are more than the requirement, and drains can’t remove them.` : ""}`);
+    out.push("Consider a longer wait before handover, lightweight fill to reduce the load, rigid inclusions or piles, or excavating and replacing the compressible clay.");
   }
   if (pk.qs) out.push("Check embankment stability with the surcharge in place, and the space and fill needed to build it.");
   if (pk.s) out.push("Drain parameters are defaults (d<sub>w</sub> 50 mm, d<sub>s</sub>/d<sub>w</sub> 2, k<sub>h</sub>/k<sub>s</sub> 2, c<sub>h</sub> = c<sub>v</sub>). Choose Set my own to use values from site data.");
+  if (pk.w > 0) out.push("Confirm the wait suits the construction programme, and use settlement monitoring to confirm consolidation before handover.");
   return out;
 }
 function drainQty(r) {
@@ -1788,25 +2030,90 @@ function drainQty(r) {
   const per = 1000 / r.drainArea;
   return `About ${per.toFixed(0)} drains per 1000 m², each about ${r.drainLen.toFixed(1)} m long to the base of the deepest clay, so roughly ${Math.round(per * r.drainLen / 10) * 10} m of drain per 1000 m², plus a drainage blanket.`;
 }
+
+/* Ground treatment graphics, shared by the page and the PDF. */
+function gtBars(rows, req) { // rows: [[label, result]]
+  const W = 380, rowH = 30, top = 22, H = top + rows.length * rowH + 44, l = 96, r = 24;
+  const parts = rows.map(([, res]) => pcsParts(res));
+  const tot = rows.map(([, res]) => res.pcs);
+  const max = Math.max(...tot, req === null ? 0 : req / 1000, 1e-3) * 1.12;
+  const st = niceTicks(max * 1000, 4), X = v => l + Math.max(0, v) * 1000 / st.top * (W - l - r);
+  let g = "";
+  st.ticks.forEach(v => { const x = X(v / 1000); g += `<line x1="${x}" x2="${x}" y1="${top - 6}" y2="${top + rows.length * rowH}" style="stroke:var(--grid)"/><text x="${x}" y="${top + rows.length * rowH + 13}" text-anchor="middle">${v}</text>`; });
+  g += `<text x="${(l + W - r) / 2}" y="${top + rows.length * rowH + 28}" text-anchor="middle">PCS (mm)</text>`;
+  const segs = [["p", "--s2", "Primary"], ["s", "--s3", "Secondary"], ["e", "--s5", "Fill creep"], ["i", "--s4", "Immediate"]];
+  rows.forEach(([lab], i) => {
+    const y = top + i * rowH + 5; let x0 = l;
+    g += `<text class="ink" x="${l - 8}" y="${y + 13}" text-anchor="end">${esc(lab)}</text>`;
+    segs.forEach(([k, c]) => { const v = Math.max(0, parts[i][k]); if (v <= 0) return; const w = X(v) - l; g += `<rect x="${x0}" y="${y}" width="${w}" height="18" style="fill:var(${c})"/>`; x0 += w; });
+    g += `<text class="ink" x="${Math.max(x0, X(tot[i])) + 5}" y="${y + 13}">${mm(tot[i])}</text>`;
+  });
+  if (req !== null) { const x = X(req / 1000); g += `<line x1="${x}" x2="${x}" y1="${top - 10}" y2="${top + rows.length * rowH}" style="stroke:var(--bad);stroke-width:1.6;stroke-dasharray:5 3"/><text class="ink" x="${x}" y="${top - 12}" text-anchor="middle" style="fill:var(--bad)">Limit ${req} mm</text>`; }
+  let lx = 8;
+  segs.forEach(([, c, n]) => { g += `<rect x="${lx}" y="${H - 10}" width="10" height="8" style="fill:var(${c})"/><text x="${lx + 13}" y="${H - 2}">${n}</text>`; lx += 13 + n.length * 6.2 + 14; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Post-construction settlement by part, with and without treatment, against the limit.">${g}</svg>`;
+}
+function gtSchematic(res) {
+  const W = 380, H = 204, gy = 108, base = 168, xl = 30, xr = 350;
+  const clay = res.clays[0] || { pat: "clay", col: "tan" }, fill = res.emb.length ? res.emb[res.emb.length - 1] : GFX_DEFAULT.fill;
+  let g = `<defs>${patternDefs("gs-")}</defs>`;
+  g += matRect(xl, gy, xr - xl, base - gy, clay, "gs-");
+  g += `<text class="ink" x="${xr}" y="${base + 14}" text-anchor="end">${esc(clay.name || "Clay")}</text>`;
+  // Embankment: trapezoid of the top fill material, not to scale
+  const ex0 = 70, ex1 = 310, et = gy - 34, batter = 30;
+  g += `<clipPath id="gsEmb"><path d="M${ex0} ${gy}L${ex0 + batter} ${et}L${ex1 - batter} ${et}L${ex1} ${gy}Z"/></clipPath>`;
+  g += `<g clip-path="url(#gsEmb)">${matRect(ex0, et, ex1 - ex0, gy - et, fill, "gs-", "none")}</g><path d="M${ex0} ${gy}L${ex0 + batter} ${et}L${ex1 - batter} ${et}L${ex1} ${gy}" style="fill:none;stroke:var(--clay-mark);stroke-width:1"/>`;
+  g += `<text class="ink halo" x="${(ex0 + ex1) / 2}" y="${(et + gy) / 2 + 4}" text-anchor="middle">Embankment, Q = ${kpa(res.q)} kPa</text>`;
+  g += `<line x1="${xl}" x2="${xr}" y1="${gy}" y2="${gy}" style="stroke:var(--ink);stroke-width:1.2"/>`;
+  if (res.surOn) {
+    const st = et - 24;
+    g += `<path d="M${ex0 + batter + 8} ${et}L${ex0 + batter + 30} ${st}L${ex1 - batter - 30} ${st}L${ex1 - batter - 8} ${et}Z" style="fill:var(--sur-band);stroke:var(--s4);stroke-width:1.5;stroke-dasharray:4 3"/>`;
+    g += `<text class="ink" x="${(ex0 + ex1) / 2}" y="${st + 16}" text-anchor="middle">+${res.qs} kPa surcharge, off at ${fmtYr(res.tr)} yr</text>`;
+  }
+  if (res.drOn) {
+    for (let x = 52; x <= 330; x += 14) g += `<line x1="${x}" x2="${x}" y1="${gy - 4}" y2="${base - 4}" style="stroke:var(--s1);stroke-width:1.6"/>`;
+    g += `<rect x="${xl}" y="${gy - 5}" width="${xr - xl}" height="5" style="fill:var(--c-yellow);stroke:var(--clay-mark);stroke-width:.5"/>`;
+    g += `<text class="ink" x="${xl}" y="${base + 14}">Drains at ${res.drS} m, ${res.drPattern === "sq" ? "square" : "triangular"} grid, to ${res.drainLen.toFixed(1)} m depth</text>`;
+  }
+  const notes = [];
+  if (res.preOn) notes.push(`Preload wait ${fmtWait(res.tw)}: handover moves from ${fmtYr(res.thBase)} to ${fmtYr(res.th)} yr`);
+  if (!res.treated) notes.push("No ground treatment");
+  notes.forEach((t, i) => { g += `<text class="ink" x="${xl}" y="${14 + i * 14}">${t}</text>`; });
+  if (res.preOn) { const cx = xr - 12, cy = 14; g += `<circle cx="${cx}" cy="${cy}" r="9" style="fill:none;stroke:var(--ink);stroke-width:1.3"/><path d="M${cx} ${cy - 5}V${cy}L${cx + 4} ${cy + 3}" style="fill:none;stroke:var(--ink);stroke-width:1.3"/>`; }
+  g += `<text x="${W / 2}" y="${H - 4}" text-anchor="middle">Schematic, not to scale</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Schematic cross-section of the ground treatment.">${g}</svg>`;
+}
+
 /* Fills the treatment inputs. In suggestion mode they show the suggestion and can’t be edited. */
 function syncGt(force = true) {
   const item = ALL.find(a => a.loc.id === P.active), g = S.gt, auto = g.mode === "auto";
+  $("twMax").value = S.twMax === undefined ? "" : S.twMax;
   if (!auto && !force) return;
-  const src = auto ? { ...GT_DEFAULTS, ...(item && item.sug && item.sug.state === "need" ? item.sug.fields : { surOn: false, drOn: false }), tr: item && item.sug && item.sug.fields && item.sug.fields.tr || (item && item.res.th) || "" } : g;
-  ["drS", "drPattern", "drDw", "drSmear", "drKhKs", "drChCv", "qs", "tr", "caRatio"].forEach(k => { $(k).value = src[k] === undefined || src[k] === null ? "" : src[k]; });
-  $("drOn").checked = !!src.drOn; $("surOn").checked = !!src.surOn;
+  const sf = item && item.sug && item.sug.state === "need" ? item.sug.fields : { surOn: false, drOn: false, preOn: false };
+  const src = auto ? { ...GT_DEFAULTS, ...sf, tr: sf.tr || (item && item.res.th) || "" } : g;
+  ["drS", "drPattern", "drDw", "drSmear", "drKhKs", "drChCv", "qs", "tr", "caRatio", "tw"].forEach(k => { $(k).value = src[k] === undefined || src[k] === null ? "" : src[k]; });
+  $("drOn").checked = !!src.drOn; $("surOn").checked = !!src.surOn; $("preOn").checked = !!src.preOn;
   // In "set my own" mode the tick boxes stay usable; only an unticked group's fields are greyed out.
-  $("drOn").disabled = auto; $("surOn").disabled = auto;
+  $("drOn").disabled = auto; $("surOn").disabled = auto; $("preOn").disabled = auto;
   document.querySelectorAll("#gtDrains .fields input,#gtDrains .fields select").forEach(e => { e.disabled = auto || !src.drOn; });
   document.querySelectorAll("#gtSur .fields input").forEach(e => { e.disabled = auto || !src.surOn; });
+  document.querySelectorAll("#gtPre .fields input").forEach(e => { e.disabled = auto || !src.preOn; });
   $("gtAuto").setAttribute("aria-pressed", String(auto)); $("gtManual").setAttribute("aria-pressed", String(!auto));
+}
+/* Rows compared in the ground treatment section: untreated, the suggestion when overridden, and what is applied. */
+function gtRows(item) {
+  const { loc, res, sug } = item, manual = loc.gt.mode === "manual", need = sug && sug.state === "need";
+  const rows = [["No treatment", sug.r0, false]];
+  if (manual && need && sug.pick.kind !== "nothing") rows.push([`Suggested: ${gtLabel(sug.r1)}`, sug.r1, false]);
+  if (res.treated || manual) rows.push([`${manual ? "Your treatment" : "Suggested"}: ${gtLabel(res)}`, res, true]);
+  return rows;
 }
 function renderGt(item) {
   const { loc, res, sug } = item, req = reqOf(loc), manual = loc.gt.mode === "manual";
   const st = $("gtStatus"), box = $("gtSuggest");
   if (!sug || sug.state === "error" || res.errors.length) {
     st.className = "gtstatus"; st.innerHTML = `<span class="verdict">Fix the inputs marked above to check ground treatment.</span>`;
-    box.innerHTML = ""; $("gtTable").innerHTML = ""; $("surCheck").hidden = true; syncGt(false); $("gtModeHint").textContent = ""; return;
+    box.innerHTML = ""; $("gtTable").innerHTML = ""; $("gtFigs").innerHTML = ""; $("surCheck").hidden = true; syncGt(false); $("gtModeHint").textContent = ""; return;
   }
   const r0 = sug.r0, need = sug.state === "need";
   const verdict = req === null ? "No PCS requirement entered, so ground treatment is not required."
@@ -1820,15 +2127,13 @@ function renderGt(item) {
   } else box.innerHTML = "";
   $("gtModeHint").textContent = manual
     ? "Your own treatment is used in every result on this page and in the reports. Choose Use suggestion to go back."
-    : need ? "The suggestion is used in every result on this page and in the reports. Choose Set my own to change it." : "No treatment is applied. Choose Set my own to add drains or a surcharge anyway.";
+    : need ? "The suggestion is used in every result on this page and in the reports. Choose Set my own to change it." : "No treatment is applied. Choose Set my own to add a wait, drains or a surcharge anyway.";
   syncGt(false);
-  // Comparison: untreated against the applied treatment (and the suggestion, when overridden).
-  const rowsC = [["No treatment", r0, false]];
-  if (manual && need && sug.pick.kind !== "nothing") rowsC.push([`Suggested: ${gtLabel(sug.r1)}`, sug.r1, false]);
-  if (res.treated || manual) rowsC.push([`${manual ? "Your treatment" : "Suggested"}: ${gtLabel(res)}`, res, true]);
-  $("gtTable").innerHTML = `<thead><tr><th>Case</th><th>Primary at handover</th><th>90% of primary<span class="u">yr</span></th><th>Total at ${fmtYr(res.td)} yr<span class="u">mm</span></th><th>PCS<span class="u">mm</span></th><th class="l">Requirement</th></tr></thead><tbody>` +
-    rowsC.map(([n, r, ap]) => `<tr class="${ap ? "applied" : ""}"><td>${esc(n)}</td><td>${pct(pcsParts(r).uh)}</td><td>${r.SpTot > 0 ? fmtYr(r.t90All) : "–"}</td><td>${mm(r.at(r.td).total)}</td><td>${mm(r.pcs)}</td><td class="l">${req === null ? `<span class="pill na">None</span>` : pcsPill(r.pcs, req)}</td></tr>`).join("") + `</tbody>` +
-    (res.drOn ? `<tfoot><tr><td colspan="6" class="l" style="font-weight:400;white-space:normal">${drainQty(res)} Unit cell d<sub>e</sub> = ${res.de.toFixed(2)} m, μ = ${res.mu.toFixed(2)}.</td></tr></tfoot>` : "");
+  const rows = gtRows(item);
+  $("gtFigs").innerHTML = `<figure>${gtBars(rows.map(([n, r]) => [n.replace(/:.*/, ""), r]), req)}<figcaption>PCS by part for each case, against the limit.</figcaption></figure><figure>${gtSchematic(res)}<figcaption>Treatment applied in the results.</figcaption></figure>`;
+  $("gtTable").innerHTML = `<thead><tr><th>Case</th><th>Handover<span class="u">yr</span></th><th>Primary at handover</th><th>90% of primary<span class="u">yr</span></th><th>Total at ${fmtYr(res.td)} yr<span class="u">mm</span></th><th>PCS<span class="u">mm</span></th><th class="l">Requirement</th></tr></thead><tbody>` +
+    rows.map(([n, r, ap]) => `<tr class="${ap ? "applied" : ""}"><td>${esc(n)}</td><td>${fmtYr(r.th)}</td><td>${pct(pcsParts(r).uh)}</td><td>${r.SpTot > 0 ? fmtYr(r.t90All) : "–"}</td><td>${mm(r.at(r.td).total)}</td><td>${mm(r.pcs)}</td><td class="l">${req === null ? `<span class="pill na">None</span>` : pcsPill(r.pcs, req)}</td></tr>`).join("") + `</tbody>` +
+    (res.drOn ? `<tfoot><tr><td colspan="7" class="l" style="font-weight:400;white-space:normal">${drainQty(res)} Unit cell d<sub>e</sub> = ${res.de.toFixed(2)} m, μ = ${res.mu.toFixed(2)}.</td></tr></tfoot>` : "");
   $("surCheck").hidden = !res.surOn;
   if (res.surOn) $("resSur").innerHTML = `<thead><tr><th>Layer</th><th>Primary under Q<span class="u">mm</span></th><th>Primary under Q + q<sub>s</sub><span class="u">mm</span></th><th>U needed</th><th>Time needed<span class="u">yr</span></th><th>U at removal</th><th class="l">Result</th><th>Rebound<span class="u">mm</span></th><th>Primary left<span class="u">mm</span></th></tr></thead><tbody>` +
     res.clays.map(l => { const c = l.sur; return `<tr><td>${l.index + 1}. ${esc(l.name || "Unnamed")}</td><td>${mm(l.Sp)}</td><td>${mm(c.SpS)}</td><td>${(c.Ureq * 100).toFixed(0)}%</td><td>${c.treq === null ? "–" : fmtYr(c.treq)}</td><td>${(c.Utr * 100).toFixed(0)}%</td><td class="l"><span class="chip ${c.covered ? "ok" : "short"}">${c.covered ? "Primary covered" : "Primary remains"}</span></td><td>${mm(c.Reb)}</td><td>${mm(c.Srem)}</td></tr>`; }).join("") + `</tbody>`;
@@ -1899,7 +2204,8 @@ function drawTime(res, forW) { // with forW, returns SVG markup for the report a
   const xd = x(tmax);
   const marks = [{ t: tmax, txt: `Design life ${fmtYr(tmax)} yr`, ink: true }];
   if (on && res.tr > tmin && res.tr < tmax) marks.push({ t: res.tr, txt: `Surcharge off ${fmtYr(res.tr)} yr` });
-  if (res.th > tmin && res.th < tmax) marks.push({ t: res.th, txt: `Handover ${fmtYr(res.th)} yr` });
+  if (res.th > tmin && res.th < tmax) marks.push({ t: res.th, txt: `${res.preOn ? "Handover after wait" : "Handover"} ${fmtYr(res.th)} yr` });
+  if (res.preOn && res.thBase > tmin && res.thBase < tmax && !(on && Math.abs(res.thBase - res.tr) < 1e-9)) marks.push({ t: res.thBase, txt: `Planned handover ${fmtYr(res.thBase)} yr` });
   const rows = [];
   marks.sort((a, b) => b.t - a.t).forEach(k => {
     const px = x(k.t), w = k.txt.length * 6.3;
@@ -1970,12 +2276,7 @@ function drawStress(res, forW) { // with forW, returns SVG markup for the report
   prof.forEach(p => p.s0.forEach(v => { smax = Math.max(smax, v + qTop); if (p.l.type === "clay") smax = Math.max(smax, res.sigmaP(p.l, v)); }));
   const st = niceTicks(smax, W < 420 ? 4 : 5);
   const xs = v => px0 + v / st.top * (px1 - px0);
-  let g = `<defs>
-    <pattern id="pClay" width="14" height="8" patternUnits="userSpaceOnUse"><line x1="1" x2="9" y1="4" y2="4" style="stroke:var(--clay-mark);stroke-width:1"/></pattern>
-    <pattern id="pClay2" width="14" height="8" patternUnits="userSpaceOnUse"><line x1="1" x2="9" y1="4" y2="4" style="stroke:var(--clay-mark);stroke-width:1"/><line x1="8" x2="16" y1="0" y2="0" style="stroke:var(--clay-mark);stroke-width:1"/></pattern>
-    <pattern id="pSand" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" style="fill:var(--sand-mark)"/><circle cx="6.5" cy="6.5" r="1" style="fill:var(--sand-mark)"/></pattern>
-    <pattern id="pFill" width="12" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.6" style="fill:none;stroke:var(--sand-mark);stroke-width:.8"/><circle cx="9" cy="8" r="1" style="fill:var(--sand-mark)"/></pattern>
-    <pattern id="pFill2" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10L10 0" style="stroke:var(--sand-mark);stroke-width:.8"/></pattern></defs>`;
+  let g = `<defs>${patternDefs("sp-")}</defs>`;
   // Depth axis: depth below ground, and height above it for the embankment
   niceTicks(res.depth, 6).ticks.filter(z => z <= res.depth + 1e-9).forEach(z => {
     const py = yz(z);
@@ -1987,8 +2288,7 @@ function drawStress(res, forW) { // with forW, returns SVG markup for the report
   // Soil column drawn to scale
   res.L.forEach((l, i) => {
     const y0 = yz(l.top), y1 = yz(l.bot), hh = y1 - y0, clay = l.type === "clay";
-    const fill = clay ? (i % 4 === 1 ? "--clay" : "--clay2") : "--sand", pat = clay ? (i % 4 === 1 ? "pClay" : "pClay2") : "pSand";
-    g += `<rect x="${m.l}" y="${y0}" width="${colW}" height="${hh}" style="fill:var(${fill})"/><rect x="${m.l}" y="${y0}" width="${colW}" height="${hh}" fill="url(#${pat})" style="stroke:var(--clay-mark);stroke-width:.75"/>`;
+    g += matRect(m.l, y0, colW, hh, PATTERNS[l.pat] ? l : GFX_DEFAULT[clay ? "clay" : "drain"], "sp-");
     if (hh >= 15) {
       const max = Math.floor((colW - 8) / 6.1), nm = (l.name || "").length > max ? l.name.slice(0, max - 1) + "…" : (l.name || "");
       g += `<text class="ink halo" x="${m.l + colW / 2}" y="${(y0 + y1) / 2 + 4}" text-anchor="middle">${esc(nm)}</text>`;
@@ -1997,8 +2297,8 @@ function drawStress(res, forW) { // with forW, returns SVG markup for the report
   // Embankment zones, top to bottom, above ground level
   let zt = top;
   res.emb.forEach((z, i) => {
-    const hh = z.h * k, pat = i % 2 ? "pFill2" : "pFill";
-    g += `<rect x="${m.l}" y="${zt}" width="${colW}" height="${hh}" style="fill:var(--sand)"/><rect x="${m.l}" y="${zt}" width="${colW}" height="${hh}" fill="url(#${pat})" style="stroke:var(--sand-mark);stroke-width:.75"/>`;
+    const hh = z.h * k;
+    g += matRect(m.l, zt, colW, hh, PATTERNS[z.pat] ? z : GFX_DEFAULT.fill, "sp-");
     if (hh >= 15) {
       const t = `${z.name || "Fill"} ${+z.h}m`, max = Math.floor((colW - 8) / 6.1), nm = t.length > max ? t.slice(0, max - 1) + "…" : t;
       g += `<text class="ink halo" x="${m.l + colW / 2}" y="${zt + hh / 2 + 4}" text-anchor="middle">${esc(nm)}</text>`;
@@ -2111,12 +2411,13 @@ function addLocation(pos = {}) {
   const copy = JSON.parse(JSON.stringify(activeLoc()));
   const loc = { ...copy, id, name: `Location ${id}`, x: null, y: null, lat: null, lng: null, ...pos };
   P.locations.push(loc); P.active = id; P.view = "loc"; P.isExample = false;
+  if (rpSel) rpSel.add(id);
   save(); syncGeneral(); renderLayers(); renderEmb(); applyView(); recalc();
   return loc;
 }
 
 /* Plan source: a live map (standalone file only) or an uploaded image. */
-const mapMode = () => P.planMode === "map" && MAP_OK;
+const mapMode = () => P.planMode === "map";
 const onPlan = loc => (mapMode() ? loc.lat !== null && loc.lng !== null : loc.x !== null && loc.y !== null);
 const pinHtml = (loc, res, idx, lo, hi, extraCls = "") => {
   const t = totalOf(res), sh = t === null ? { fill: "#fff", ink: "#a32626" } : pinShade(t, lo, hi);
@@ -2139,22 +2440,20 @@ function renderPlan() {
   const hasPlan = !!P.plan;
   $("srcMap").setAttribute("aria-pressed", String(P.planMode === "map"));
   $("srcImage").setAttribute("aria-pressed", String(P.planMode !== "map"));
-  $("srcMap").title = MAP_OK ? "" : "The live map works when you open this calculator as a file in your browser.";
   $("mapTools").hidden = !useMap;
+  $("mapCoords").hidden = !useMap;
   $("btnRemovePlan").hidden = useMap || !hasPlan;
   $("btnUpload").hidden = useMap;
   $("btnUpload").textContent = hasPlan ? "Replace plan" : "Upload plan";
   $("btnAddPoint").hidden = !(useMap || hasPlan);
   $("btnAddPoint").textContent = placing && !placing.id ? "Cancel" : "Add point";
-  $("btnReportSite").hidden = P.locations.length < 2 && !hasPlan && !useMap;
-  $("btnReport").classList.toggle("primary", $("btnReportSite").hidden);
-  $("planHint").textContent = P.planMode === "map" && !MAP_OK
-    ? "claude.ai blocks map imagery, so the live map works only when you open this calculator as an HTML file in your browser. Use an uploaded plan here."
-    : placing ? `Click the ${useMap ? "map" : "plan"} to place the point. Press Esc to cancel.`
-    : useMap ? "Find your site, then click Add point and click the map. Click a marker to open that location, or drag it to move it."
+  $("planHint").textContent = placing ? `Click the ${useMap ? "map" : "plan"} to place the point. Press Esc to cancel.`
+    : useMap && !MAP_OK ? "claude.ai blocks map imagery, so this map has no background here. Points and GIS layers still work. Open the calculator as an HTML file in your browser to see satellite or street imagery."
+    : useMap ? "Find your site, then click Add point and click the map, or type an easting and northing in the inputs. Click a marker to open that location, or drag it to move it."
     : !hasPlan ? "Upload a plan to place your locations on it, then open each one to enter its ground conditions."
     : "Click Add point, then click the plan. Click a marker to open that location, or drag it to move it.";
   const area = $("planArea");
+  renderGisTable(); syncCoords();
   if (useMap) {
     ensureMap();
   } else {
@@ -2189,11 +2488,14 @@ function renderPlan() {
 }
 
 /* ---------- Live map (Leaflet, loaded only when needed) ---------- */
+/* claude.ai blocks map imagery, so inside the artifact the map has no background imagery, but points and GIS layers still show. */
 const TILES = {
   sat: { url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", attr: "Imagery © Esri, Maxar, Earthstar Geographics", max: 19 },
   street: { url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png", attr: "© OpenStreetMap contributors", max: 19 },
+  none: { url: "", attr: "", max: 21 },
 };
-let MAP = null, mapTiles = null, mapLoad = null;
+const baseNow = () => (MAP_OK ? (P.map && TILES[P.map.base] ? P.map.base : "sat") : "none");
+let MAP = null, mapTiles = null, mapLoad = null, gisGroup = null, gisKey = "";
 const markers = new Map();
 function loadLeaflet() {
   if (window.L && window.L.map) return Promise.resolve();
@@ -2206,37 +2508,43 @@ function loadLeaflet() {
   return mapLoad;
 }
 const planShown = () => { if (MAP) setTimeout(() => MAP && MAP.invalidateSize(), 0); };
-function destroyMap() { if (MAP) { MAP.remove(); MAP = null; mapTiles = null; markers.clear(); } }
+function destroyMap() { if (MAP) { MAP.remove(); MAP = null; mapTiles = null; gisGroup = null; gisKey = ""; markers.clear(); } }
 function setTiles() {
-  const base = (P.map && P.map.base) || "sat", t = TILES[base];
-  if (mapTiles) MAP.removeLayer(mapTiles);
-  mapTiles = window.L.tileLayer(t.url, { maxZoom: t.max, attribution: t.attr, crossOrigin: true }).addTo(MAP);
-  $("baseSat").setAttribute("aria-pressed", String(base === "sat")); $("baseStreet").setAttribute("aria-pressed", String(base === "street"));
+  const base = baseNow(), t = TILES[base];
+  if (mapTiles) { MAP.removeLayer(mapTiles); mapTiles = null; }
+  if (t.url) mapTiles = window.L.tileLayer(t.url, { maxZoom: t.max, attribution: t.attr, crossOrigin: true }).addTo(MAP);
+  ["sat", "street", "none"].forEach(b => { const el = $("base" + b[0].toUpperCase() + b.slice(1)); el.setAttribute("aria-pressed", String(base === b)); el.disabled = !MAP_OK && b !== "none"; });
 }
+const fmtEN = (lat, lng) => { const z = zoneNow(), p = MGA.fromLL(lat, lng, z); return `GDA2020 MGA zone ${z}: E ${p.E.toFixed(1)}  N ${p.N.toFixed(1)}  ·  ${lat.toFixed(6)}, ${lng.toFixed(6)}`; };
 function ensureMap() {
   const area = $("planArea");
-  if (MAP && $("mapBox")) { $("mapBox").classList.toggle("placing", !!placing); syncMarkers(); return; }
+  if (MAP && $("mapBox")) { $("mapBox").classList.toggle("placing", !!placing); syncMarkers(); syncGis(); return; }
   destroyMap();
   area.innerHTML = `<div class="mapbox" id="mapBox" role="application" aria-label="Site map. Markers show each location."></div>`;
   const projId = STORE.current;
   loadLeaflet().then(() => {
     if (!mapMode() || STORE.current !== projId || !$("mapBox") || MAP) return;
     const L = window.L, pts = P.locations.filter(l => l.lat !== null && l.lng !== null);
-    MAP = L.map("mapBox", { zoomControl: true, worldCopyJump: true });
+    MAP = L.map("mapBox", { zoomControl: true, worldCopyJump: true, maxZoom: 21 });
+    L.control.scale({ imperial: false }).addTo(MAP);
+    const gb = gisBounds(P.gis || []);
     if (P.map) MAP.setView([P.map.lat, P.map.lng], P.map.z);
     else if (pts.length) MAP.fitBounds(L.latLngBounds(pts.map(l => [l.lat, l.lng])).pad(0.3), { maxZoom: 17 });
-    else MAP.setView([20, 0], 2);
+    else if (gb) MAP.fitBounds([[gb[0], gb[1]], [gb[2], gb[3]]], { maxZoom: 17 });
+    else MAP.setView([-25.5, 134], 4);
     setTiles();
     MAP.on("moveend", () => { const c = MAP.getCenter(); P.map = { lat: +c.lat.toFixed(6), lng: +c.wrap().lng.toFixed(6), z: MAP.getZoom(), base: (P.map && P.map.base) || "sat" }; save(); });
+    MAP.on("mousemove", ev => { const ll = ev.latlng.wrap(); $("mapCoords").textContent = fmtEN(ll.lat, ll.lng); });
+    MAP.on("mouseout", () => { $("mapCoords").textContent = ""; });
     MAP.on("click", ev => {
       if (!placing) return;
       const p = placing, ll = ev.latlng.wrap(), pos = { lat: +ll.lat.toFixed(7), lng: +ll.lng.toFixed(7) };
       placing = null; $("mapBox").classList.remove("placing");
-      if (p.id) { Object.assign(P.locations.find(a => a.id === p.id), pos); P.isExample = false; save(); renderPlan(); }
+      if (p.id) { Object.assign(P.locations.find(a => a.id === p.id), pos); P.isExample = false; save(); renderPlan(); syncCoords(); }
       else addLocation(pos);
     });
     $("mapBox").classList.toggle("placing", !!placing);
-    syncMarkers();
+    syncGis(); syncMarkers();
   }).catch(() => {
     if (!$("mapBox")) return;
     area.innerHTML = `<div class="planempty"><p>The map could not load. Check your internet connection, or choose Image to upload a plan instead.</p></div>`;
@@ -2253,7 +2561,7 @@ function syncMarkers() {
     if (!mk) {
       mk = L.marker([loc.lat, loc.lng], { icon: L.divIcon({ className: "", html, iconSize: [0, 0], iconAnchor: [0, 0] }), draggable: true, keyboard: true, title: loc.name || "Unnamed", alt: loc.name || "Unnamed", riseOnHover: true });
       mk.on("click", () => setActive(loc.id));
-      mk.on("dragend", () => { const ll = mk.getLatLng().wrap(), l = P.locations.find(a => a.id === loc.id); if (!l) return; l.lat = +ll.lat.toFixed(7); l.lng = +ll.lng.toFixed(7); P.isExample = false; save(); renderPlan(); });
+      mk.on("dragend", () => { const ll = mk.getLatLng().wrap(), l = P.locations.find(a => a.id === loc.id); if (!l) return; l.lat = +ll.lat.toFixed(7); l.lng = +ll.lng.toFixed(7); P.isExample = false; save(); renderPlan(); syncCoords(); });
       mk._html = html; mk.addTo(MAP); markers.set(loc.id, mk);
     }
     if (mk._html !== html) { mk.setIcon(L.divIcon({ className: "", html, iconSize: [0, 0], iconAnchor: [0, 0] })); mk._html = html; }
@@ -2262,37 +2570,115 @@ function syncMarkers() {
   });
   for (const [id, mk] of markers) if (!seen.has(id)) { MAP.removeLayer(mk); markers.delete(id); }
 }
+/* GIS layers on the map. Rebuilt only when a layer or its style changes. */
+function syncGis() {
+  if (!MAP) return;
+  const L = window.L, key = JSON.stringify((P.gis || []).map(l => [l.id, l.color, l.visible, l.labels, l.data.features.length]));
+  if (key === gisKey && gisGroup) return;
+  gisKey = key;
+  if (gisGroup) MAP.removeLayer(gisGroup);
+  gisGroup = L.layerGroup().addTo(MAP);
+  (P.gis || []).filter(l => l.visible).forEach(l => {
+    const c = gisHex(l.color), lk = labelKey((l.data.features[0] || {}).properties);
+    L.geoJSON(l.data, {
+      style: () => ({ color: c, weight: 2.5, opacity: 0.95, fillColor: c, fillOpacity: 0.15 }),
+      pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 5, color: l.color === "white" ? "#222" : "#fff", weight: 1.5, fillColor: c, fillOpacity: 1 }),
+      onEachFeature: (f, lyr) => {
+        lyr.on("click", ev => {
+          if (placing) return;
+          const rows = Object.entries(f.properties || {}).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("");
+          L.popup({ maxWidth: 320 }).setLatLng(ev.latlng).setContent(`<div class="gispop"><b>${esc(l.name)}</b>${rows ? `<table>${rows}</table>` : ""}</div>`).openOn(MAP);
+        });
+        if (l.labels && lk && f.properties[lk]) lyr.bindTooltip(esc(f.properties[lk]), { permanent: true, direction: /Point/.test(f.geometry.type) ? "right" : "center", className: "gislab", offset: /Point/.test(f.geometry.type) ? [6, 0] : [0, 0] });
+      },
+    }).addTo(gisGroup);
+  });
+}
+function renderGisTable() {
+  const box = $("gisBox"); box.hidden = !mapMode();
+  if (box.hidden) return;
+  const L = P.gis || [];
+  $("gisTable").innerHTML = L.length ? `<thead><tr><th class="l">Show</th><th class="l">Layer</th><th class="l">Colour</th><th class="l">Labels</th><th class="l">Contents</th><th></th></tr></thead><tbody>` + L.map(l => `<tr>
+    <td><input type="checkbox" data-gid="${l.id}" data-key="visible"${l.visible ? " checked" : ""} aria-label="Show ${esc(l.name)}"></td>
+    <td><input class="gname" data-gid="${l.id}" data-key="name" value="${esc(l.name)}" aria-label="Layer name"></td>
+    <td><span class="gdot" style="background:${gisHex(l.color)}"></span><select data-gid="${l.id}" data-key="color" aria-label="Colour of ${esc(l.name)}">${Object.entries(GIS_COLOURS).map(([k, [n]]) => `<option value="${k}"${k === l.color ? " selected" : ""}>${n}</option>`).join("")}</select></td>
+    <td><input type="checkbox" data-gid="${l.id}" data-key="labels"${l.labels ? " checked" : ""} aria-label="Label features in ${esc(l.name)}"></td>
+    <td class="gmeta">${gisSummary(l.data)}</td>
+    <td><div class="rowbtns"><button class="icon" type="button" data-gact="zoom" data-gid="${l.id}">Zoom to</button><button class="icon" type="button" data-gact="del" data-gid="${l.id}" aria-label="Remove ${esc(l.name)}">✕</button></div></td></tr>`).join("") + `</tbody>`
+    : `<tbody><tr><td class="l" style="color:var(--muted)">No GIS layers yet.</td></tr></tbody>`;
+}
+async function addGisFile(file) {
+  const btn = $("btnAddGis"); btn.disabled = true; btn.textContent = "Reading…"; reportNote();
+  try {
+    if (file.size > 25e6) throw { code: "too_big" };
+    const { layers, notes } = await readGisFile(file);
+    P.gis = P.gis || [];
+    layers.forEach(l => { const id = P.gis.reduce((a, x) => Math.max(a, x.id), 0) + 1; P.gis.push({ id, name: l.name, color: Object.keys(GIS_COLOURS)[(id - 1) % 8], visible: true, labels: /Point/.test((l.data.features[0] || {}).geometry.type) && l.data.features.length <= 200, data: l.data }); });
+    P.hasGis = true; P.isExample = false; save(); await storeGis();
+    renderGisTable(); syncGis();
+    const b = gisBounds(layers);
+    if (MAP && b) MAP.fitBounds([[b[0], b[1]], [b[2], b[3]]], { maxZoom: 18 });
+    const proj = layers.filter(l => l.projected).map(l => l.zone);
+    reportNote("warn", `Added ${layers.map(l => `${l.name} (${gisSummary(l.data)})`).join(", ")}.${proj.length ? ` Eastings and northings were read as GDA2020 MGA zone ${[...new Set(proj)].join(", ")}.` : ""} ${notes.join(" ")}`.trim(), "GIS layers");
+  } catch (e) {
+    const c = e && e.code;
+    reportNote("err", c === "too_big" ? "That file is too large to add here. Keep layers under about 20,000 features, or clip them to the site first."
+      : c === "csv_cols" ? "The CSV needs Easting and Northing columns (MGA), or Latitude and Longitude columns, with a header row."
+      : c === "no_shp" ? "That zip has no shapefile (.shp) or KML inside. Zip the .shp, .shx, .dbf and .prj files together."
+      : c === "empty" ? "No points, lines or polygons were found in that file."
+      : c === "type" ? "Use a GeoJSON, KML, KMZ, zipped shapefile or CSV file."
+      : !window.JSZip && /\.(zip|kmz)$/i.test(file.name) ? "The tool for reading zip files couldn’t load. Check your internet connection and try again."
+      : "That file couldn’t be read as GIS data. Check it opens in your GIS software, then try again.", "GIS layers");
+  } finally { btn.disabled = false; btn.textContent = "Add GIS layer"; }
+}
 async function findPlace(text) {
   const t = text.trim(); if (!t || !MAP) return;
   const m = t.match(/^\s*(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)\s*$/);
-  if (m && Math.abs(+m[1]) <= 90 && Math.abs(+m[2]) <= 180) { MAP.setView([+m[1], +m[2]], 17); return; }
+  if (m) {
+    const a = +m[1], b = +m[2];
+    if (Math.abs(a) <= 90 && Math.abs(b) <= 180) { MAP.setView([a, b], 17); return; }
+    if (a > 1e5 && b > 1e6) { const ll = MGA.toLL(a, b, zoneNow()); MAP.setView([ll.lat, ll.lng], 17); return; }
+  }
+  if (!MAP_OK) { reportNote("warn", "Place search isn’t available here. Enter an easting and northing, or latitude and longitude.", "Map"); return; }
   try {
     const r = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${encodeURIComponent(t)}`, { headers: { Accept: "application/json" } });
     const a = await r.json();
-    if (!a.length) { reportNote("warn", `No place called “${t}” was found. Try a fuller address, or enter latitude, longitude.`, "Map"); return; }
+    if (!a.length) { reportNote("warn", `No place called “${t}” was found. Try a fuller address, or enter an easting and northing.`, "Map"); return; }
     reportNote();
     const b = a[0].boundingbox;
     if (b) MAP.fitBounds([[+b[0], +b[2]], [+b[1], +b[3]]], { maxZoom: 17 }); else MAP.setView([+a[0].lat, +a[0].lon], 16);
-  } catch (e) { reportNote("warn", "Place search isn’t available right now. Enter latitude, longitude instead, for example −27.47, 153.02.", "Map"); }
+  } catch (e) { reportNote("warn", "Place search isn’t available right now. Enter an easting and northing, or latitude and longitude.", "Map"); }
 }
-/* For the report: the map drawn straight from tiles, framed around every placed location. */
+/* Easting and northing of the selected location, in the chosen MGA zone. */
+function syncCoords() {
+  const loc = activeLoc(), show = mapMode(), z = zoneNow();
+  document.querySelectorAll(".mgaf").forEach(e => { e.hidden = !show; });
+  $("locELab").textContent = `Easting, MGA zone ${z} (m)`; $("locNLab").textContent = `Northing, MGA zone ${z} (m)`;
+  if (!show) return;
+  const p = loc.lat !== null && loc.lng !== null ? MGA.fromLL(loc.lat, loc.lng, z) : null;
+  if (document.activeElement !== $("locE")) $("locE").value = p ? p.E.toFixed(1) : "";
+  if (document.activeElement !== $("locN")) $("locN").value = p ? p.N.toFixed(1) : "";
+}
+/* For the report: the map drawn straight from tiles, framed around the locations (or the GIS layers), with GIS layers on top. */
 const mercator = (lat, lng, z) => { const s = 256 * Math.pow(2, z), si = Math.sin(lat * Math.PI / 180); return [(lng + 180) / 360 * s, (0.5 - Math.log((1 + si) / (1 - si)) / (4 * Math.PI)) * s]; };
-async function mapSnapshot(W, H) {
-  const pts = P.locations.filter(l => l.lat !== null && l.lng !== null), base = (P.map && P.map.base) || "sat", T = TILES[base];
+async function mapSnapshot(W, H, ids) {
+  const pts = P.locations.filter(l => l.lat !== null && l.lng !== null && (!ids || ids.includes(l.id))), base = baseNow(), T = TILES[base];
+  const vis = (P.gis || []).filter(l => l.visible), gb = gisBounds(vis);
+  const frame = pts.length ? pts.map(l => [l.lat, l.lng]) : gb ? [[gb[0], gb[1]], [gb[2], gb[3]]] : null;
   let z = 2, cx = 0, cy = 0;
-  if (pts.length) {
-    for (z = 17; z >= 1; z--) {
-      const xy = pts.map(l => mercator(l.lat, l.lng, z)), X = xy.map(p => p[0]), Y = xy.map(p => p[1]);
+  if (frame) {
+    for (z = 18; z >= 1; z--) {
+      const xy = frame.map(p => mercator(p[0], p[1], z)), X = xy.map(p => p[0]), Y = xy.map(p => p[1]);
       cx = (Math.max(...X) + Math.min(...X)) / 2; cy = (Math.max(...Y) + Math.min(...Y)) / 2;
-      if (Math.max(...X) - Math.min(...X) <= W * 0.75 && Math.max(...Y) - Math.min(...Y) <= H * 0.7) break;
+      if (Math.max(...X) - Math.min(...X) <= W * 0.75 && Math.max(...Y) - Math.min(...Y) <= H * 0.7 && (frame.length > 1 || z <= 17)) break;
     }
-  } else { const c = P.map || { lat: 20, lng: 0, z: 2 }; z = c.z; [cx, cy] = mercator(c.lat, c.lng, z); }
+  } else { const c = P.map || { lat: -25.5, lng: 134, z: 4 }; z = c.z; [cx, cy] = mercator(c.lat, c.lng, z); }
   const c = document.createElement("canvas"); c.width = W; c.height = H;
-  const g = c.getContext("2d"); g.fillStyle = "#dfe5e8"; g.fillRect(0, 0, W, H);
+  const g = c.getContext("2d"); g.fillStyle = "#eef1f0"; g.fillRect(0, 0, W, H);
   const x0 = cx - W / 2, y0 = cy - H / 2, n = Math.pow(2, z), jobs = [];
   let loaded = 0;
-  for (let tx = Math.floor(x0 / 256); tx <= Math.floor((x0 + W) / 256); tx++) for (let ty = Math.floor(y0 / 256); ty <= Math.floor((y0 + H) / 256); ty++) {
-    if (ty < 0 || ty >= n) continue;
+  if (T.url) for (let tx = Math.floor(x0 / 256); tx <= Math.floor((x0 + W) / 256); tx++) for (let ty = Math.floor(y0 / 256); ty <= Math.floor((y0 + H) / 256); ty++) {
+    if (ty < 0 || ty >= n || z > 19) continue;
     const url = T.url.replace("{z}", z).replace("{x}", ((tx % n) + n) % n).replace("{y}", ty);
     jobs.push(new Promise(ok => {
       const im = new Image(), t = setTimeout(ok, 15000);
@@ -2303,16 +2689,264 @@ async function mapSnapshot(W, H) {
     }));
   }
   await Promise.all(jobs);
-  if (!loaded) return null;
-  g.font = "14px Arial, sans-serif"; const tw = g.measureText(T.attr).width + 12;
-  g.fillStyle = "rgba(255,255,255,0.85)"; g.fillRect(W - tw, H - 22, tw, 22); g.fillStyle = "#333"; g.fillText(T.attr, W - tw + 6, H - 7);
-  const pos = new Map(pts.map(l => { const [px, py] = mercator(l.lat, l.lng, z); return [l.id, [(px - x0) / W, (py - y0) / H]]; }));
-  return { src: c.toDataURL("image/jpeg", 0.88), w: W, h: H, pos: loc => pos.get(loc.id) || null };
+  if (T.url && !loaded && !vis.length) return null;
+  const px = (lng, lat) => { const [a, b] = mercator(lat, lng, z); return [a - x0, b - y0]; };
+  // GIS layers
+  vis.forEach(l => {
+    const col = gisHex(l.color), lk = labelKey((l.data.features[0] || {}).properties);
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 3; g.lineJoin = "round";
+    const path = ring => ring.forEach((p, i) => { const [x, y] = px(p[0], p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+    l.data.features.forEach(f => {
+      const t = f.geometry.type, co = f.geometry.coordinates;
+      const lines = t === "LineString" ? [co] : t === "MultiLineString" ? co : [];
+      const polys = t === "Polygon" ? [co] : t === "MultiPolygon" ? co : [];
+      const points = t === "Point" ? [co] : t === "MultiPoint" ? co : [];
+      lines.forEach(r => { g.beginPath(); path(r); g.stroke(); });
+      polys.forEach(pg => { g.beginPath(); pg.forEach(r => { path(r); g.closePath(); }); g.globalAlpha = 0.15; g.fill("evenodd"); g.globalAlpha = 1; g.stroke(); });
+      points.forEach(p => { const [x, y] = px(p[0], p[1]); g.beginPath(); g.arc(x, y, 6, 0, 7); g.fill(); g.lineWidth = 2; g.strokeStyle = l.color === "white" ? "#222" : "#fff"; g.stroke(); g.strokeStyle = col; g.lineWidth = 3; });
+      if (l.labels && lk && f.properties[lk] && points.length) {
+        const [x, y] = px(points[0][0], points[0][1]); g.font = "600 15px Arial, sans-serif"; const tw = g.measureText(f.properties[lk]).width;
+        g.fillStyle = "rgba(255,255,255,0.85)"; g.fillRect(x + 8, y - 10, tw + 6, 18); g.fillStyle = "#14222a"; g.textBaseline = "middle"; g.textAlign = "left"; g.fillText(f.properties[lk], x + 11, y); g.fillStyle = col;
+      }
+    });
+  });
+  const attr = [T.attr, `Grid: GDA2020 MGA zone ${zoneNow()}`].filter(Boolean).join("   ");
+  g.font = "14px Arial, sans-serif"; g.textBaseline = "alphabetic"; g.textAlign = "left"; const tw = g.measureText(attr).width + 12;
+  g.fillStyle = "rgba(255,255,255,0.85)"; g.fillRect(W - tw, H - 22, tw, 22); g.fillStyle = "#333"; g.fillText(attr, W - tw + 6, H - 7);
+  // Scale bar
+  const mpp = 40075016.686 * Math.cos((P.locations.find(l => l.lat !== null) || { lat: -25 }).lat * Math.PI / 180) / (256 * n);
+  const target = 160 * mpp, step = [1, 2, 5].flatMap(k => [1, 10, 100, 1000, 10000, 100000].map(m => k * m)).filter(v => v <= target).pop() || 1, bw = step / mpp;
+  g.fillStyle = "rgba(255,255,255,0.85)"; g.fillRect(8, H - 34, bw + 16, 26); g.fillStyle = "#14222a"; g.fillRect(16, H - 14, bw, 4);
+  g.font = "13px Arial, sans-serif"; g.fillText(step >= 1000 ? `${step / 1000} km` : `${step} m`, 16, H - 19);
+  const pos = new Map(P.locations.filter(l => l.lat !== null && l.lng !== null).map(l => { const [a, b] = px(l.lng, l.lat); return [l.id, [a / W, b / H]]; }));
+  return { src: c.toDataURL("image/jpeg", 0.88), w: W, h: H, pos: loc => { const p = pos.get(loc.id); return p && p[0] >= 0 && p[0] <= 1 && p[1] >= 0 && p[1] <= 1 ? p : null; } };
 }
 /* The picture used for the report's plan: the uploaded image, or a snapshot of the map. */
-async function planBase() {
-  if (mapMode()) { try { return await mapSnapshot(1600, 1000); } catch (e) { return null; } }
+async function planBase(ids) {
+  if (mapMode()) { try { return await mapSnapshot(1600, 1000, ids); } catch (e) { return null; } }
   return P.plan ? { src: P.plan.src, w: P.plan.w, h: P.plan.h, pos: loc => (loc.x !== null && loc.y !== null ? [loc.x, loc.y] : null) } : null;
+}
+
+
+/* ---------- GIS layers: read files into GeoJSON in latitude and longitude ---------- */
+const ZONES = Array.from({ length: 14 }, (_, i) => 46 + i);
+const zoneNow = () => (ZONES.includes(+P.zone) ? +P.zone : 56);
+const GIS_COLOURS = { red: ["Red", "#d0342c"], blue: ["Blue", "#2a78d6"], green: ["Green", "#1b9e5a"], orange: ["Orange", "#eb6834"], purple: ["Purple", "#8b4fc9"], magenta: ["Magenta", "#d55181"], yellow: ["Yellow", "#f2c200"], cyan: ["Cyan", "#12a4b6"], black: ["Black", "#222222"], white: ["White", "#ffffff"] };
+const gisHex = c => (GIS_COLOURS[c] || GIS_COLOURS.red)[1];
+const MAX_FEATURES = 20000, MAX_POINTS = 400000;
+let jszipLoad = null;
+function loadJsZip() {
+  if (window.JSZip) return Promise.resolve();
+  if (!jszipLoad) jszipLoad = new Promise((ok, no) => {
+    const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+    s.onload = ok; s.onerror = () => { jszipLoad = null; no(new Error("jszip")); }; document.head.appendChild(s);
+  });
+  return jszipLoad;
+}
+/* Zone named in a .prj file or GeoJSON crs, such as "MGA zone 56", "MGA2020_Zone_55" or EPSG:7856 / 28356. */
+function crsInfo(text) {
+  const t = String(text || ""), info = { zone: null, geographic: false, gda94: /GDA94|GDA_1994|283[45]\d/i.test(t) };
+  let m = t.match(/zone[_\s]*(4[6-9]|5\d)\b/i) || t.match(/MGA[_\s]*(?:2020|94)?[_\s]*(4[6-9]|5\d)\b/i);
+  if (m) info.zone = +m[1];
+  m = t.match(/EPSG[:"\s,]*(?:78(4[6-9]|5\d)|283(4[6-9]|5\d))\b/i);
+  if (m) info.zone = +(m[1] || m[2]);
+  if (!info.zone && (/^\s*GEOGCS/i.test(t) || /EPSG[:"\s,]*(7844|4283|4326|4939)\b/i.test(t) || /CRS84/i.test(t))) info.geographic = true;
+  return info;
+}
+/* Converts every coordinate to [lng, lat]. Projected values (eastings and northings) use the MGA zone. */
+function toLatLngFC(fc, zone, forceProjected) {
+  let projected = !!forceProjected, count = 0;
+  const scan = c => { if (typeof c[0] === "number") { if (Math.abs(c[0]) > 180 || Math.abs(c[1]) > 90) projected = true; } else c.forEach(scan); };
+  fc.features.forEach(f => f.geometry && scan(f.geometry.coordinates));
+  const conv = c => {
+    if (typeof c[0] === "number") {
+      if (++count > MAX_POINTS) throw { code: "too_big" };
+      if (!projected) return [+c[0], +c[1]];
+      const ll = MGA.toLL(+c[0], +c[1], zone); return [+ll.lng.toFixed(8), +ll.lat.toFixed(8)];
+    }
+    return c.map(conv);
+  };
+  fc.features.forEach(f => { if (f.geometry) f.geometry.coordinates = conv(f.geometry.coordinates); });
+  return projected;
+}
+/* Keeps only plain point, line and polygon features with finite coordinates and short text attributes. */
+function cleanFC(fc) {
+  const TYPES = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon"];
+  const ok = c => (typeof c[0] === "number" ? Number.isFinite(c[0]) && Number.isFinite(c[1]) && Math.abs(c[0]) <= 180 && Math.abs(c[1]) <= 90 : Array.isArray(c) && c.length > 0 && c.every(ok));
+  const feats = [];
+  const add = (geometry, props) => {
+    if (!geometry) return;
+    if (geometry.type === "GeometryCollection") { (geometry.geometries || []).forEach(g => add(g, props)); return; }
+    if (!TYPES.includes(geometry.type) || !Array.isArray(geometry.coordinates) || !ok(geometry.coordinates)) return;
+    const p = {}; Object.entries(props || {}).slice(0, 30).forEach(([k, v]) => { if (v !== null && v !== undefined && typeof v !== "object") p[String(k).slice(0, 40)] = String(v).slice(0, 200); });
+    feats.push({ type: "Feature", properties: p, geometry: { type: geometry.type, coordinates: geometry.coordinates } });
+  };
+  (fc && fc.features || []).forEach(f => f && add(f.geometry, f.properties));
+  if (feats.length > MAX_FEATURES) throw { code: "too_big" };
+  return { type: "FeatureCollection", features: feats };
+}
+const asFC = o => (o && o.type === "FeatureCollection" ? o : o && o.type === "Feature" ? { type: "FeatureCollection", features: [o] } : o && o.type ? { type: "FeatureCollection", features: [{ type: "Feature", properties: {}, geometry: o }] } : { type: "FeatureCollection", features: [] });
+
+function parseKml(text) {
+  const doc = new DOMParser().parseFromString(text, "application/xml");
+  if (doc.getElementsByTagName("parsererror").length) throw new Error("bad kml");
+  const kids = (el, name) => Array.from(el.getElementsByTagNameNS("*", name));
+  const coords = el => (el ? el.textContent.trim().split(/\s+/).map(p => p.split(",").map(Number)).filter(c => c.length >= 2 && c.every(Number.isFinite)).map(c => [c[0], c[1]]) : []);
+  const geom = el => {
+    const n = el.localName;
+    if (n === "Point") return { type: "Point", coordinates: coords(kids(el, "coordinates")[0])[0] };
+    if (n === "LineString") return { type: "LineString", coordinates: coords(kids(el, "coordinates")[0]) };
+    if (n === "Polygon") {
+      const outer = kids(el, "outerBoundaryIs")[0], inner = kids(el, "innerBoundaryIs");
+      return { type: "Polygon", coordinates: [coords(outer && kids(outer, "coordinates")[0])].concat(inner.map(b => coords(kids(b, "coordinates")[0]))) };
+    }
+    return null;
+  };
+  const features = [];
+  kids(doc, "Placemark").forEach(pm => {
+    const props = {};
+    const nm = Array.from(pm.children).find(c => c.localName === "name"); if (nm) props.name = nm.textContent.trim();
+    const ds = Array.from(pm.children).find(c => c.localName === "description"); if (ds) props.description = ds.textContent.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    kids(pm, "Data").forEach(d => { const v = kids(d, "value")[0]; if (d.getAttribute("name") && v) props[d.getAttribute("name")] = v.textContent.trim(); });
+    kids(pm, "SimpleData").forEach(d => { if (d.getAttribute("name")) props[d.getAttribute("name")] = d.textContent.trim(); });
+    ["Point", "LineString", "Polygon"].forEach(t => kids(pm, t).forEach(g => { if (t !== "Polygon" && g.parentElement && ["outerBoundaryIs", "innerBoundaryIs"].includes(g.parentElement.localName)) return; const gm = geom(g); if (gm && gm.coordinates && gm.coordinates.length) features.push({ type: "Feature", properties: props, geometry: gm }); }));
+  });
+  return { type: "FeatureCollection", features };
+}
+/* Shapefile: .shp geometry and .dbf attributes, read directly. */
+function parseShp(buf) {
+  const dv = new DataView(buf), out = [];
+  let off = 100;
+  while (off + 12 <= buf.byteLength) {
+    const len = dv.getInt32(off + 4) * 2, p = off + 8, t = dv.getInt32(p, true);
+    off += 8 + len;
+    if (t === 0) { out.push(null); continue; }
+    const pt = i => [dv.getFloat64(i, true), dv.getFloat64(i + 8, true)];
+    if (t === 1 || t === 11 || t === 21) { out.push({ type: "Point", coordinates: pt(p + 4) }); continue; }
+    if (t === 8 || t === 18 || t === 28) { const np = dv.getInt32(p + 36, true), c = []; for (let i = 0; i < np; i++) c.push(pt(p + 40 + 16 * i)); out.push({ type: "MultiPoint", coordinates: c }); continue; }
+    if ([3, 13, 23, 5, 15, 25].includes(t)) {
+      const nParts = dv.getInt32(p + 36, true), nPts = dv.getInt32(p + 40, true), parts = [];
+      for (let i = 0; i < nParts; i++) parts.push(dv.getInt32(p + 44 + 4 * i, true));
+      const base = p + 44 + 4 * nParts, rings = parts.map((s, i) => { const r = []; for (let k = s; k < (i + 1 < nParts ? parts[i + 1] : nPts); k++) r.push(pt(base + 16 * k)); return r; });
+      if (t % 10 === 3) { out.push(rings.length === 1 ? { type: "LineString", coordinates: rings[0] } : { type: "MultiLineString", coordinates: rings }); continue; }
+      // Polygons: clockwise rings are outer rings, anticlockwise rings are holes in the ring before.
+      const area = r => r.reduce((a, c, i) => { const d = r[(i + 1) % r.length]; return a + (d[0] - c[0]) * (d[1] + c[1]); }, 0);
+      const polys = [];
+      rings.forEach(r => { if (area(r) > 0 || !polys.length) polys.push([r]); else polys[polys.length - 1].push(r); });
+      out.push(polys.length === 1 ? { type: "Polygon", coordinates: polys[0] } : { type: "MultiPolygon", coordinates: polys });
+      continue;
+    }
+    out.push(null);
+  }
+  return out;
+}
+function parseDbf(buf) {
+  const dv = new DataView(buf), n = dv.getUint32(4, true), hl = dv.getUint16(8, true), rl = dv.getUint16(10, true), dec = new TextDecoder("utf-8");
+  const fields = []; let o = 32, pos = 1;
+  while (o < hl - 1 && dv.getUint8(o) !== 0x0d) {
+    const name = dec.decode(new Uint8Array(buf, o, 11)).replace(/\0.*$/s, "").trim(), len = dv.getUint8(o + 16);
+    fields.push({ name, pos, len }); pos += len; o += 32;
+  }
+  const rows = [];
+  for (let i = 0; i < n; i++) {
+    const r = hl + i * rl, row = {};
+    if (r + rl > buf.byteLength) break;
+    fields.forEach(f => { row[f.name] = dec.decode(new Uint8Array(buf, r + f.pos, f.len)).trim(); });
+    rows.push(row);
+  }
+  return rows;
+}
+function parseCsv(text) {
+  const rows = [], re = /("([^"]|"")*"|[^,\n\r]*)(,|\r?\n|$)/g;
+  let row = [], m;
+  while ((m = re.exec(text)) && m[0] !== "") { let v = m[1]; if (v[0] === '"') v = v.slice(1, -1).replace(/""/g, '"'); row.push(v.trim()); if (m[3] !== ",") { rows.push(row); row = []; } if (re.lastIndex >= text.length) break; }
+  if (row.length) rows.push(row);
+  const head = (rows.shift() || []).map(h => h.toLowerCase());
+  const col = names => head.findIndex(h => names.includes(h.replace(/[\s_()]/g, "")));
+  const ie = col(["easting", "east", "e", "x", "mgae", "eastingm"]), inn = col(["northing", "north", "n", "y", "mgan", "northingm"]);
+  const ila = col(["lat", "latitude"]), ilo = col(["lon", "lng", "long", "longitude"]);
+  const useLL = ila >= 0 && ilo >= 0;
+  if (!useLL && (ie < 0 || inn < 0)) throw { code: "csv_cols" };
+  const features = rows.filter(r => r.length > 1).map(r => {
+    const props = {}; head.forEach((h, i) => { props[h] = r[i]; });
+    const x = +(useLL ? r[ilo] : r[ie]), y = +(useLL ? r[ila] : r[inn]);
+    return { type: "Feature", properties: props, geometry: { type: "Point", coordinates: [x, y] } };
+  }).filter(f => f.geometry.coordinates.every(Number.isFinite));
+  return { fc: { type: "FeatureCollection", features }, projected: !useLL };
+}
+/* Reads one file into one or more layers: { name, data, note }. */
+async function readGisFile(file) {
+  const ext = (file.name.match(/\.([^.]+)$/) || [])[1]?.toLowerCase(), base = file.name.replace(/\.[^.]+$/, "");
+  const zone = zoneNow(), notes = [], layers = [];
+  const finish = (name, fc, info, forceProj) => {
+    let z = zone;
+    if (info && info.zone && info.zone !== zone) { z = info.zone; notes.push(`${name} names MGA zone ${z}, so it was read in zone ${z}.`); }
+    if (info && info.gda94) notes.push(`${name} looks like GDA94. It is shown without converting to GDA2020, so it may sit about 1.5–1.8 m out.`);
+    const projected = toLatLngFC(fc, z, forceProj && !(info && info.geographic));
+    const data = cleanFC(fc);
+    if (!data.features.length) throw { code: "empty" };
+    layers.push({ name, data, projected, zone: projected ? z : null });
+  };
+  if (ext === "geojson" || ext === "json") {
+    const o = JSON.parse(await file.text()), crs = o && o.crs && o.crs.properties && o.crs.properties.name;
+    finish(base, asFC(o), crs ? crsInfo(crs) : null);
+  } else if (ext === "kml") finish(base, parseKml(await file.text()), { geographic: true });
+  else if (ext === "kmz" || ext === "zip") {
+    await loadJsZip();
+    const zip = await window.JSZip.loadAsync(await file.arrayBuffer()), names = Object.keys(zip.files).filter(n => !zip.files[n].dir && !/__MACOSX/.test(n));
+    if (ext === "kmz" || !names.some(n => /\.shp$/i.test(n))) {
+      const k = names.find(n => /\.kml$/i.test(n));
+      if (!k) throw { code: "no_shp" };
+      finish(base, parseKml(await zip.file(k).async("string")), { geographic: true });
+    } else {
+      for (const shp of names.filter(n => /\.shp$/i.test(n))) {
+        const stem = shp.replace(/\.shp$/i, ""), find = e => names.find(n => n.toLowerCase() === (stem + e).toLowerCase());
+        const geoms = parseShp(await zip.file(shp).async("arraybuffer"));
+        const dbf = find(".dbf") ? parseDbf(await zip.file(find(".dbf")).async("arraybuffer")) : [];
+        const prj = find(".prj") ? await zip.file(find(".prj")).async("string") : "";
+        const fc = { type: "FeatureCollection", features: geoms.map((g, i) => ({ type: "Feature", properties: dbf[i] || {}, geometry: g })).filter(f => f.geometry) };
+        finish(stem.split("/").pop(), fc, crsInfo(prj));
+      }
+    }
+  } else if (ext === "csv" || ext === "txt") {
+    const { fc, projected } = parseCsv(await file.text());
+    finish(base, fc, null, projected);
+  } else throw { code: "type" };
+  return { layers, notes };
+}
+const labelKey = props => { const keys = Object.keys(props || {}); return keys.find(k => /^(name|id|label|title|bh|bh_?id|hole_?id|holeid|location|loc_?id|site|point_?id)$/i.test(k)) || keys[0]; };
+const gisSummary = fc => {
+  const c = { pt: 0, ln: 0, pg: 0 };
+  fc.features.forEach(f => { const t = f.geometry.type; if (/Point/.test(t)) c.pt++; else if (/Line/.test(t)) c.ln++; else c.pg++; });
+  return [c.pt && `${c.pt} point${c.pt > 1 ? "s" : ""}`, c.ln && `${c.ln} line${c.ln > 1 ? "s" : ""}`, c.pg && `${c.pg} polygon${c.pg > 1 ? "s" : ""}`].filter(Boolean).join(", ");
+};
+const gisBounds = layers => {
+  let b = null;
+  const add = c => { if (typeof c[0] === "number") { if (!b) b = [c[1], c[0], c[1], c[0]]; else { b[0] = Math.min(b[0], c[1]); b[1] = Math.min(b[1], c[0]); b[2] = Math.max(b[2], c[1]); b[3] = Math.max(b[3], c[0]); } } else c.forEach(add); };
+  layers.forEach(l => l.data.features.forEach(f => add(f.geometry.coordinates)));
+  return b; // [south, west, north, east]
+};
+async function storeGis() {
+  try {
+    if (P.gis && P.gis.length) await planStore("readwrite", s => s.put(P.gis, `gis-${STORE.current}`));
+    else await planStore("readwrite", s => s.delete(`gis-${STORE.current}`));
+  } catch (e) { reportNote("warn", "This browser could not keep the GIS layers. Use Save project so you don’t lose them.", "GIS layers"); }
+}
+function restoreGis() {
+  const id = STORE.current;
+  planStore("readonly", s => s.get(`gis-${id}`)).then(v => {
+    if (STORE.current !== id) return;
+    P.gis = Array.isArray(v) ? normalizeGis(v) : [];
+    if (!P.gis.length) reportNote("warn", "The saved GIS layers could not be restored in this browser. Open your project file to get them back.", "GIS layers");
+    renderGisTable(); syncGis();
+  }).catch(() => {});
+}
+function normalizeGis(list) {
+  if (!Array.isArray(list)) return [];
+  return list.slice(0, 50).map((l, i) => {
+    try { return { id: i + 1, name: String(l.name || `Layer ${i + 1}`).slice(0, 80), color: GIS_COLOURS[l.color] ? l.color : "red", visible: l.visible !== false, labels: !!l.labels, data: cleanFC(l.data) }; }
+    catch (e) { return null; }
+  }).filter(l => l && l.data.features.length);
 }
 
 /* Upload: everything is flattened onto white and scaled to at most 2400 px, so projects stay a manageable size. */
@@ -2638,6 +3272,7 @@ Cα / Cc ≈ 0.04 ± 0.01  inorganic clay
       <div class="eq">U needed = Sp(Q) / Sp(Q + qs)
 remove when U(tr) ≥ U needed
 after removal: Cα′ ≈ Cα · Cr/Cc</div>
+      <p><b>Preloading</b> is the simplest version: the embankment itself is left in place for a while before handover, with no extra load. It needs only time, so it suits sites where the programme allows a wait. A surcharge or drains shorten that wait.</p>
       <p>The surcharge has to stay on until the slowest part of each layer is covered. The calculator uses each layer’s average U, so allow a margin and confirm removal with settlement and pore pressure monitoring. A surcharge also raises the load on soft ground, so stability must be checked for every stage.</p>
       <p class="ref">References: Johnson (1970); Mesri et al. (1997).</p>`,
       fig(figSurcharge(), "Primary settlement with and without a surcharge of 40% of Q. The surcharge comes off once settlement reaches the final primary under Q.")),
@@ -2655,7 +3290,8 @@ after removal: Cα′ ≈ Cα · Cr/Cc</div>
 }
 
 /* ---------- A4 PDF report ---------- */
-const PRINT = { "--surface": "#ffffff", "--ink": "#14222a", "--muted": "#4f606a", "--line": "#cbd5da", "--grid": "#e3e9ec", "--band": "#e4ebee", "--sur-band": "#fbefd2", "--s1": "#2a78d6", "--s2": "#eb6834", "--s3": "#1baf7a", "--s4": "#eda100", "--s5": "#e87ba4", "--clay": "#cdbb9f", "--clay2": "#bda98a", "--clay-mark": "#77623f", "--sand": "#ebe0b4", "--sand-mark": "#94823f", "--water": "#2a78d6", "--warn": "#8a5300", "--bad": "#a32626" };
+const PRINT = { "--surface": "#ffffff", "--ink": "#14222a", "--muted": "#4f606a", "--line": "#cbd5da", "--grid": "#e3e9ec", "--band": "#e4ebee", "--sur-band": "#fbefd2", "--s1": "#2a78d6", "--s2": "#eb6834", "--s3": "#1baf7a", "--s4": "#eda100", "--s5": "#e87ba4", "--clay": "#cdbb9f", "--clay2": "#bda98a", "--clay-mark": "#77623f", "--sand": "#ebe0b4", "--sand-mark": "#94823f", "--water": "#2a78d6", "--warn": "#8a5300", "--bad": "#a32626", "--accent": "#0d5c75", "--accent-soft": "#dcebf0",
+  "--c-tan": "#d8c3a0", "--c-brown": "#b08d64", "--c-grey": "#c5c8c6", "--c-bluegrey": "#a9bcc8", "--c-olive": "#b9b98a", "--c-yellow": "#ece0a6", "--c-orange": "#e7b98a", "--c-red": "#c99a86", "--c-green": "#a9c7a0", "--c-dark": "#8a8478", "--c-white": "#f3f1ea" };
 const printSvg = svg => svg
   .replace(/var\((--[\w-]+)\)/g, (m, k) => PRINT[k] || "#000000")
   .replace("<svg ", '<svg font-family="Roboto" font-size="11.5" ')
@@ -2672,13 +3308,13 @@ function loadPdfLib() {
 }
 
 /* Draws the plan with its markers onto a canvas for the PDF. "key" highlights one location; "site" labels them all. */
-async function planCanvas(W, mode, activeId, base) {
+async function planCanvas(W, mode, activeId, base, items = ALL) {
   const img = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = base.src; });
   const H = Math.round(W * base.h / base.w), c = document.createElement("canvas"); c.width = W; c.height = H;
   const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, W, H); g.drawImage(img, 0, 0, W, H);
   const [lo, hi] = siteRange();
   const dot = (x, y, r, fill, line, lw) => { g.beginPath(); g.arc(x, y, r, 0, 7); g.fillStyle = fill; g.fill(); g.lineWidth = lw; g.strokeStyle = line; g.stroke(); };
-  const others = ALL.map((a, i) => ({ ...a, i, at: base.pos(a.loc) })).filter(a => a.at).sort((a, b) => (a.loc.id === activeId) - (b.loc.id === activeId));
+  const others = items.map((a, i) => ({ ...a, i, at: base.pos(a.loc) })).filter(a => a.at).sort((a, b) => (a.loc.id === activeId) - (b.loc.id === activeId));
   others.forEach(({ loc, res, i, at }) => {
     const x = at[0] * W, y = at[1] * H;
     if (mode === "key") {
@@ -2701,93 +3337,84 @@ async function planCanvas(W, mode, activeId, base) {
 
 function reportDate() { return new Date().toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" }); }
 
-function sitePage(planImg) {
+/* Shared pdfmake helpers. Every table uses star or fixed widths that add up to the 527 pt text width, so nothing runs off the page. */
+const PW = 527;
+const pdfHead = (t, left) => ({ text: t, bold: true, color: PRINT["--muted"], alignment: left ? "left" : "right" });
+const pdfNum = t => ({ text: String(t), alignment: "right" });
+const pdfDash = () => ({ text: "–", alignment: "right", color: PRINT["--muted"] });
+const pdfLayout = {
+  hLineWidth: (i, n) => (i === 0 ? 0 : i === 1 || i === n.table.body.length ? 0.6 : 0.25),
+  vLineWidth: () => 0, hLineColor: i => (i === 1 ? PRINT["--line"] : PRINT["--grid"]),
+  paddingLeft: () => 2.5, paddingRight: () => 2.5, paddingTop: () => 1.3, paddingBottom: () => 1.3,
+};
+const pdfTable = (body, widths, extra = {}) => ({ table: { headerRows: 1, dontBreakRows: true, widths, body }, layout: pdfLayout, ...extra });
+const pdfSection = (t, first) => ({ text: t, bold: true, fontSize: 9.5, color: PRINT["--ink"], margin: [0, first ? 2 : 9, 0, 3] });
+const pdfRule = () => ({ canvas: [{ type: "line", x1: 0, y1: 0, x2: PW, y2: 0, lineWidth: 1.2, lineColor: PRINT["--accent"] }], margin: [0, 3, 0, 5] });
+const plainText = h => String(h).replace(/<sub>(.*?)<\/sub>/g, "$1").replace(/<[^>]+>/g, "");
+
+function sitePage(planImg, items) {
   const ink = PRINT["--ink"], muted = PRINT["--muted"];
-  const head = (t, left) => ({ text: t, bold: true, color: muted, alignment: left ? "left" : "right" });
-  const n = t => ({ text: String(t), alignment: "right", noWrap: true });
-  const first = ALL[0].res;
+  const first = items[0].res;
   const meta = [P.jobRef && `Job ${P.jobRef}`, P.author && `Prepared by ${P.author}`, reportDate()].filter(Boolean).join("   |   ");
-  const anyEmb = ALL.some(a => a.res.he > 0);
-  const settings = `Design life ${first.td} yr   |   Handover ${first.th} yr   |   PCS = settlement from handover to design life   |   End of primary at U = ${(first.eop * 100).toFixed(0)}%   |   Immediate settlement ${first.immOn ? "included" : "excluded"}${anyEmb ? `   |   Fill creep from t1 = ${P.embT1} yr after construction` : ""}`;
-  const rows = ALL.map(({ loc, res }, i) => {
+  const anyEmb = items.some(a => a.res.he > 0);
+  const settings = `Design life ${first.td} yr   |   Planned handover ${first.thBase} yr   |   PCS = settlement from handover to design life   |   End of primary at U = ${(first.eop * 100).toFixed(0)}%   |   Immediate settlement ${first.immOn ? "included" : "excluded"}${anyEmb ? `   |   Fill creep from t1 = ${P.embT1} yr after construction` : ""}`;
+  const rows = items.map(({ loc, res }, i) => {
     const e = res.at(res.td), req = reqOf(loc), fail = req !== null && res.pcs * 1000 > req + 1e-9;
-    return [String(i + 1), loc.name || "Unnamed", n(kpa(res.q)), n(res.he > 0 ? +res.he.toFixed(2) : "–"), n(res.immOn ? mm(e.i) : "–"), n(mm(e.p)), n(mm(e.s)), n(res.he > 0 ? mm(e.e) : "–"), { ...n(mm(e.total)), bold: true }, { ...n(mm(res.pcs)), bold: true, color: fail ? PRINT["--bad"] : ink }, n(req === null ? "–" : req), gtLabel(res), n(res.advisories.length || "–")];
+    return [String(i + 1), loc.name || "Unnamed", pdfNum(kpa(res.q)), pdfNum(res.he > 0 ? +res.he.toFixed(2) : "–"), pdfNum(res.immOn ? mm(e.i) : "–"), pdfNum(mm(e.p)), pdfNum(mm(e.s)), pdfNum(res.he > 0 ? mm(e.e) : "–"), { ...pdfNum(mm(e.total)), bold: true }, pdfNum(fmtYr(res.th)), { ...pdfNum(mm(res.pcs)), bold: true, color: fail ? PRINT["--bad"] : ink }, pdfNum(req === null ? "–" : req), gtLabel(res)];
   });
   const [lo, hi] = siteRange();
-  const unplaced = ALL.filter(a => !onPlan(a.loc)).map(a => a.loc.name || "Unnamed");
+  const unplaced = items.filter(a => !onPlan(a.loc)).map(a => a.loc.name || "Unnamed");
   const content = [
-    { columns: [
-      { width: "*", stack: [{ text: "1D Settlement Report: Site Summary", fontSize: 16, bold: true, color: ink }, { text: P.project || "Untitled project", fontSize: 10, color: ink }, { text: meta, color: muted, margin: [0, 1, 0, 0] }] },
-    ] },
-    { canvas: [{ type: "line", x1: 0, y1: 0, x2: 527, y2: 0, lineWidth: 1.2, lineColor: "#0d5c75" }], margin: [0, 3, 0, 4] },
+    { text: "1D Settlement Report: Site Summary", fontSize: 16, bold: true, color: ink },
+    { text: P.project || "Untitled project", fontSize: 10, color: ink },
+    { text: meta, color: muted, margin: [0, 1, 0, 0] },
+    pdfRule(),
   ];
   if (P.isExample) content.push({ text: "These are the calculator’s example values and a drawn plan, not site data.", bold: true, color: PRINT["--warn"], margin: [0, 0, 0, 3] });
   content.push({ text: settings, color: muted, margin: [0, 0, 0, 6] });
   if (planImg) {
-    content.push({ image: planImg, fit: [527, 380], alignment: "center" });
-    content.push({ text: `Marker shade runs from light (${mm(lo)} mm) to dark (${mm(hi)} mm) total settlement at ${fmtYr(first.td)} years.${unplaced.length ? ` Not on the plan: ${unplaced.join(", ")}.` : ""}`, color: muted, margin: [0, 4, 0, 0] });
+    content.push({ image: planImg, fit: [PW, 360], alignment: "center" });
+    content.push({ text: `Marker shade runs from light (${mm(lo)} mm) to dark (${mm(hi)} mm) total settlement at ${fmtYr(first.td)} years.${mapMode() ? ` Grid: GDA2020 MGA zone ${zoneNow()}.` : ""}${unplaced.length ? ` Not on the plan: ${unplaced.join(", ")}.` : ""}`, color: muted, margin: [0, 4, 0, 0] });
   }
-  content.push({ text: "Results by location", bold: true, fontSize: 9.2, color: ink, margin: [0, 8, 0, 2] });
-  content.push({
-    table: { headerRows: 1, widths: ["auto", "*", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "*", "auto"], body: [
-      [head("#", true), head("Location", true), head("Q\n(kPa)"), head("Fill\n(m)"), head("Immediate\n(mm)"), head("Primary\n(mm)"), head("Secondary\n(mm)"), head("Fill creep\n(mm)"), head(`Total at ${fmtYr(first.td)}\nyr (mm)`), head("PCS\n(mm)"), head("PCS limit\n(mm)"), head("Ground treatment", true), head("Checks")],
-      ...rows,
-    ] },
-    layout: { hLineWidth: (i, nd) => (i === 0 ? 0 : i === 1 || i === nd.table.body.length ? 0.6 : 0.25), vLineWidth: () => 0, hLineColor: i => (i === 1 ? PRINT["--line"] : PRINT["--grid"]), paddingLeft: () => 2, paddingRight: () => 2, paddingTop: () => 1.2, paddingBottom: () => 1.2 },
-  });
-  content.push({ text: "Each result applies at its own point only. Nothing is estimated between points. Results include the ground treatment shown. A page for each location follows, with its inputs, ground treatment, assumptions and any checks to review.", color: muted, margin: [0, 6, 0, 0] });
+  content.push(pdfSection("Results by location"));
+  content.push(pdfTable([
+    [pdfHead("#", true), pdfHead("Location", true), pdfHead("Q\n(kPa)"), pdfHead("Fill\n(m)"), pdfHead("Imm.\n(mm)"), pdfHead("Primary\n(mm)"), pdfHead("Sec.\n(mm)"), pdfHead("Creep\n(mm)"), pdfHead(`Total ${fmtYr(first.td)}\nyr (mm)`), pdfHead("Handover\n(yr)"), pdfHead("PCS\n(mm)"), pdfHead("Limit\n(mm)"), pdfHead("Ground treatment", true)],
+    ...rows,
+  ], [12, 64, 26, 22, 26, 32, 26, 26, 36, 34, 28, 26, "*"]));
+  content.push({ text: "Each result applies at its own point only. Nothing is estimated between points. Results include the ground treatment shown. A page for each location follows, then the methods, assumptions and limitations.", color: muted, margin: [0, 6, 0, 0] });
   return content;
 }
 
-function reportDef(res, k, loc, keyImg) {
-  const fs = 7.4 * k, ink = PRINT["--ink"], muted = PRINT["--muted"], line = PRINT["--line"];
-  const end = res.at(res.td), hand = res.at(res.th), on = res.surOn;
-  const sub = (b, s, extra) => ({ text: [b, { text: s, sub: true }, extra || ""] });
-  const Sg = s => sub("σ′", s);
-  const head = (t, right) => { const o = typeof t === "string" ? { text: t } : { ...t }; return { ...o, bold: true, color: muted, alignment: right === false ? "left" : "right" }; };
-  const num = t => ({ text: String(t), alignment: "right" });
-  const dash = { text: "–", alignment: "right", color: muted };
-  const tableLayout = {
-    hLineWidth: (i, n) => (i === 0 ? 0 : i === 1 || i === n.table.body.length ? 0.6 : 0.25),
-    vLineWidth: () => 0, hLineColor: i => (i === 1 ? line : PRINT["--grid"]),
-    paddingLeft: () => 2, paddingRight: () => 2, paddingTop: () => 0.9 * k, paddingBottom: () => 0.9 * k,
-  };
-  // Only the name column (wrapCol) may wrap, so numbers and headers stay on their own lines.
-  const table = (body, widths, wrapCol = 0) => ({
-    table: { headerRows: 1, widths, body: body.map((r, i) => r.map((c, j) => i === 0 || j === wrapCol ? c : { ...(typeof c === "string" ? { text: c } : c), noWrap: true })) },
-    layout: tableLayout,
-  });
-  const section = t => ({ text: t, bold: true, fontSize: 9.2 * k, color: ink, margin: [0, 6 * k, 0, 2 * k] });
-
+function locationContent(item, keyImg) {
+  const { loc, res, sug } = item, ink = PRINT["--ink"], muted = PRINT["--muted"];
+  const end = res.at(res.td), on = res.surOn, req = reqOf(loc), immTxt = v => (res.immOn ? mm(v) : "–");
+  const out = [];
   /* Header */
   const metaLine = [S.jobRef && `Job ${S.jobRef}`, S.author && `Prepared by ${S.author}`, reportDate()].filter(Boolean).join("   |   ");
-  const header = [
-    { columns: [
-      { width: "*", stack: [
-        { text: "1D Settlement Report", fontSize: 16 * k, bold: true, color: ink },
-        { text: [{ text: `Location: ${loc.name || "Unnamed"}`, bold: true }, `   |   ${S.project || "Untitled project"}`], fontSize: 10 * k, color: ink },
-        { text: metaLine, color: muted, margin: [0, 1, 0, 0] },
-      ] },
-      ...(keyImg ? [{ width: 96 * k, image: keyImg, fit: [96 * k, 44 * k], alignment: "right" }] : []),
+  out.push({ columns: [
+    { width: "*", stack: [
+      { text: "1D Settlement Report", fontSize: 16, bold: true, color: ink },
+      { text: [{ text: `Location: ${loc.name || "Unnamed"}`, bold: true }, `   |   ${S.project || "Untitled project"}`], fontSize: 10, color: ink },
+      { text: metaLine, color: muted, margin: [0, 1, 0, 0] },
+      ...(mapMode() && loc.lat !== null ? [(() => { const p = MGA.fromLL(loc.lat, loc.lng, zoneNow()); return { text: `GDA2020 MGA zone ${zoneNow()}: E ${p.E.toFixed(1)}, N ${p.N.toFixed(1)}`, color: muted }; })()] : []),
     ] },
-    { canvas: [{ type: "line", x1: 0, y1: 0, x2: 527, y2: 0, lineWidth: 1.2, lineColor: "#0d5c75" }], margin: [0, 3 * k, 0, 4 * k] },
-  ];
-  if (S.isExample) header.push({ text: "These are the calculator’s example values, not site data.", bold: true, color: PRINT["--warn"], margin: [0, 0, 0, 3 * k] });
+    ...(keyImg ? [{ width: 100, image: keyImg, fit: [100, 48], alignment: "right" }] : []),
+  ], columnGap: 8 });
+  out.push(pdfRule());
+  if (S.isExample) out.push({ text: "These are the calculator’s example values, not site data.", bold: true, color: PRINT["--warn"], margin: [0, 0, 0, 3] });
 
   /* Headline results */
-  const stat = (lab, val, big) => ({ stack: [{ text: lab, color: muted, fontSize: 6.8 * k }, { text: val, bold: true, noWrap: true, fontSize: (big ? 15 : 11) * k, color: ink }], margin: [3, 2 * k, 3, 2 * k] });
-  const immTxt = v => res.immOn ? mm(v) : "–";
-  const stats = [stat(`Total at ${fmtYr(res.td)} yr`, `${mm(end.total)} mm`, true), stat("Immediate", res.immOn ? `${mm(end.i)} mm` : "Excluded"), stat("Primary", `${mm(end.p)} mm`), stat("Secondary", `${mm(end.s)} mm`), ...(res.he > 0 ? [stat("Embankment creep", `${mm(end.e)} mm`)] : []), stat(`PCS after ${fmtYr(res.th)} yr`, `${mm(res.pcs)} mm`)];
-  const req = reqOf(loc), item = ALL.find(a => a.loc.id === loc.id), sug = item && item.sug;
-  stats.push(stat("PCS limit", req === null ? "None" : `${req} mm ${res.pcs * 1000 <= req + 1e-9 ? "(met)" : "(exceeded)"}`));
-  stats.push(stat("90% of primary reached", res.SpTot > 0 ? `${fmtYr(res.t90All)} yr` : "–"));
-  const band = { table: { widths: stats.map((_, i) => (i ? "*" : "auto")), body: [stats] }, layout: { hLineWidth: () => 0, vLineWidth: () => 0, fillColor: () => "#e4ebee", paddingLeft: () => 2, paddingRight: () => 2, paddingTop: () => 0, paddingBottom: () => 0 } };
+  const stat = (lab, val, big) => ({ stack: [{ text: lab, color: muted, fontSize: 6.6 }, { text: val, bold: true, fontSize: big ? 14 : 10.5, color: ink }], margin: [3, 2, 3, 2] });
+  const stats = [stat(`Total at ${fmtYr(res.td)} yr`, `${mm(end.total)} mm`, true), stat("Immediate", res.immOn ? `${mm(end.i)} mm` : "Excluded"), stat("Primary", `${mm(end.p)} mm`), stat("Secondary", `${mm(end.s)} mm`)];
+  if (res.he > 0) stats.push(stat("Fill creep", `${mm(end.e)} mm`));
+  stats.push(stat(`PCS from ${fmtYr(res.th)} yr`, `${mm(res.pcs)} mm`), stat("PCS limit", req === null ? "None" : `${req} mm, ${res.pcs * 1000 <= req + 1e-9 ? "met" : "exceeded"}`), stat("90% of primary", res.SpTot > 0 ? `${fmtYr(res.t90All)} yr` : "–"));
+  out.push({ table: { widths: stats.map((_, i) => (i ? "*" : 66)), body: [stats] }, layout: { hLineWidth: () => 0, vLineWidth: () => 0, fillColor: () => PRINT["--band"], paddingLeft: () => 2, paddingRight: () => 2, paddingTop: () => 0, paddingBottom: () => 0 } });
 
   /* Charts */
-  const swatch = (c, type) => ({ width: 13, canvas: type === "box"
-    ? [{ type: "rect", x: 0, y: 1, w: 10, h: 6, color: c, lineColor: line, lineWidth: 0.4 }]
+  const swatchP = (c, type) => ({ width: 13, canvas: type === "box"
+    ? [{ type: "rect", x: 0, y: 1, w: 10, h: 6, color: c, lineColor: PRINT["--line"], lineWidth: 0.4 }]
     : [{ type: "line", x1: 0, y1: 4, x2: 11, y2: 4, lineWidth: 1.4, lineColor: c, ...(type === "dash" ? { dash: { length: 2.5, space: 2 } } : {}) }] });
-  const legend = items => ({ columns: items.flatMap(([lab, c, type]) => [swatch(c, type), { text: lab, width: "auto", noWrap: true, margin: [0, 0, 5, 0] }]), columnGap: 0, fontSize: 6.8 * k, margin: [0, 0, 0, 2] });
+  const legend = items => ({ columns: items.flatMap(([lab, c, type]) => [swatchP(c, type), { text: lab, width: "auto", margin: [0, 0, 5, 0] }]), columnGap: 0, fontSize: 6.6, margin: [0, 0, 0, 2] });
   const timeLeg = [["Total", PRINT["--s1"]], ["Primary", PRINT["--s2"]], ["Secondary", PRINT["--s3"]]];
   if (res.immOn) timeLeg.push(["Immediate", PRINT["--s4"]]);
   if (res.he > 0) timeLeg.push(["Fill creep", PRINT["--s5"]]);
@@ -2795,155 +3422,170 @@ function reportDef(res, k, loc, keyImg) {
   if (on) timeLeg.push(["Surcharge", PRINT["--sur-band"], "box"]);
   if (res.treated) timeLeg.push(["No treatment", muted, "dash"]);
   const stressLeg = [["σ′v0", PRINT["--s1"]], ["σ′p", PRINT["--s3"]], ["σ′f", PRINT["--s2"]]];
-  if (on) stressLeg.push(["σ′fs with surcharge", PRINT["--s4"], "dash"]);
-  const charts = { columns: [
-    { width: 322, stack: [section("Settlement against time"), ...(timeLeg.length > 6 ? [legend(timeLeg.slice(0, 5)), legend(timeLeg.slice(5))] : [legend(timeLeg)]), { svg: printSvg(drawTime(res, 560)), width: 322 * k }] },
-    { width: 195, stack: [section("Soil column and vertical stress"), legend(stressLeg), { svg: printSvg(drawStress(res, 380)), width: 195 * k }] },
-  ], columnGap: 10 };
+  if (on) stressLeg.push(["σ′fs", PRINT["--s4"], "dash"]);
+  out.push({ columns: [
+    { width: 322, stack: [pdfSection("Settlement against time"), ...(timeLeg.length > 5 ? [legend(timeLeg.slice(0, 5)), legend(timeLeg.slice(5))] : [legend(timeLeg)]), { svg: printSvg(drawTime(res, 560)), width: 322 }] },
+    { width: 195, stack: [pdfSection("Soil column and vertical stress"), legend(stressLeg), { svg: printSvg(drawStress(res, 380)), width: 195 }] },
+  ], columnGap: 10 });
 
   /* Inputs */
+  out.push(pdfSection("Inputs"));
   const pair = (a, b) => [{ text: a, color: muted }, { text: b, alignment: "right" }];
   const gen = [
     ["Load on ground Q", `${kpa(res.q)} kPa`], ["Embankment weight", `${kpa(res.qEmb)} kPa`], ["Extra surface load q", `${res.qAdd} kPa`], ["PCS limit", req === null ? "None" : `${req} mm`],
-    ["Groundwater depth", `${res.gwt} m`], ["Design life", `${res.td} yr`], ["Handover", `${res.th} yr`],
-    ["Loading period", `${res.tc} yr`], ["End of primary", `U = ${(res.eop * 100).toFixed(0)}%`], ["Sublayers per clay", String(S.sub)], ["Cα cut for OC layers", S.reduce ? "Yes (Cr/Cc)" : "No"],
-    ["Immediate settlement", res.immOn ? "Included" : "Excluded"],
+    ["Groundwater depth", `${res.gwt} m`], ["Design life", `${res.td} yr`], ["Planned handover", `${res.thBase} yr`], ["Loading period", `${res.tc} yr`],
+    ["End of primary", `U = ${(res.eop * 100).toFixed(0)}%`], ["Sublayers per clay", String(S.sub)], ["Immediate settlement", res.immOn ? "Included" : "Excluded"], ["Stress history", S.histMode === "ocr" ? "OCR" : "POP"],
   ];
   if (res.he > 0) gen.push(["Embankment height", `${+res.he.toFixed(3)} m`], ["Creep reference t1", `${res.embT1} yr`]);
-  gen.push(["γw", "9.81 kN/m³"]);
   const genRows = []; for (let i = 0; i < gen.length; i += 4) { const row = []; for (let j = 0; j < 4; j++) row.push(...(gen[i + j] ? pair(...gen[i + j]) : ["", ""])); genRows.push(row); }
-  const genTable = { table: { widths: ["*", "auto", "*", "auto", "*", "auto", "*", "auto"], body: genRows }, layout: { ...tableLayout, hLineWidth: () => 0.25 } };
-
-  const hist = S.histMode === "ocr" ? "OCR" : "POP";
-  const soilHead = [head("#", false), head("Layer", false), head("Type", false), head("H\n(m)"), head("γ\n(kN/m³)"), head("E\n(MPa)"), head("ν"), head("e0"), head("Cc"), head("Cr"), head(S.histMode === "ocr" ? "OCR" : "POP\n(kPa)"), head("Cα"), head("cv\n(m²/yr)"), head("Drainage", false)];
+  out.push({ table: { widths: ["*", 50, "*", 50, "*", 50, "*", 50], body: genRows }, layout: { ...pdfLayout, hLineWidth: () => 0.25 } });
+  const hist = S.histMode === "ocr" ? "OCR" : "POP\n(kPa)";
+  const soilHead = [pdfHead("#", true), pdfHead("Layer", true), pdfHead("Type", true), pdfHead("H\n(m)"), pdfHead("γ\n(kN/m³)"), pdfHead("E\n(MPa)"), pdfHead("ν"), pdfHead("e0"), pdfHead("Cc"), pdfHead("Cr"), pdfHead(hist), pdfHead("Cα"), pdfHead("cv\n(m²/yr)"), pdfHead("Drainage", true)];
+  const embRows = res.emb.map((z, i) => [`E${i + 1}`, z.name || "Unnamed fill", `Fill, α ${z.alpha}%`, pdfNum(z.h), pdfNum(z.gamma), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), { text: "–", color: muted }]);
   const soilRows = res.L.map((l, i) => {
-    const clay = l.type === "clay", v = x => clay ? num(x) : dash;
-    return [String(i + 1), l.name || "Unnamed", clay ? "Clay / silt" : "Free-draining", num(l.h), num(l.gamma), res.immOn ? num(l.E) : dash, res.immOn ? num(l.nu) : dash, v(l.e0), v(l.Cc), v(l.Cr), v(S.histMode === "ocr" ? l.ocr : l.pop), v(l.Ca), v(l.cv), clay ? (l.drainage === "one" ? "One-way" : "Two-way") : { text: "–", color: muted }];
+    const clay = l.type === "clay", v = x => (clay ? pdfNum(x) : pdfDash());
+    return [String(i + 1), l.name || "Unnamed", clay ? "Clay / silt" : "Free-draining", pdfNum(l.h), pdfNum(l.gamma), res.immOn ? pdfNum(l.E) : pdfDash(), res.immOn ? pdfNum(l.nu) : pdfDash(), v(l.e0), v(l.Cc), v(l.Cr), v(S.histMode === "ocr" ? l.ocr : l.pop), v(l.Ca), v(l.cv), clay ? (l.drainage === "one" ? "One-way" : "Two-way") : { text: "–", color: muted }];
   });
-  const embRows = res.emb.map((z, i) => [`E${i + 1}`, z.name || "Unnamed fill", `Fill, α ${z.alpha}%`, num(z.h), num(z.gamma), dash, dash, dash, dash, dash, dash, dash, dash, { text: "–", color: muted }]);
-  const soilTable = table([soilHead, ...embRows, ...soilRows], ["auto", "*", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto"], 1);
+  out.push({ ...pdfTable([soilHead, ...embRows, ...soilRows], [14, "*", 58, 26, 30, 28, 22, 24, 24, 24, 28, 28, 30, 38]), margin: [0, 4, 0, 0] });
 
   /* Results by layer */
-  const resHead = [head("Layer", false), head("History", false), head({ text: ["σ′", { text: "v0", sub: true }, "\n(kPa)"] }), head({ text: ["σ′", { text: "p", sub: true }, "\n(kPa)"] }), head({ text: ["σ′", { text: "f", sub: true }, "\n(kPa)"] }), head("Immediate\n(mm)"), head("Full primary\n(mm)"), head("t90\n(yr)"), head("tp\n(yr)"), head(`Primary at\n${fmtYr(res.td)} yr (mm)`), head("Secondary\n(mm)"), head("Total\n(mm)")];
+  out.push(pdfSection("Settlement by layer"));
+  const resHead = [pdfHead("Layer", true), pdfHead("History", true), pdfHead({ text: ["σ′", { text: "v0", sub: true }, "\n(kPa)"] }), pdfHead({ text: ["σ′", { text: "p", sub: true }, "\n(kPa)"] }), pdfHead({ text: ["σ′", { text: "f", sub: true }, "\n(kPa)"] }), pdfHead("Imm.\n(mm)"), pdfHead("Full primary\n(mm)"), pdfHead("t90\n(yr)"), pdfHead("tp\n(yr)"), pdfHead(`Primary at\n${fmtYr(res.td)} yr (mm)`), pdfHead("Secondary\n(mm)"), pdfHead("Total\n(mm)")];
   const resRows = res.L.filter(l => l.type === "clay" || l.Si > 0).map(l => {
-    const clay = l.type === "clay", [p, s] = clay ? res.layerAt(l, res.td) : [0, 0], si = res.immAt(l, res.td);
-    const name = `${l.index + 1}. ${l.name || "Unnamed"}`;
+    const clay = l.type === "clay", [p, s] = clay ? res.layerAt(l, res.td) : [0, 0], si = res.immAt(l, res.td), name = `${l.index + 1}. ${l.name || "Unnamed"}`;
     return clay
-      ? [name, REG[l.regime].replace("→", " to "), num(kpa(l.mid.s0)), num(kpa(l.mid.sp)), num(kpa(l.mid.sf)), num(immTxt(si)), num(mm(l.Sp)), num(fmtYr(l.t90)), num(fmtYr(l.tp)), num(mm(p)), num(mm(s)), num(mm(si + p + s))]
-      : [name, "Free-draining", dash, dash, dash, num(mm(si)), dash, dash, dash, dash, dash, num(mm(si))];
+      ? [name, REG[l.regime].replace("→", " to "), pdfNum(kpa(l.mid.s0)), pdfNum(kpa(l.mid.sp)), pdfNum(kpa(l.mid.sf)), pdfNum(immTxt(si)), pdfNum(mm(l.Sp)), pdfNum(fmtYr(l.t90)), pdfNum(fmtYr(l.tp)), pdfNum(mm(p)), pdfNum(mm(s)), pdfNum(mm(si + p + s))]
+      : [name, "Free-draining", pdfDash(), pdfDash(), pdfDash(), pdfNum(mm(si)), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfNum(mm(si))];
   });
   const b = t => ({ text: String(t), bold: true, alignment: "right" });
-  resRows.unshift(...res.emb.map((z, i) => [`E${i + 1}. ${z.name || "Unnamed fill"}, ${z.h} m`, "Fill creep", dash, dash, dash, dash, dash, dash, dash, dash, num(mm(res.zoneCreep(z, res.td))), num(mm(res.zoneCreep(z, res.td)))]));
+  resRows.unshift(...res.emb.map((z, i) => [`E${i + 1}. ${z.name || "Unnamed fill"}, ${z.h} m`, "Fill creep", pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfDash(), pdfNum(mm(res.zoneCreep(z, res.td))), pdfNum(mm(res.zoneCreep(z, res.td)))]));
   resRows.push([{ text: "Profile", bold: true }, "", "", "", "", b(immTxt(end.i)), b(mm(res.SpTot)), b(res.SpTot > 0 ? fmtYr(res.t90All) : "–"), "", b(mm(end.p)), b(mm(end.s + end.e)), b(mm(end.total))]);
-  const resTable = table([resHead, ...resRows], ["*", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto"]);
+  out.push(pdfTable([resHead, ...resRows], ["*", 44, 32, 32, 32, 30, 40, 30, 30, 44, 38, 34]));
 
-  /* Surcharge check */
-  /* Ground treatment */
-  const plain = h => String(h).replace(/<sub>(.*?)<\/sub>/g, "$1").replace(/<[^>]+>/g, "");
-  const manual = loc.gt.mode === "manual", need = sug && sug.state === "need";
-  const verdict = req === null ? "No PCS requirement entered, so ground treatment is not required."
-    : !need ? `Ground treatment not required: PCS without treatment is ${mm(res.pcsBase)} mm, within the ${req} mm limit.`
-    : `Ground treatment required: PCS without treatment is ${mm(sug.r0.pcs)} mm against the ${req} mm limit.${sug.met ? "" : " No option considered meets the limit."}`;
-  const applied = !res.treated ? "None" : [
-    res.drOn ? `Vertical drains at ${res.drS} m, ${res.drPattern === "sq" ? "square" : "triangular"} grid (de = ${res.de.toFixed(2)} m), dw = ${res.drDw} mm, ds/dw = ${res.drSmear}, kh/ks = ${res.drKhKs}, ch/cv = ${res.drChCv}` : "",
-    res.surOn ? `Surcharge ${res.qs} kPa removed at ${fmtYr(res.tr)} yr, Cα′/Cα = ${Number.isFinite(res.caRatio) ? res.caRatio : "Cr/Cc"}` : "",
-  ].filter(Boolean).join("; ");
-  const gtLines = [{ text: verdict, bold: true }, { text: [{ text: manual ? "Applied (set by user): " : need ? "Applied (suggested): " : "Applied: ", bold: true }, `${applied}.${res.treated ? ` PCS with treatment ${mm(res.pcs)} mm.` : ""}`] }];
-  if (res.drOn) gtLines.push({ text: drainQty(res), color: muted });
-  if (need) {
-    const ex = gtExplain(sug).map(plain);
-    if (manual && sug.pick.kind !== "nothing") gtLines.push({ text: `Suggested instead: ${gtLabel(sug.r1, true)}, giving PCS ${mm(sug.r1.pcs)} mm.`, color: muted });
-    gtLines.push({ ul: ex.slice(0, 4), color: ink, margin: [0, 1, 0, 0] });
-  }
-  let surBlock = [section("Ground treatment"), { stack: gtLines, lineHeight: 1.05 }];
-  if (on) surBlock = surBlock.concat([section("Surcharge check"), table([
-    [head("Layer", false), head("Primary\nunder Q (mm)"), head("Primary under\nQ + qs (mm)"), head("U\nneeded"), head("Time\nneeded (yr)"), head("U at\nremoval"), head("Result", false), head("Rebound\n(mm)"), head("Primary\nleft (mm)")],
-    ...res.clays.map(l => { const c = l.sur; return [`${l.index + 1}. ${l.name || "Unnamed"}`, num(mm(l.Sp)), num(mm(c.SpS)), num(`${(c.Ureq * 100).toFixed(0)}%`), c.treq === null ? dash : num(fmtYr(c.treq)), num(`${(c.Utr * 100).toFixed(0)}%`), c.covered ? "Primary covered" : "Primary remains", num(mm(c.Reb)), num(mm(c.Srem))]; }),
-  ], ["*", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto"])]);
-
-  /* Key times beside assumptions */
-  const timeHead = [head("Time (yr)", false), head("Imm."), head("Prim."), head("Sec."), ...(res.he > 0 ? [head("Creep")] : []), head("Total"), head("To come")];
-  if (res.treated) timeHead.push(head("No treat."));
+  /* Key times */
+  const timeHead = [pdfHead("Time (yr)", true), pdfHead("Immediate"), pdfHead("Primary"), pdfHead("Secondary"), ...(res.he > 0 ? [pdfHead("Fill creep")] : []), pdfHead("Total"), pdfHead("Still to come"), ...(res.treated ? [pdfHead("No treatment")] : [])];
   const timeBody = timeRows(res).map(t => {
     const a = res.at(t), tags = [];
-    if (t === res.td) tags.push("life"); if (t === res.th) tags.push("handover"); if (on && t === res.tr) tags.push("removal");
-    const row = [`${fmtYr(t)}${tags.length ? ` (${tags.join(", ")})` : ""}`, num(immTxt(a.i)), num(mm(a.p)), num(mm(a.s)), ...(res.he > 0 ? [num(mm(a.e))] : []), { text: mm(a.total), alignment: "right", bold: true }, num(mm(end.total - a.total))];
-    if (res.treated) row.push(num(mm(res.atBase(t).total)));
-    return row;
+    if (t === res.td) tags.push("design life"); if (t === res.th) tags.push("handover"); if (res.preOn && t === res.thBase) tags.push("planned handover"); if (on && t === res.tr) tags.push("removal");
+    return [`${fmtYr(t)}${tags.length ? ` (${tags.join(", ")})` : ""}`, pdfNum(immTxt(a.i)), pdfNum(mm(a.p)), pdfNum(mm(a.s)), ...(res.he > 0 ? [pdfNum(mm(a.e))] : []), { text: mm(a.total), alignment: "right", bold: true }, pdfNum(mm(end.total - a.total)), ...(res.treated ? [pdfNum(mm(res.atBase(t).total))] : [])];
   });
-  const timeTable = table([timeHead, ...timeBody], ["*", ...Array(timeHead.length - 1).fill("auto")]);
+  out.push({ stack: [pdfSection("Settlement at key times (mm)"), pdfTable([timeHead, ...timeBody], ["*", ...Array(timeHead.length - 1).fill(52)])], unbreakable: true });
 
-  const notes = [
-    `Very wide load: Δσ = Q = embankment weight + q at every depth. Water pressure is hydrostatic below ${res.gwt} m (γw = 9.81 kN/m³).`,
-    res.immOn ? "Immediate: Si = qH/M, M = E(1−ν)/[(1+ν)(1−2ν)]. ν = 0.5 gives zero, as for saturated clay in true 1D loading." : "Immediate settlement is excluded from all results.",
-    `Primary: e-log p with Cc and Cr, summed over ${S.sub} sublayer(s) per clay layer. σ′p from ${hist}.`,
-    `Rate: Terzaghi U(Tv), constant cv. Each clay layer acts alone with its stated drainage. tp is at U = ${(res.eop * 100).toFixed(0)}%.`,
-    `Secondary: Ss = Cα/(1+ep)·Hp·log(t/tp), starting at tp (Hypothesis A).${S.reduce ? " Cα is multiplied by Cr/Cc where final stress stays below σ′p." : ""}`,
+  /* Ground treatment */
+  if (sug && sug.state !== "error") {
+    const need = sug.state === "need", manual = loc.gt.mode === "manual";
+    const verdict = req === null ? "No PCS requirement entered, so ground treatment is not required."
+      : !need ? `Ground treatment not required: PCS without treatment is ${mm(sug.r0.pcs)} mm, within the ${req} mm limit.`
+      : `Ground treatment required: PCS without treatment is ${mm(sug.r0.pcs)} mm against the ${req} mm limit.${sug.met ? "" : " No option considered meets the limit."}`;
+    const rows = gtRows(item);
+    const gt = [pdfSection("Ground treatment"), { text: verdict, bold: true, margin: [0, 0, 0, 4] },
+      { columns: [{ width: 258, svg: printSvg(gtBars(rows.map(([n, r]) => [n.replace(/:.*/, ""), r]), req)) }, { width: 259, svg: printSvg(gtSchematic(res)) }], columnGap: 10, margin: [0, 0, 0, 4] }];
+    // Summary table: one column per case
+    const cols = rows.map(([n]) => n.replace(/:.*/, "")), rs = rows.map(r => r[1]);
+    const line = (lab, f) => [{ text: lab, color: muted }, ...rs.map(r => f(r))];
+    const body = [[pdfHead("", true), ...cols.map(c => pdfHead(c))],
+      line("Treatment", r => ({ text: gtLabel(r, true), alignment: "right" })),
+      line("Handover (yr)", r => pdfNum(fmtYr(r.th))),
+      line("Primary complete at handover", r => pdfNum(pct(pcsParts(r).uh))),
+      line("90% of primary reached (yr)", r => pdfNum(r.SpTot > 0 ? fmtYr(r.t90All) : "–")),
+      line(`Total at ${fmtYr(res.td)} yr (mm)`, r => pdfNum(mm(r.at(r.td).total))),
+      line("PCS (mm)", r => ({ ...pdfNum(mm(r.pcs)), bold: true, color: req !== null && r.pcs * 1000 > req + 1e-9 ? PRINT["--bad"] : ink })),
+      line("Against the limit", r => pdfNum(req === null ? "No limit" : r.pcs * 1000 <= req + 1e-9 ? "Met" : "Exceeded"))];
+    gt.push(pdfTable(body, ["*", ...cols.map(() => cols.length > 2 ? 110 : 140)]));
+    const det = [];
+    if (res.preOn) det.push(`Preload: wait ${fmtWait(res.tw)} after construction, so handover moves from ${fmtYr(res.thBase)} to ${fmtYr(res.th)} years.`);
+    if (res.drOn) det.push(`Vertical drains: ${res.drS} m ${res.drPattern === "sq" ? "square" : "triangular"} grid, de = ${res.de.toFixed(2)} m, dw = ${res.drDw} mm, ds/dw = ${res.drSmear}, kh/ks = ${res.drKhKs}, ch/cv = ${res.drChCv}, μ = ${res.mu.toFixed(2)}. ${drainQty(res)}`);
+    if (on) det.push(`Surcharge: ${res.qs} kPa (about ${(res.qs / fillGamma(res)).toFixed(1)} m of fill) placed with the permanent load and removed at ${fmtYr(res.tr)} years. Cα′/Cα after removal = ${Number.isFinite(res.caRatio) ? res.caRatio : "Cr/Cc"}.`);
+    if (det.length) gt.push({ text: `${manual ? "Applied (set by the user)" : "Applied (suggested)"}`, bold: true, margin: [0, 5, 0, 1] }, { ul: det });
+    if (need) {
+      if (manual && sug.pick.kind !== "nothing") gt.push({ text: `The calculator suggests instead: ${gtLabel(sug.r1, true)}, giving PCS ${mm(sug.r1.pcs)} mm.`, color: muted, margin: [0, 3, 0, 0] });
+      gt.push({ text: "Why this treatment", bold: true, margin: [0, 5, 0, 1] }, { ul: gtExplain(sug).map(plainText).slice(0, 4) });
+    }
+    out.push({ stack: gt.slice(0, 4), unbreakable: true }, ...gt.slice(4));
+    if (on) out.push({ stack: [pdfSection("Surcharge check"), pdfTable([
+      [pdfHead("Layer", true), pdfHead("Primary\nunder Q (mm)"), pdfHead("Primary under\nQ + qs (mm)"), pdfHead("U\nneeded"), pdfHead("Time\nneeded (yr)"), pdfHead("U at\nremoval"), pdfHead("Result", true), pdfHead("Rebound\n(mm)"), pdfHead("Primary\nleft (mm)")],
+      ...res.clays.map(l => { const c = l.sur; return [`${l.index + 1}. ${l.name || "Unnamed"}`, pdfNum(mm(l.Sp)), pdfNum(mm(c.SpS)), pdfNum(`${(c.Ureq * 100).toFixed(0)}%`), c.treq === null ? pdfDash() : pdfNum(fmtYr(c.treq)), pdfNum(`${(c.Utr * 100).toFixed(0)}%`), c.covered ? "Primary covered" : "Primary remains", pdfNum(mm(c.Reb)), pdfNum(mm(c.Srem))]; }),
+    ], ["*", 52, 56, 34, 46, 36, 66, 40, 42])], unbreakable: true });
+  }
+  if (res.advisories.length) out.push(pdfSection("Checks to review"), { ul: res.advisories, color: PRINT["--warn"] });
+  return out;
+}
+
+/* Methods, assumptions and limitations: once per report, at the end. Limitations and references are read from the page. */
+function methodsContent(items) {
+  const ink = PRINT["--ink"], muted = PRINT["--muted"];
+  const anyDr = items.some(a => a.res.drOn), anySur = items.some(a => a.res.surOn), anyPre = items.some(a => a.res.preOn), anyEmb = items.some(a => a.res.he > 0);
+  const M = [
+    ["Load and stress", "Q = Σγf·hf + q, applied in full at every depth (very wide load). σ′v0 from bulk unit weights with hydrostatic water pressure below the groundwater level (γw = 9.81 kN/m³). σ′f = σ′v0 + Q."],
+    ["Immediate", "Si = Q·H/M with M = E(1−ν)/[(1+ν)(1−2ν)]. ν = 0.5 gives zero, as for saturated clay in true 1D loading. Follows the load during construction and recovers when a surcharge comes off."],
+    ["Primary, magnitude", "Sp = H/(1+e0)·Δe from the e–log σ′ lines: Cr below σ′p, Cc above. σ′p = OCR·σ′v0 or σ′v0 + POP. Each clay layer is split into sublayers and summed."],
+    ["Primary, rate", "Terzaghi U(Tv), Tv = cv·t/Hdr², Hdr = H/2 (two-way) or H (one-way). Each clay layer consolidates on its own. Linear loading ramp by Terzaghi’s correction. tp is the time at the chosen end-of-primary U."],
+    ["Secondary", "Ss = Cα/(1+ep)·Hp·log(t/tp) for t > tp (Hypothesis A)."],
+    ...(anyEmb ? [["Fill creep", "Se = Σ(αi/100)·hi·log(t′/t1), with t′ = t − tc counted from the end of construction."]] : []),
+    ...(anyDr ? [["Vertical drains", "Hansbo (1981) with smear and no well resistance: μ = ln(n/s′) + (kh/ks)·ln(s′) − 0.75, Uh = 1 − exp(−8·ch·t/(μ·de²)). Combined with vertical drainage by Carrillo’s rule. Drains assumed to pass fully through every clay layer."]] : []),
+    ...(anySur ? [["Surcharge", "Placed with Q and removed in full. Each sublayer uses its layer’s average U at removal. Rebound on Cr with the same rate. Where the stress reached is above σ′f, secondary afterwards uses Cα′ = Cα·Cr/Cc unless set."]] : []),
+    ...(anyPre ? [["Preload", "A wait tw after construction moves handover from th to th + tw. Consolidation continues under the permanent load during the wait. PCS is counted from the new handover."]] : []),
+    ["PCS and treatment", "PCS = S(td) − S(th). Where PCS without treatment exceeds the limit, options are tried from least to most costly: a wait up to the programme limit, a surcharge up to half of Q, drains alone, a surcharge up to Q, then drains with a surcharge. Each uses the shortest wait that works. Surcharges start at 20% of Q, drains at 1.0–3.5 m spacing."],
   ];
-  if (res.he > 0) notes.push(`Embankment creep: S = Σ(αi/100)·hi·log(t′/t1) over the fill zones, with t′ from the end of construction. It is added to foundation settlement.`);
-  if (res.drOn) notes.push("Drains: Hansbo (1981) with smear, no well resistance, full penetration of every clay layer, combined with vertical drainage by Carrillo’s rule.");
-  if (res.tc > 0) notes.push(`Loading period ${res.tc} yr: Terzaghi linear ramp correction.`);
-  if (on) notes.push("Surcharge: placed with Q and removed in full. All sublayers use the layer’s average U at removal, so allow margin on removal time. Rebound uses Cr and the same cv. Where stress reached exceeds σ′f, secondary uses Cα′ with log(t/tr).");
-  notes.push("Excluded: load spread with depth, submergence of fill, water level changes, large strain, stress-dependent E, interaction between stacked clay layers.");
-  const lower = { columns: [
-    { width: res.treated ? 262 : 228, stack: [section("Settlement at key times (mm)"), timeTable] },
-    { width: "*", stack: [section("Assumptions and method"), { ul: notes, markerColor: muted, lineHeight: 1.05 }] },
-  ], columnGap: 10 };
-
-  const checks = res.advisories.length ? [section("Checks to review"), { ul: res.advisories, color: PRINT["--warn"] }] : [];
-
-  return {
-    pageSize: "A4", pageMargins: [34, 26, 34, 30],
-    defaultStyle: { font: "Roboto", fontSize: fs, color: ink, lineHeight: 1.08 },
-    info: { title: `1D Settlement Report - ${S.project || "Untitled project"}`, subject: "Immediate, primary and secondary settlement" },
-    content: [...header, band, charts, section("Inputs"), genTable, { text: "", margin: [0, 2 * k, 0, 0] }, soilTable, section("Settlement by layer"), resTable, lower, ...surBlock, ...checks],
-  };
+  const assumptions = [
+    "Very wide, uniform load with no spread of stress with depth, so results apply beneath the middle of the embankment.",
+    "One-dimensional compression with no lateral movement, undrained shear distortion or stability effects.",
+    "Constant soil parameters within each unit, small strain theory, and hydrostatic groundwater at a fixed level.",
+    "Each location is calculated on its own. Nothing is interpolated between locations.",
+    "Results are preliminary estimates and need review by a qualified geotechnical engineer before use in design.",
+  ];
+  const lims = Array.from(document.querySelectorAll("#limitsList article")).map(a => {
+    const t = a.querySelector("h3").textContent.trim(), imp = Array.from(a.querySelectorAll("p")).find(p => /^Impact\./.test(p.textContent.trim()));
+    return { text: [{ text: `${t}. `, bold: true }, (imp ? imp.textContent.replace(/^Impact\.\s*/, "") : "").trim()] };
+  });
+  const refs = Array.from(document.querySelectorAll(".reflist li")).map(li => li.textContent.trim());
+  const half = (arr, f) => { const h = Math.ceil(arr.length / 2); return { columns: [{ width: "*", stack: arr.slice(0, h).map(f) }, { width: "*", stack: arr.slice(h).map(f) }], columnGap: 14 }; };
+  const settings = [["Design life", `${P.td} yr`], ["Planned handover", `${P.th} yr`], ["End of primary", `U = ${(Number(P.eop) * 100).toFixed(0)}%`], ["Sublayers per clay", P.sub], ["Stress history", P.histMode === "ocr" ? "OCR" : "POP"], ["Cα cut for OC sublayers", P.reduce ? "Yes" : "No"], ["Immediate settlement", P.immOn ? "Included" : "Excluded"], ...(mapMode() ? [["Coordinates", `GDA2020 MGA zone ${zoneNow()}`]] : [])];
+  const setRows = []; for (let i = 0; i < settings.length; i += 4) { const r = []; for (let j = 0; j < 4; j++) r.push(...(settings[i + j] ? [{ text: settings[i + j][0], color: muted }, { text: String(settings[i + j][1]), alignment: "right" }] : ["", ""])); setRows.push(r); }
+  return [
+    { text: "Methods, assumptions and limitations", fontSize: 16, bold: true, color: ink },
+    { text: `Applies to every location in this report. ${P.project || "Untitled project"}`, color: muted },
+    pdfRule(),
+    pdfSection("Project settings", true),
+    { table: { widths: ["*", 50, "*", 50, "*", 50, "*", 50], body: setRows }, layout: { ...pdfLayout, hLineWidth: () => 0.25 } },
+    pdfSection("Methods"),
+    { ...half(M, ([t, d]) => ({ text: [{ text: `${t}. `, bold: true }, d], margin: [0, 0, 0, 3] })), fontSize: 6.9 },
+    pdfSection("Assumptions"),
+    { ul: assumptions, fontSize: 6.9 },
+    pdfSection("Limitations"),
+    { ...half(lims, l => ({ ...l, margin: [0, 0, 0, 3] })), fontSize: 6.6 },
+    pdfSection("References"),
+    { ...half(refs, r => ({ text: r, margin: [0, 0, 0, 1] })), fontSize: 5.9, color: muted },
+  ];
 }
 
 const FOOT = `1D Settlement Calculator v${APP_VERSION}. Preliminary estimate. Requires review by a qualified geotechnical engineer before use in design.`;
 const reportFooter = (cur, total) => ({ columns: [{ text: FOOT, width: "*" }, { text: `Page ${cur} of ${total}`, width: "auto" }], margin: [34, 8, 34, 0], fontSize: 6.5, color: PRINT["--muted"] });
 const PAGE = { pageSize: "A4", pageMargins: [34, 26, 34, 30], footer: reportFooter };
-
-/* Each location gets exactly one A4 page: its content is shrunk step by step until it fits. */
 const pdfBytes = def => new Promise((ok, no) => { // pdfmake never calls back on failure, so don't wait forever
   const t = setTimeout(() => no(new Error("PDF timed out")), 120000);
   window.pdfMake.createPdf(def).getBuffer(b => { clearTimeout(t); ok(b); });
 });
-async function fitLocation(item, keyImg) {
-  for (const k of [1, 0.95, 0.9, 0.85, 0.8, 0.74, 0.68]) {
-    const def = withLoc(item.loc, () => reportDef(item.res, k, item.loc, keyImg));
-    let pages = 0;
-    def.footer = (cur, total) => { pages = total; return reportFooter(cur, total); };
-    await pdfBytes(def);
-    if (pages === 1) return k;
-  }
-  throw { code: "too_long", name: item.loc.name || "Unnamed" };
-}
-/* scope: "location" = one page for the selected location; "site" = summary page, then one page per location. */
-async function buildReport(scope) {
+/* sel = { site: true/false, ids: [location ids] }. Each location starts a new page; the methods page comes last. */
+async function buildReport(sel) {
   await loadPdfLib();
-  const items = scope === "site" ? ALL : ALL.filter(a => a.loc.id === P.active);
-  const content = [], scales = [], base = await planBase();
-  if (scope === "site") {
-    const planImg = base ? await planCanvas(1600, "site", null, base) : null;
-    content.push({ stack: sitePage(planImg), fontSize: 7.4, color: PRINT["--ink"], lineHeight: 1.08 });
-  }
+  const items = ALL.filter(a => sel.ids.includes(a.loc.id));
+  const base = await planBase(items.map(a => a.loc.id));
+  const content = [];
+  const push = (stack, opts = {}) => content.push({ stack, ...(content.length ? { pageBreak: "before" } : {}), ...opts });
+  if (sel.site && items.length) push(sitePage(base ? await planCanvas(1600, "site", null, base, items) : null, items));
   for (const item of items) {
-    const keyImg = base && base.pos(item.loc) ? await planCanvas(480, "key", item.loc.id, base) : null;
-    const k = await fitLocation(item, keyImg);
-    scales.push(k);
-    // pdfmake rewrites images in a document it has processed, so the final page is built fresh.
-    const def = withLoc(item.loc, () => reportDef(item.res, k, item.loc, keyImg));
-    content.push({ stack: def.content, fontSize: def.defaultStyle.fontSize, color: def.defaultStyle.color, lineHeight: def.defaultStyle.lineHeight, ...(content.length ? { pageBreak: "before" } : {}) });
+    const keyImg = base && base.pos(item.loc) ? await planCanvas(480, "key", item.loc.id, base, items) : null;
+    push(withLoc(item.loc, () => locationContent(item, keyImg)));
   }
-  const doc = { ...PAGE, defaultStyle: { font: "Roboto" }, info: { title: `1D Settlement Report - ${P.project || "Untitled project"}`, subject: "Immediate, primary and secondary settlement" }, content };
-  const bytes = await pdfBytes(doc);
-  return { bytes, scales, noMap: mapMode() && !base };
+  push(methodsContent(items));
+  const doc = { ...PAGE, defaultStyle: { font: "Roboto", fontSize: 7.2, color: PRINT["--ink"], lineHeight: 1.1 }, info: { title: `1D Settlement Report - ${P.project || "Untitled project"}`, subject: "Immediate, primary and secondary settlement" }, content };
+  return { bytes: await pdfBytes(doc), noMap: mapMode() && !base };
 }
 const slug = () => (P.project || "").replace(/[^\w-]+/g, "_").replace(/^_+|_+$/g, "");
-function reportFilename(scope) {
-  const part = scope === "site" ? "Site" : (S.name || "").replace(/[^\w-]+/g, "_").replace(/^_+|_+$/g, "");
-  return ["Settlement_Report", slug(), part].filter(Boolean).join("_") + ".pdf";
+function reportFilename(sel) {
+  const one = sel.ids.length === 1 && !sel.site ? (P.locations.find(l => l.id === sel.ids[0]) || {}).name || "" : "";
+  return ["Settlement_Report", slug(), one.replace(/[^\w-]+/g, "_").replace(/^_+|_+$/g, "")].filter(Boolean).join("_") + ".pdf";
 }
 function reportNote(kind, text, title = "Report") { $("reportMsg").innerHTML = text ? `<div class="msg ${kind}"><b>${esc(title)}</b><span>${esc(text)}</span></div>` : ""; }
 
@@ -2959,21 +3601,33 @@ async function saveFile(blob, filename) {
   await dl.save({ filename, data: blob });
   return "";
 }
-async function saveReport(scope) {
-  const btn = scope === "site" ? $("btnReportSite") : $("btnReport"), idle = btn.textContent;
+/* Report chooser: which locations, and whether to include the site summary. */
+let rpSel = null;
+function renderReportPanel() {
+  if (!rpSel) rpSel = new Set(P.locations.map(l => l.id));
+  [...rpSel].forEach(id => { if (!P.locations.some(l => l.id === id)) rpSel.delete(id); });
+  $("rpLocs").innerHTML = ALL.map(({ loc, res }) => `<label class="check"><input type="checkbox" data-rp="${loc.id}"${rpSel.has(loc.id) ? " checked" : ""}><span>${esc(loc.name || "Unnamed")} <span class="tv">${totalOf(res) === null ? "Fix inputs" : `${mm(totalOf(res))} mm`}</span></span></label>`).join("");
+  $("rpGo").disabled = !rpSel.size;
+}
+function setReportPanel(open) {
+  $("reportPanel").hidden = !open; $("btnReportOpen").setAttribute("aria-expanded", String(open));
+  if (open) { rpSel = rpSel || null; renderReportPanel(); $("rpSite").checked = $("rpSite").dataset.touched ? $("rpSite").checked : (P.locations.length > 1 || !!P.plan || mapMode()); $("reportPanel").scrollIntoView({ block: "nearest" }); }
+}
+async function saveReport(sel) {
+  const btn = $("rpGo"), idle = btn.textContent;
   reportNote();
-  const need = scope === "site" ? ALL.filter(a => a.res.errors.length).map(a => a.loc.name || "Unnamed") : (R.errors.length ? [S.name || "Unnamed"] : []);
-  if (need.length) { reportNote("err", `Fix the inputs for ${need.join(", ")}, then save the report again.`); return; }
+  const need = ALL.filter(a => sel.ids.includes(a.loc.id) && a.res.errors.length).map(a => a.loc.name || "Unnamed");
+  if (need.length) { reportNote("err", `Fix the inputs for ${need.join(", ")}, or leave them out, then create the report again.`); return; }
   btn.disabled = true; btn.textContent = "Creating report…";
   try {
-    const { bytes, noMap } = await buildReport(scope);
-    const where = await saveFile(new Blob([bytes], { type: "application/pdf" }), reportFilename(scope));
-    reportNote("warn", `Report saved${where ? " " + where : ""}. Open the PDF and print it at 100% (actual size) on A4.${noMap ? " The map imagery couldn’t be loaded for the report, so it has no plan." : ""}`);
+    const { bytes, noMap } = await buildReport(sel);
+    const where = await saveFile(new Blob([bytes], { type: "application/pdf" }), reportFilename(sel));
+    setReportPanel(false);
+    reportNote("warn", `Report saved${where ? " " + where : ""}. Open the PDF and print it at 100% (actual size) on A4.${noMap ? " The map couldn’t be drawn for the report, so it has no plan." : ""}`);
   } catch (e) {
     const code = e && e.code;
     if (code === "declined") reportNote();
     else if (code === "no_save") reportNote("err", "This view can’t save files. Open the artifact in claude.ai, or use the HTML file on your computer.");
-    else if (code === "too_long") reportNote("err", `${e.name} has too many layers or key times to fit on one A4 page. Combine some layers and try again.`);
     else if (code === "rate_limited") reportNote("err", "A save prompt is already open. Answer it, then try again.");
     else if (!window.pdfMake) reportNote("err", "The PDF tool could not load. Check your internet connection and try again.");
     else reportNote("err", "The report could not be created or saved. Try again, and copy the results as CSV if it keeps failing.");
@@ -2995,10 +3649,12 @@ async function saveProject() {
 }
 /* Redraws everything for the project now in P. */
 function showProject() {
-  placing = null; destroyMap();
+  placing = null; destroyMap(); rpSel = null; if (!$("reportPanel").hidden) setReportPanel(false);
   if (P.planSample && !P.plan) P.plan = makeSamplePlan();
+  if (!Array.isArray(P.gis)) P.gis = [];
   syncGeneral(); renderLayers(); renderEmb(); applyView(); recalc(); renderProjects();
   if (!P.plan && P.hasPlan && !P.planSample) restorePlan();
+  if (P.hasGis && !P.gis.length) restoreGis();
 }
 function openProject(id) {
   if (!STORE.projects[id] || id === STORE.current) return;
@@ -3010,16 +3666,17 @@ function openProject(id) {
 /* Adds p as a new project and opens it. p may carry a plan image, which goes to IndexedDB. */
 function addProject(p) {
   save();
-  const id = nextProjectId(), plan = p.plan;
+  const id = nextProjectId(), plan = p.plan, gis = p.gis;
   STORE.projects[id] = stripPlan(p); STORE.current = id; persist();
   P = normalizeProject(STORE.projects[id]);
   if (plan) { P.plan = plan; P.hasPlan = true; storePlan(); }
+  if (gis && gis.length) { P.gis = gis; P.hasGis = true; storeGis(); }
   showProject();
 }
 function deleteProject(id) {
   if (!STORE.projects[id]) return;
   delete STORE.projects[id];
-  planStore("readwrite", s => s.delete(planKey(id))).catch(() => { /* nothing stored */ });
+  planStore("readwrite", s => { s.delete(`gis-${id}`); return s.delete(planKey(id)); }).catch(() => { /* nothing stored */ });
   if (id !== STORE.current) { persist(); renderProjects(); return; }
   const ids = projectIds();
   if (!ids.length) STORE.projects[nextProjectId()] = stripPlan(BLANK());
@@ -3067,8 +3724,13 @@ function confirmStep(btn, ask, needed, fn) {
   if (btn.dataset.armed) { btn.textContent = btn.dataset.armed; delete btn.dataset.armed; }
   fn();
 }
-$("btnReport").addEventListener("click", () => saveReport("location"));
-$("btnReportSite").addEventListener("click", () => saveReport("site"));
+$("btnReportOpen").addEventListener("click", () => setReportPanel($("reportPanel").hidden));
+$("rpCancel").addEventListener("click", () => setReportPanel(false));
+$("rpAll").addEventListener("click", () => { rpSel = new Set(P.locations.map(l => l.id)); renderReportPanel(); });
+$("rpNone").addEventListener("click", () => { rpSel = new Set(); renderReportPanel(); });
+$("rpSite").addEventListener("change", e => { e.target.dataset.touched = "1"; });
+$("rpLocs").addEventListener("change", e => { const id = +e.target.dataset.rp; if (!id) return; if (e.target.checked) rpSel.add(id); else rpSel.delete(id); $("rpGo").disabled = !rpSel.size; });
+$("rpGo").addEventListener("click", () => saveReport({ site: $("rpSite").checked, ids: P.locations.map(l => l.id).filter(id => rpSel.has(id)) }));
 $("btnSaveProject").addEventListener("click", saveProject);
 $("btnOpenProject").addEventListener("click", () => $("projectFile").click());
 $("projectFile").addEventListener("change", e => { const f = e.target.files[0]; e.target.value = ""; if (f) openProjectFile(f); });
@@ -3096,7 +3758,7 @@ $("siteTable").addEventListener("click", e => {
   if (b.dataset.open) setActive(+b.dataset.open);
   if (b.dataset.place) { setActive(+b.dataset.place); setPlacing({ id: +b.dataset.place }); $("planArea").scrollIntoView({ block: "nearest" }); }
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape" && placing) setPlacing(null); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && placing) setPlacing(null); if (e.key === "Escape" && !$("reportPanel").hidden) setReportPanel(false); });
 
 /* Marker interaction: click to open, drag or use the arrow keys to move, click the plan to place. */
 const planFrac = ev => { const r = $("planWrap").querySelector("img").getBoundingClientRect(); return [Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height))]; };
@@ -3140,15 +3802,17 @@ $("planArea").addEventListener("keydown", ev => {
 });
 ["q", "gwt", "td", "th", "tc", "pcsReq", "embT1", "sub", "project", "jobRef", "author"].forEach(k => $(k).addEventListener("input", e => { S[k] = e.target.value; touched(); }));
 /* Ground treatment inputs only change anything in "set my own" mode. */
-["drS", "drDw", "drSmear", "drKhKs", "drChCv", "qs", "tr", "caRatio"].forEach(k => $(k).addEventListener("input", e => { if (S.gt.mode !== "manual") return; S.gt[k] = e.target.value; touched(); }));
+["drS", "drDw", "drSmear", "drKhKs", "drChCv", "qs", "tr", "caRatio", "tw"].forEach(k => $(k).addEventListener("input", e => { if (S.gt.mode !== "manual") return; S.gt[k] = e.target.value; touched(); }));
 $("drPattern").addEventListener("change", e => { if (S.gt.mode !== "manual") return; S.gt.drPattern = e.target.value; touched(); });
+$("preOn").addEventListener("change", e => { S.gt.preOn = e.target.checked; touched(); syncGt(); });
+$("twMax").addEventListener("input", e => { S.twMax = e.target.value; touched(); });
 $("drOn").addEventListener("change", e => { S.gt.drOn = e.target.checked; touched(); syncGt(); });
 $("surOn").addEventListener("change", e => { S.gt.surOn = e.target.checked; if (S.gt.surOn && S.gt.tr === "") S.gt.tr = String(P.th || ""); touched(); syncGt(); });
 $("gtAuto").addEventListener("click", () => { S.gt.mode = "auto"; touched(); syncGt(); });
 $("gtManual").addEventListener("click", () => {
   if (S.gt.mode === "manual") return;
   const item = ALL.find(a => a.loc.id === P.active), sug = item && item.sug;
-  const f = sug && sug.state === "need" && sug.pick.kind !== "nothing" ? sug.fields : { drOn: false, surOn: false };
+  const f = sug && sug.state === "need" && sug.pick.kind !== "nothing" ? sug.fields : { drOn: false, surOn: false, preOn: false };
   GT_KEYS.forEach(k => { if (f[k] !== undefined) S.gt[k] = f[k]; });
   if (S.gt.tr === "") S.gt.tr = String(P.th || "");
   S.gt.mode = "manual"; touched(); syncGt();
@@ -3178,8 +3842,12 @@ unitTable.addEventListener("change", e => {
   const t = e.target; if (t.tagName !== "SELECT") return;
   const u = unitById(+t.dataset.id); u[t.dataset.key] = t.value;
   // Keep ν sensible for the new type: 0.5 would hide a free-draining unit's settlement.
-  if (t.value === "drain" && !(+u.nu < 0.5)) { u.nu = "0.3"; if (!u.E) u.E = "30"; }
-  if (t.value === "clay" && +u.nu < 0.5) u.nu = "0.5";
+  if (t.dataset.key === "type") {
+    if (t.value === "drain" && !(+u.nu < 0.5)) { u.nu = "0.3"; if (!u.E) u.E = "30"; }
+    if (t.value === "clay" && +u.nu < 0.5) u.nu = "0.5";
+    if (t.value === "drain" && u.pat === "clay") u.pat = "sand";
+    if (t.value === "clay" && u.pat === "sand") u.pat = "clay";
+  }
   renderUnits(); touched();
 });
 unitTable.addEventListener("click", e => {
@@ -3191,7 +3859,7 @@ unitTable.addEventListener("click", e => {
 });
 $("btnAddUnit").addEventListener("click", () => {
   const id = P.units.reduce((a, x) => Math.max(a, x.id), 0) + 1;
-  P.units.push({ id, name: `New clay ${id}`, type: "clay", gamma: "17", E: "5", nu: "0.5", e0: "1", Cc: "0.3", Cr: "0.03", ocr: "1", pop: "0", Ca: "0.012", cv: "2" });
+  P.units.push({ id, name: `New clay ${id}`, type: "clay", gamma: "17", E: "5", nu: "0.5", e0: "1", Cc: "0.3", Cr: "0.03", ocr: "1", pop: "0", Ca: "0.012", cv: "2", ...GFX_DEFAULT.clay });
   renderUnits(); touched();
   $(`u${id}-name`).focus(); $(`u${id}-name`).select();
 });
@@ -3205,8 +3873,8 @@ $("mTabs").addEventListener("keydown", e => {
 
 /* Fill materials (Project & materials tab) */
 const fillTable = $("fillTable");
-fillTable.addEventListener("input", e => { const t = e.target; if (!t.dataset.key) return; fillById(+t.dataset.id)[t.dataset.key] = t.value; touched(); });
-fillTable.addEventListener("change", e => { if (e.target.dataset.key === "name") renderFills(); });
+fillTable.addEventListener("input", e => { const t = e.target; if (!t.dataset.key || t.tagName === "SELECT") return; fillById(+t.dataset.id)[t.dataset.key] = t.value; touched(); });
+fillTable.addEventListener("change", e => { const t = e.target; if (t.tagName === "SELECT") { fillById(+t.dataset.id)[t.dataset.key] = t.value; touched(); } renderFills(); });
 fillTable.addEventListener("click", e => {
   const b = e.target.closest("button[data-act]"); if (!b) return;
   const f = fillById(+b.dataset.id), nextId = P.fills.reduce((a, x) => Math.max(a, x.id), 0) + 1;
@@ -3216,7 +3884,7 @@ fillTable.addEventListener("click", e => {
 });
 $("btnAddFill").addEventListener("click", () => {
   const id = P.fills.reduce((a, x) => Math.max(a, x.id), 0) + 1;
-  P.fills.push({ id, name: `Fill ${id}`, gamma: "20", alpha: "0.5" });
+  P.fills.push({ id, name: `Fill ${id}`, gamma: "20", alpha: "0.5", ...GFX_DEFAULT.fill });
   renderFills(); touched();
   $(`f${id}-name`).focus(); $(`f${id}-name`).select();
 });
@@ -3247,6 +3915,35 @@ $("btnAddEmb").addEventListener("click", () => {
   $(`e${id}-h`).focus(); $(`e${id}-h`).select();
 });
 
+/* Coordinates and GIS layers */
+$("zone").innerHTML = ZONES.map(z => `<option value="${z}">GDA2020 / MGA zone ${z} (${6 * z - 186}°E to ${6 * z - 180}°E)</option>`).join("");
+$("zone").addEventListener("change", e => { P.zone = e.target.value; save(); syncCoords(); });
+["locE", "locN"].forEach(k => $(k).addEventListener("input", () => {
+  const E = $("locE").value, N = $("locN").value, loc = activeLoc();
+  if (E === "" && N === "") { loc.lat = null; loc.lng = null; }
+  else {
+    if (!(+E > 100000 && +E < 900000 && +N > 1000000 && +N < 10000000)) return; // wait for a complete, plausible pair
+    const ll = MGA.toLL(+E, +N, zoneNow()); loc.lat = +ll.lat.toFixed(8); loc.lng = +ll.lng.toFixed(8);
+  }
+  P.isExample = false; save(); renderPlan();
+}));
+$("btnAddGis").addEventListener("click", () => $("gisFile").click());
+$("gisFile").addEventListener("change", e => { const f = e.target.files[0]; e.target.value = ""; if (f) addGisFile(f); });
+const gisEdit = e => {
+  const t = e.target, l = (P.gis || []).find(x => x.id === +t.dataset.gid); if (!l || !t.dataset.key) return;
+  l[t.dataset.key] = t.type === "checkbox" ? t.checked : t.value;
+  P.isExample = false; save(); storeGis(); syncGis();
+  if (t.dataset.key === "color") renderGisTable();
+};
+$("gisTable").addEventListener("change", gisEdit);
+$("gisTable").addEventListener("input", e => { if (e.target.dataset.key === "name") gisEdit(e); });
+$("gisTable").addEventListener("click", e => {
+  const b = e.target.closest("button[data-gact]"); if (!b) return;
+  const l = (P.gis || []).find(x => x.id === +b.dataset.gid); if (!l) return;
+  if (b.dataset.gact === "zoom") { const g = gisBounds([l]); if (MAP && g) MAP.fitBounds([[g[0], g[1]], [g[2], g[3]]], { maxZoom: 18 }); }
+  if (b.dataset.gact === "del") confirmStep(b, "Remove?", () => true, () => { P.gis = P.gis.filter(x => x !== l); save(); storeGis(); renderGisTable(); syncGis(); });
+});
+
 /* Project menu */
 $("btnProj").addEventListener("click", () => setProjMenu($("projList").hidden));
 $("projItems").addEventListener("click", e => {
@@ -3259,7 +3956,7 @@ document.addEventListener("click", e => { if (!$("projList").hidden && !e.target
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("projList").hidden) { setProjMenu(false); $("btnProj").focus(); } });
 $("btnClear").addEventListener("click", e => confirmStep(e.currentTarget, "Clear every input?", () => true, () => {
   P = normalizeProject(BLANK(P.project, { jobRef: P.jobRef, author: P.author }));
-  save(); storePlan(); showProject();
+  save(); storePlan(); storeGis(); showProject();
   reportNote("warn", "Every input in this project is cleared. Start with the soil units and fill materials, then build each location.", "Project");
 }));
 
@@ -3267,7 +3964,7 @@ $("btnClear").addEventListener("click", e => confirmStep(e.currentTarget, "Clear
 $("srcMap").addEventListener("click", () => { P.planMode = "map"; placing = null; save(); renderPlan(); });
 $("srcImage").addEventListener("click", () => { P.planMode = "image"; placing = null; save(); renderPlan(); });
 $("mapSearch").addEventListener("submit", e => { e.preventDefault(); findPlace($("mapQuery").value); });
-[$("baseSat"), $("baseStreet")].forEach(b => b.addEventListener("click", () => {
+[$("baseSat"), $("baseStreet"), $("baseNone")].forEach(b => b.addEventListener("click", () => {
   const c = MAP ? MAP.getCenter() : { lat: 20, lng: 0 };
   P.map = { ...(P.map || { lat: c.lat, lng: c.lng, z: MAP ? MAP.getZoom() : 2 }), base: b.dataset.base }; save(); if (MAP) setTiles();
 }));
