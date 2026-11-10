@@ -179,6 +179,18 @@ input[aria-invalid="true"]{border-color:var(--bad);background:var(--bad-soft)}
 .smmap{height:min(620px,72vh)}
 .smmap.placing,.smmap.placing .leaflet-grab,.smmap.placing .leaflet-interactive{cursor:crosshair}
 .heatcv{pointer-events:none}
+#smMode{margin-left:auto}
+.sm3d{overflow:hidden;cursor:grab}
+.sm3d canvas{display:block}
+.sm3dPanel .v3views{margin:4px 0 0}
+.sm3dPanel .v3row{display:block;margin-top:10px;font-size:12.5px;color:var(--muted)}
+.sm3dPanel .v3row b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.sm3dPanel .v3row input{padding:0;margin-top:2px}
+.sm3dPanel .v3chk{grid-column:auto;padding-top:3px}
+.sm3dPanel .v3chk i{display:inline-block;width:12px;height:12px;border-radius:2px;border:1px solid var(--line);flex:none;margin-top:3px}
+.sm3dPanel .v3grp{margin-top:6px}
+.sm3dPanel .v3rh{display:block;font-size:11.5px;color:var(--muted);margin-top:4px}
+.sm3dPanel .toolbar{margin-top:8px}
 .smlegend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .smlegend .lt{color:var(--ink);font-weight:500}
 .smlegend .bar{display:inline-flex;gap:0}
@@ -621,15 +633,21 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
         <button type="button" data-t="1">With treatment</button>
       </div>
       <button type="button" id="smCsv">Copy grid as CSV</button>
+      <div class="seg" role="group" aria-label="Map or 3D view" id="smMode">
+        <button type="button" data-mode="2d">2D map</button>
+        <button type="button" data-mode="3d">3D view</button>
+      </div>
     </div>
     <div class="smMapGrid">
       <div class="planCol">
         <div class="mapbox smmap" id="smMap" role="application" aria-label="Site model map. Select a cell to see its column."></div>
+        <div class="mapbox smmap sm3d" id="sm3d" role="img" aria-label="3D view of the ground model, embankment and grid results" hidden></div>
         <div class="mapcoords" id="smCoords"></div>
         <div class="smlegend" id="smLegend"></div>
-        <div class="smkey"><span><i style="border-color:#eb6834"></i>Embankment surface</span><span><i style="border-color:#8a8478;border-style:dotted"></i>Ground volume</span><span><i style="border-color:#2a78d6;border-style:dashed"></i>Groundwater surface</span><span><i style="border-color:#6250d6;border-style:dashed"></i>Treatment zone</span><span><i style="border-color:#d55181"></i>PCS zone</span></div>
+        <div class="smkey" id="smKey"><span><i style="border-color:#eb6834"></i>Embankment surface</span><span><i style="border-color:#8a8478;border-style:dotted"></i>Ground volume</span><span><i style="border-color:#2a78d6;border-style:dashed"></i>Groundwater surface</span><span><i style="border-color:#6250d6;border-style:dashed"></i>Treatment zone</span><span><i style="border-color:#d55181"></i>PCS zone</span></div>
       </div>
       <div class="smProbe" id="smProbe" aria-live="polite"></div>
+      <div class="smProbe sm3dPanel" id="sm3dPanel" hidden></div>
     </div>
 
     <div class="divider"></div>
@@ -1714,6 +1732,7 @@ function normalizeSite(o) {
   if (d.line && d.line.length < 2) d.line = null;
   d.lineSrc = str(o.lineSrc).slice(0, 120);
   d.hasGrid = !!o.hasGrid;
+  d.mode = o.mode === "3d" ? "3d" : "2d";
   return d;
 }
 /* Everything read from storage or a project file goes through here, so a bad file cannot break the page. */
@@ -2026,7 +2045,7 @@ function setMethodsTab(t) {
 
 /* Version keeping: add a row at the top of VERSIONS with each change. Reports and project files record APP_VERSION. */
 const VERSIONS = [
-  ["3.2", "2026-11-10", "Site model tab: load Leapfrog output volumes and embankment, ground and groundwater surfaces as OBJ or DXF, match each volume to a soil unit, and sample a grid of any spacing across the embankment. Heat maps of fill height, settlement, PCS, PCS against the requirement and differential settlement, with a point probe that turns any grid point into a location. Ground treatment zones and PCS requirement zones, drawn on the map or imported from GIS polygons, with only the points inside a changed treatment zone recalculated. Long section and scrollable cross sections along a centreline, showing the ground, fill, settlement and differential settlement between neighbouring points. Site model pages in the PDF report. Projects with a site model save as one zip."],
+  ["3.2", "2026-11-10", "Site model tab: load Leapfrog output volumes and embankment, ground and groundwater surfaces as OBJ or DXF, match each volume to a soil unit, and sample a grid of any spacing across the embankment. Heat maps of fill height, settlement, PCS, PCS against the requirement and differential settlement, with a point probe that turns any grid point into a location. Ground treatment zones and PCS requirement zones, drawn on the map or imported from GIS polygons, with only the points inside a changed treatment zone recalculated. Long section and scrollable cross sections along a centreline, showing the ground, fill, settlement and differential settlement between neighbouring points. Site model pages in the PDF report. Projects with a site model save as one zip. A 3D view of the volumes, surfaces and grid results, with vertical exaggeration, layer switches and a free cutting plane that shows solid section faces."],
   ["3.1", "2026-11-08", "Pattern and colour for each soil unit and fill material, shown in the soil column and reports. Preload (a wait before handover) as a ground treatment, included in the suggestions with a programme limit. GIS layers on the site map from GeoJSON, KML/KMZ, zipped shapefiles and CSV, with GDA2020 MGA zones and easting/northing entry for locations. The map now works inside claude.ai without imagery. PDF report: choose the locations, ground treatment graphics and summary table, one shared methods, assumptions and limitations page, and tables sized to fit the page."],
   ["3.0", "2026-11-07", "Several projects kept in the browser, with a project menu and Clear all. Embankment zones with their own fill materials: their weight now loads the ground, added to any extra surface load. Post-construction settlement requirement and a Ground treatment section that suggests and checks vertical drains and surcharge. Live satellite or street map for the site plan in the standalone file. Methods sub-tabs with a new Learning tab."],
   ["2.0", "2026-11-07", "Four parent tabs: Methods & information, Limitations, Project & materials, and Calculations with a sub-tab per location. Added input guidance, a full reference list, limitations with advice, and this version history."],
@@ -3953,6 +3972,7 @@ function showProject() {
   if (!Array.isArray(P.gis)) P.gis = [];
   if (!P.site) P.site = newSite();
   SG = null; probe = null; XS = { ch: 0, long: null, cross: null, busy: false, seq: 0 }; smDraw = null; smNote();
+  V3.key = ""; V3.drapeKey = ""; V3.show = {}; V3.cut.on = false;
   if (SMAP) { SMAP.remove(); SMAP = null; smHeat = null; smProbeMk = null; xsMk = null; }
   if (P.site.hasGrid) restoreGrid();
   syncGeneral(); renderLayers(); renderEmb(); applyView(); recalc(); renderProjects();
@@ -4429,6 +4449,28 @@ function siteWorkerBody(self, Engine) {
         m.bbox = bb; meshes.set(it.id, m);
       }
       return { missing };
+    },
+    /* A copy for the 3D view, thinned by merging nearby vertices when it has more than maxTri triangles. */
+    display(d) {
+      const m = meshes.get(d.mid); if (!m) return null;
+      const nt = m.t.length / 3;
+      if (!d.maxTri || nt <= d.maxTri) return { v: m.v, t: m.t };
+      const { v, t } = m, bb = m.bbox, nv = v.length / 3;
+      let h = Math.sqrt(Math.max(1, (bb[3] - bb[0]) * (bb[4] - bb[1])) / d.maxTri), best = null;
+      for (let pass = 0; pass < 10; pass++) {
+        const hz = Math.max(0.02, h / 40), keys = new Map(), remap = new Int32Array(nv), V = grow(Float32Array, 1 << 14), Tt = grow(Uint32Array, 1 << 14);
+        for (let i = 0; i < nv; i++) {
+          const k = `${Math.floor(v[3 * i] / h)},${Math.floor(v[3 * i + 1] / h)},${Math.floor(v[3 * i + 2] / hz)}`;
+          let n = keys.get(k);
+          if (n === undefined) { n = V.len / 3; keys.set(k, n); V.push(v[3 * i]); V.push(v[3 * i + 1]); V.push(v[3 * i + 2]); }
+          remap[i] = n;
+        }
+        for (let q = 0; q < t.length; q += 3) { const a = remap[t[q]], b = remap[t[q + 1]], c = remap[t[q + 2]]; if (a !== b && b !== c && a !== c) { Tt.push(a); Tt.push(b); Tt.push(c); } }
+        best = { v: V.out(), t: Tt.out() };
+        if (best.t.length / 3 <= d.maxTri * 1.15) break;
+        h *= 1.4;
+      }
+      return best;
     },
     /* Raw mesh data, for saving a project file. */
     get(d) { const m = meshes.get(d.mid); return m ? { v: m.v, t: m.t, sign: m.sign } : null; },
@@ -4935,6 +4977,7 @@ function renderSiteResults() {
   renderHeatLegend();
   if (SMAP) { drawHeat(); }
   renderProbe();
+  if (P.site.mode === "3d" && V3.r) v3changed();
 }
 function renderHeatLegend() {
   const f = P.site.show, sc = scaleOf(f), [name, unit] = SM_FIELDS[f];
@@ -4949,6 +4992,7 @@ function renderHeatLegend() {
 let SMAP = null, smTiles = null, smOutlines = null, smGis = null, smHeat = null, smProbeMk = null, smDraw = null, smZones = null, smLineL = null;
 const SM_COL = { vol: "#8a8478", ground: "#1baf7a", emb: "#eb6834", gw: "#2a78d6" };
 function ensureSiteMap() {
+  if (P.site.mode === "3d") return;
   if (SMAP && $("smMap") && SMAP.getContainer() === $("smMap")) { SMAP.invalidateSize(); syncSiteMap(); return; }
   if (SMAP) { SMAP.remove(); SMAP = null; }
   const projId = STORE.current;
@@ -5157,7 +5201,7 @@ function renderSite() {
   const probs = siteProblems();
   $("smNeed").innerHTML = probs.length && P.site.meshes.length ? `<div class="msg warn"><b>To sample</b><span>${esc(probs.join(" "))}</span></div>` : "";
   renderSiteResults();
-  ensureSiteMap();
+  setSiteMode(P.site.mode);
 }
 /* Something in the site inputs changed. reframe moves the map to the meshes. */
 function siteChanged(reframe) { P.isExample = false; save(); renderSite(); if (reframe) fitSiteMap(); }
@@ -5699,6 +5743,296 @@ async function openProjectZip(file) {
   return p;
 }
 
+
+/* ---------- 3D viewer for the site model ---------- */
+/* three.js draws the meshes, z up, in metres from the site origin. Vertical exaggeration scales the whole scene
+   in z. A free cutting plane, set by its direction, tilt and position, clips everything except the plane itself. */
+let threeLoad = null;
+function loadThree() {
+  if (window.THREE && window.THREE.WebGLRenderer) return Promise.resolve();
+  if (!threeLoad) threeLoad = new Promise((ok, no) => {
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+    s.onload = ok; s.onerror = () => { threeLoad = null; no(new Error("three")); };
+    document.head.appendChild(s);
+  });
+  return threeLoad;
+}
+const V3 = {
+  r: null, scene: null, cam: null, root: null, objs: new Map(), drape: null, plane: null, planeMesh: null, key: "", drapeKey: "",
+  exag: 5, opacity: 0.85, show: {}, drapeOn: true, center: [0, 0, 0], ext: 100,
+  cut: { on: false, strike: 0, tilt: 90, pos: 0, flip: false, showPlane: true },
+  orbit: { az: -0.6, el: 0.6, dist: 1000, target: null }, busy: false, frame: 0,
+};
+const ROLE_NAME = { vol: "Ground volumes", ground: "Existing ground", emb: "Embankment", gw: "Groundwater" };
+const hexOfCol = m => PRINT[`--c-${m && COLOURS[m.col] ? m.col : "tan"}`];
+function meshColour(m) {
+  if (m.role === "vol") return m.unit === "base" ? PRINT["--c-dark"] : m.unit === null ? "#9aa5ab" : hexOfCol(unitById(m.unit));
+  if (m.role === "emb") return hexOfCol(fillById(m.fill));
+  if (m.role === "gw") return "#2a78d6";
+  return "#7fae6b";
+}
+async function show3d() {
+  const box = $("sm3d");
+  if (!window.WebGLRenderingContext) { box.innerHTML = `<div class="planempty"><p>This browser can’t show 3D graphics.</p></div>`; return; }
+  try { await loadThree(); }
+  catch (e) { box.innerHTML = `<div class="planempty"><p>The 3D viewer could not load. Check your internet connection.</p></div>`; return; }
+  if (P.site.mode !== "3d" || P.view !== "site") return;
+  const T = window.THREE;
+  if (!V3.r) {
+    let r;
+    try { r = new T.WebGLRenderer({ antialias: true, alpha: false }); }
+    catch (e) { box.innerHTML = `<div class="planempty"><p>This browser can’t show 3D graphics.</p></div>`; return; }
+    r.localClippingEnabled = true;
+    r.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    V3.r = r; V3.scene = new T.Scene(); V3.cam = new T.PerspectiveCamera(40, 1, 1, 1e6); V3.cam.up.set(0, 0, 1);
+    V3.root = new T.Group(); V3.scene.add(V3.root);
+    V3.scene.add(new T.HemisphereLight(0xffffff, 0x6b7680, 0.75));
+    const sun = new T.DirectionalLight(0xffffff, 0.55); sun.position.set(0.4, -0.6, 1); V3.scene.add(sun);
+    V3.plane = new T.Plane(new T.Vector3(1, 0, 0), 0);
+    V3.orbit.target = new T.Vector3();
+    wireOrbit(r.domElement);
+    new ResizeObserver(() => sizeThree()).observe(box);
+  }
+  if (V3.r.domElement.parentNode !== box) { box.innerHTML = ""; box.appendChild(V3.r.domElement); }
+  sizeThree();
+  await syncThree();
+  render3d();
+}
+function sizeThree() {
+  const box = $("sm3d"); if (!V3.r || !box.clientWidth) return;
+  V3.r.setSize(box.clientWidth, box.clientHeight); V3.cam.aspect = box.clientWidth / box.clientHeight; V3.cam.updateProjectionMatrix(); render3d();
+}
+/* Brings the scene into line with the meshes and results. Meshes over the display budget are thinned in the worker. */
+async function syncThree() {
+  const T = window.THREE, key = JSON.stringify([STORE.current, P.site.meshes.map(m => m.id)]);
+  if (key !== V3.key && !V3.busy) {
+    V3.busy = true;
+    V3.status = "Loading meshes…"; render3d3Panel();
+    try {
+      await ensureMeshes();
+      for (const [id, o] of V3.objs) {
+        V3.root.remove(o); o.geometry.dispose(); o.material.dispose();
+        const cp = o.userData.cap; if (cp) { V3.root.remove(cp.stencil); V3.scene.remove(cp.cap); cp.stencil.children.forEach(c => c.material.dispose()); cp.cap.material.dispose(); }
+      }
+      V3.objs.clear();
+      const total = P.site.meshes.reduce((a, m) => a + m.ntri, 0), budget = 3e6;
+      let thinned = 0;
+      for (const m of P.site.meshes) {
+        const maxTri = total > budget ? Math.max(2000, Math.floor(m.ntri * budget / total)) : Infinity;
+        const d = await siteCall("display", { mid: m.id, maxTri: Number.isFinite(maxTri) ? maxTri : 0 });
+        if (!d) continue;
+        if (d.t.length / 3 < m.ntri) thinned++;
+        const g = new T.BufferGeometry();
+        g.setAttribute("position", new T.BufferAttribute(d.v, 3)); g.setIndex(new T.BufferAttribute(d.t, 1));
+        g.computeBoundingBox();
+        const mat = new T.MeshPhongMaterial({ color: meshColour(m), flatShading: true, shininess: 0, side: T.DoubleSide, clippingPlanes: [V3.plane], polygonOffset: true, polygonOffsetFactor: m.role === "emb" ? -2 : m.role === "gw" ? -1 : 0 });
+        const o = new T.Mesh(g, mat); o.userData.mid = m.id; o.renderOrder = 10;
+        if (m.role === "vol") o.userData.cap = makeCap(g, meshColour(m), V3.objs.size);
+        V3.root.add(o); V3.objs.set(m.id, o);
+      }
+      V3.key = key;
+      frameModel();
+      V3.status = thinned ? `${thinned} large mesh${thinned > 1 ? "es are" : " is"} thinned for display only. Calculations use the full meshes.` : "";
+    } catch (e) { V3.status = "The meshes couldn’t be loaded for the 3D view."; }
+    V3.busy = false;
+    render3d3Panel();
+  }
+  // Colours, visibility and transparency follow the settings on every sync.
+  for (const m of P.site.meshes) {
+    const o = V3.objs.get(m.id); if (!o) continue;
+    if (V3.show[m.id] === undefined) V3.show[m.id] = m.role === "vol" || m.role === "emb";
+    o.visible = !!V3.show[m.id];
+    o.material.color.set(meshColour(m));
+    const op = m.role === "vol" ? V3.opacity : m.role === "gw" ? Math.min(0.5, V3.opacity) : 1;
+    o.material.opacity = op; o.material.transparent = op < 1; o.material.depthWrite = op >= 1;
+    const cp = o.userData.cap; if (cp) { cp.stencil.visible = o.visible && V3.cut.on; cp.cap.material.color.set(meshColour(m)); }
+  }
+  syncDrape();
+  V3.root.scale.set(1, 1, V3.exag);
+  syncCut();
+}
+/* Solid faces where the cut passes through a closed volume. Back faces add one to the stencil and front faces take
+   one away, so pixels inside the cut volume are left non-zero, and a plane in the unit's colour is drawn only there. */
+function makeCap(geo, colour, i) {
+  const T = window.THREE, base = { depthWrite: false, depthTest: false, colorWrite: false, stencilWrite: true, stencilFunc: T.AlwaysStencilFunc, clippingPlanes: [V3.plane] };
+  const back = new T.Mesh(geo, new T.MeshBasicMaterial({ ...base, side: T.BackSide, stencilFail: T.IncrementWrapStencilOp, stencilZFail: T.IncrementWrapStencilOp, stencilZPass: T.IncrementWrapStencilOp }));
+  const front = new T.Mesh(geo, new T.MeshBasicMaterial({ ...base, side: T.FrontSide, stencilFail: T.DecrementWrapStencilOp, stencilZFail: T.DecrementWrapStencilOp, stencilZPass: T.DecrementWrapStencilOp }));
+  back.renderOrder = front.renderOrder = 2 * i + 1;
+  const stencil = new T.Group(); stencil.add(back, front); V3.root.add(stencil);
+  const cap = new T.Mesh(new T.PlaneGeometry(1, 1), new T.MeshBasicMaterial({ color: colour, side: T.DoubleSide, stencilWrite: true, stencilRef: 0, stencilFunc: T.NotEqualStencilFunc, stencilFail: T.ReplaceStencilOp, stencilZFail: T.ReplaceStencilOp, stencilZPass: T.ReplaceStencilOp }));
+  cap.renderOrder = 2 * i + 2; cap.visible = false; V3.scene.add(cap);
+  return { stencil, cap };
+}
+/* The grid results as coloured cells on top of the fill. */
+function syncDrape() {
+  const T = window.THREE, f = P.site.show, key = SG ? JSON.stringify([SG.ver, f, P.site.treated]) : "";
+  if (key !== V3.drapeKey) {
+    if (V3.drape) { V3.root.remove(V3.drape); V3.drape.geometry.dispose(); V3.drape.material.dispose(); V3.drape = null; }
+    V3.drapeKey = key;
+    if (SG) {
+      const g = SG, n = g.cols.length, hs = g.s / 2, sc = scaleOf(f);
+      const pos = new Float32Array(n * 12), col = new Float32Array(n * 12), idx = new Uint32Array(n * 6), c3 = new T.Color();
+      let q = 0;
+      for (let k = 0; k < n; k++) {
+        const c = g.cols[k]; if (c.zg === null) continue;
+        const [x, y] = ptRel(k), z = c.zg + c.H + 0.05, hex = colourOf(valueAt(k, f), sc);
+        c3.set(hex || ((g.I[k] + g.J[k]) % 2 ? "#a32626" : "#ffffff"));
+        [[-hs, -hs], [hs, -hs], [hs, hs], [-hs, hs]].forEach(([dx, dy], v) => { const o = 3 * (4 * q + v); pos[o] = x + dx; pos[o + 1] = y + dy; pos[o + 2] = z; col[o] = c3.r; col[o + 1] = c3.g; col[o + 2] = c3.b; });
+        const b = 4 * q; idx.set([b, b + 1, b + 2, b, b + 2, b + 3], 6 * q); q++;
+      }
+      const geo = new T.BufferGeometry();
+      geo.setAttribute("position", new T.BufferAttribute(pos.subarray(0, q * 12), 3)); geo.setAttribute("color", new T.BufferAttribute(col.subarray(0, q * 12), 3));
+      geo.setIndex(new T.BufferAttribute(idx.subarray(0, q * 6), 1));
+      V3.drape = new T.Mesh(geo, new T.MeshBasicMaterial({ vertexColors: true, side: T.DoubleSide, clippingPlanes: [V3.plane], polygonOffset: true, polygonOffsetFactor: -4 }));
+      V3.root.add(V3.drape);
+    }
+  }
+  if (V3.drape) V3.drape.visible = V3.drapeOn;
+}
+/* Model extent in world space (after exaggeration), and a camera that frames it. */
+function modelBox() {
+  const T = window.THREE, b = new T.Box3();
+  V3.objs.forEach(o => { if (o.geometry.boundingBox) b.union(o.geometry.boundingBox); });
+  if (b.isEmpty()) b.set(new T.Vector3(-50, -50, -10), new T.Vector3(50, 50, 10));
+  return b;
+}
+function frameModel() {
+  const b = modelBox(), c = new window.THREE.Vector3(); b.getCenter(c);
+  V3.center = [c.x, c.y, c.z];
+  V3.ext = Math.max(b.max.x - b.min.x, b.max.y - b.min.y, (b.max.z - b.min.z) * V3.exag, 10);
+  V3.orbit.target.set(c.x, c.y, c.z * V3.exag);
+  V3.orbit.dist = V3.ext * 1.2;
+  V3.cam.near = V3.ext / 2000; V3.cam.far = V3.ext * 20; V3.cam.updateProjectionMatrix();
+}
+function setView3(kind) {
+  if (!V3.r) return;
+  const o = V3.orbit;
+  if (kind === "plan") { o.az = 0; o.el = 1.5605; }
+  else if (kind === "side") { o.az = 0; o.el = 0.02; }
+  else if (kind === "iso") { o.az = -0.6; o.el = 0.6; }
+  if (kind === "fit" || kind === "iso") { const c = V3.center; o.target.set(c[0], c[1], c[2] * V3.exag); o.dist = V3.ext * 1.2; }
+  render3d();
+}
+/* The cutting plane: strike is the compass direction of its line on a level surface, tilt is 90° for a vertical
+   cut and 0° for a level one, and position moves it along its normal from the middle of the model. */
+function cutNormal() {
+  const s = V3.cut.strike * Math.PI / 180, t = V3.cut.tilt * Math.PI / 180;
+  const dx = Math.cos(s), dy = -Math.sin(s); // horizontal, at right angles to the strike
+  const n = new window.THREE.Vector3(dx * Math.sin(t), dy * Math.sin(t), Math.cos(t));
+  return V3.cut.flip ? n.negate() : n;
+}
+function cutRange() { if (!window.THREE || !V3.r) return 100; const b = modelBox(); return Math.round(Math.max(b.max.x - b.min.x, b.max.y - b.min.y, (b.max.z - b.min.z) * V3.exag) / 2 + 10); }
+function syncCut() {
+  const T = window.THREE, n = cutNormal(), c = new T.Vector3(V3.center[0], V3.center[1], V3.center[2] * V3.exag);
+  const p = c.clone().addScaledVector(n, V3.cut.flip ? -V3.cut.pos : V3.cut.pos);
+  if (V3.cut.on) V3.plane.setFromNormalAndCoplanarPoint(n.clone().negate(), p); // keeps the side the normal points away from
+  else V3.plane.set(new T.Vector3(0, 0, 1), 1e9);
+  if (!V3.planeMesh) {
+    V3.planeMesh = new T.Mesh(new T.PlaneGeometry(1, 1), new T.MeshBasicMaterial({ color: 0xeb6834, transparent: true, opacity: 0.05, side: T.DoubleSide, depthWrite: false }));
+    const edge = new T.LineSegments(new T.EdgesGeometry(new T.PlaneGeometry(1, 1)), new T.LineBasicMaterial({ color: 0xeb6834 }));
+    V3.planeMesh.add(edge); V3.planeMesh.renderOrder = 20; V3.scene.add(V3.planeMesh);
+  }
+  V3.planeMesh.visible = V3.cut.on && V3.cut.showPlane;
+  const size = cutRange() * 2.2, q = new T.Quaternion().setFromUnitVectors(new T.Vector3(0, 0, 1), n);
+  V3.planeMesh.scale.set(size, size, 1); V3.planeMesh.position.copy(p); V3.planeMesh.quaternion.copy(q);
+  // Caps sit a hair behind the plane, on the kept side, so the volume surfaces don't flicker against them.
+  V3.objs.forEach(o => { const cp = o.userData.cap; if (!cp) return; cp.stencil.visible = o.visible && V3.cut.on; cp.cap.visible = o.visible && V3.cut.on; cp.cap.scale.set(size, size, 1); cp.cap.position.copy(p).addScaledVector(n, -V3.ext * 1e-5); cp.cap.quaternion.copy(q); });
+}
+/* Sets the cut to the cross section shown under Long and cross sections. */
+function cutAtSection() {
+  const g = lineGeom(); if (!g) return;
+  const p = g.at(XS.ch);
+  V3.cut.on = true; V3.cut.tilt = 90;
+  V3.cut.strike = ((Math.atan2(-p.tx, p.ty) * 180 / Math.PI) + 360) % 360; // the section runs across the tangent
+  const n = cutNormal(), dx = p.x - V3.center[0], dy = p.y - V3.center[1];
+  V3.cut.pos = Math.round((dx * n.x + dy * n.y) * (V3.cut.flip ? -1 : 1));
+  syncCut(); faceCut(); render3d3Panel(); render3d();
+}
+/* Looks at the cut face from the side that has been cut away. */
+function faceCut() {
+  const n = cutNormal(), o = V3.orbit, h = Math.hypot(n.x, n.y);
+  const c = V3.center, p = [c[0] + n.x * (V3.cut.flip ? -V3.cut.pos : V3.cut.pos), c[1] + n.y * (V3.cut.flip ? -V3.cut.pos : V3.cut.pos)];
+  if (h > 0.2) o.az = Math.atan2(n.x, -n.y);
+  o.el = h > 0.2 ? 0.12 : 1.4;
+  o.target.set(p[0], p[1], c[2] * V3.exag);
+  o.dist = Math.max(200, smNum(P.site.xsHalf) * 6 || 300);
+}
+function render3d() {
+  if (!V3.r || V3.frame) return;
+  V3.frame = requestAnimationFrame(() => {
+    V3.frame = 0;
+    const o = V3.orbit, ce = Math.cos(o.el);
+    V3.cam.position.set(o.target.x + o.dist * ce * Math.sin(o.az), o.target.y - o.dist * ce * Math.cos(o.az), o.target.z + o.dist * Math.sin(o.el));
+    V3.cam.lookAt(o.target);
+    V3.r.setClearColor(getComputedStyle(document.body).getPropertyValue("--band").trim() || "#e4ebee");
+    V3.r.render(V3.scene, V3.cam);
+  });
+}
+/* Drag to turn, right-drag or shift-drag to pan, wheel or pinch to zoom. */
+function wireOrbit(el) {
+  const ptrs = new Map(); let last = null, pinch = 0;
+  el.style.touchAction = "none";
+  el.addEventListener("contextmenu", e => e.preventDefault());
+  el.addEventListener("pointerdown", e => { el.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); last = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  const end = e => { ptrs.delete(e.pointerId); if (!ptrs.size) last = null; };
+  el.addEventListener("pointerup", end); el.addEventListener("pointercancel", end);
+  el.addEventListener("pointermove", e => {
+    if (!last || !ptrs.has(e.pointerId)) return;
+    ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    const o = V3.orbit;
+    if (ptrs.size === 2) {
+      const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      if (pinch) o.dist = Math.max(V3.ext / 500, Math.min(V3.ext * 10, o.dist * pinch / d));
+      pinch = d; render3d(); return;
+    }
+    const dx = e.clientX - last.x, dy = e.clientY - last.y; last.x = e.clientX; last.y = e.clientY;
+    if (last.pan) {
+      // Pans on a level plane: right on screen is (cos az, sin az), into the screen is (−sin az, cos az).
+      const k = o.dist * 0.0016, r = [Math.cos(o.az), Math.sin(o.az)], f = [-Math.sin(o.az), Math.cos(o.az)];
+      o.target.x += (-dx * r[0] + dy * f[0]) * k;
+      o.target.y += (-dx * r[1] + dy * f[1]) * k;
+    } else {
+      o.az -= dx * 0.006; o.el = Math.max(-0.2, Math.min(1.5605, o.el + dy * 0.006));
+    }
+    render3d();
+  });
+  el.addEventListener("wheel", e => { e.preventDefault(); const o = V3.orbit; o.dist = Math.max(V3.ext / 500, Math.min(V3.ext * 10, o.dist * Math.exp(e.deltaY * 0.0012))); render3d(); }, { passive: false });
+}
+function render3d3Panel() {
+  const box = $("sm3dPanel"); if (!box) return;
+  const byRole = SITE_ROLES.map(r => [r, P.site.meshes.filter(m => m.role === r)]).filter(([, l]) => l.length);
+  const c = V3.cut, rng = cutRange();
+  box.innerHTML = `<h3>3D view</h3>
+    <div class="toolbar v3views"><button type="button" data-v3="fit">Fit</button><button type="button" data-v3="iso">3D</button><button type="button" data-v3="plan">Plan</button><button type="button" data-v3="side">From south</button></div>
+    <p class="hint">Drag to turn. Right-drag or Shift-drag to pan. Scroll or pinch to zoom.</p>
+    <label class="v3row"><span>Vertical exaggeration <b>${V3.exag}×</b></span><input type="range" id="v3Exag" min="1" max="20" step="1" value="${V3.exag}" aria-label="Vertical exaggeration"></label>
+    <label class="v3row"><span>Ground volume opacity <b>${Math.round(V3.opacity * 100)}%</b></span><input type="range" id="v3Op" min="0.1" max="1" step="0.05" value="${V3.opacity}" aria-label="Opacity of the ground volumes"></label>
+    <h3 class="sub3">Layers</h3>
+    ${SG ? `<label class="check v3chk"><input type="checkbox" id="v3Drape"${V3.drapeOn ? " checked" : ""}><span>Grid results on the fill: ${esc(SM_FIELDS[P.site.show][0])}${P.site.tz.length ? (P.site.treated ? ", with treatment" : ", no treatment") : ""}</span></label>` : ""}
+    ${byRole.map(([r, l]) => `<div class="v3grp"><span class="v3rh">${ROLE_NAME[r]}</span>${l.map(m => `<label class="check v3chk"><input type="checkbox" data-v3m="${m.id}"${V3.show[m.id] === undefined ? (m.role === "vol" || m.role === "emb" ? " checked" : "") : V3.show[m.id] ? " checked" : ""}><i style="background:${meshColour(m)}"></i><span>${esc(m.name)}</span></label>`).join("")}</div>`).join("")}
+    <h3 class="sub3">Cut</h3>
+    <label class="check v3chk"><input type="checkbox" id="v3Cut"${c.on ? " checked" : ""}><span><b>Cut the model</b></span></label>
+    <div${c.on ? "" : " hidden"}>
+      <label class="v3row"><span>Direction <b>${Math.round(c.strike)}°</b> from north</span><input type="range" id="v3Strike" min="0" max="179" step="1" value="${Math.round(c.strike) % 180}"></label>
+      <label class="v3row"><span>Tilt <b>${c.tilt}°</b>${c.tilt === 90 ? " (vertical)" : c.tilt === 0 ? " (level)" : ""}</span><input type="range" id="v3Tilt" min="0" max="90" step="1" value="${c.tilt}"></label>
+      <label class="v3row"><span>Position <b>${c.pos > 0 ? "+" : ""}${c.pos} m</b></span><input type="range" id="v3Pos" min="${-rng}" max="${rng}" step="1" value="${c.pos}"></label>
+      <div class="toolbar"><button type="button" id="v3Flip">Show other side</button>${lineGeom() ? `<button type="button" id="v3AtXs">Cut at the cross section</button>` : ""}</div>
+      <label class="check v3chk"><input type="checkbox" id="v3ShowPlane"${c.showPlane ? " checked" : ""}><span>Show the cutting plane</span></label>
+      <p class="hint">Tilt and position are measured in the exaggerated view.</p>
+    </div>
+    <p class="hint" id="v3Status">${esc(V3.status || "")}</p>`;
+}
+const v3changed = () => { if (!V3.r) return; syncThree().then(render3d); };
+function setSiteMode(mode) {
+  P.site.mode = mode; save();
+  const three = mode === "3d";
+  $("smMap").hidden = three; $("smCoords").hidden = three; $("smKey").hidden = three; $("smProbe").hidden = three;
+  $("sm3d").hidden = !three; $("sm3dPanel").hidden = !three;
+  document.querySelectorAll("#smMode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  if (three) { render3d3Panel(); show3d(); } else ensureSiteMap();
+}
+
 /* ---------- Events ---------- */
 /* Two-step confirmation inside the page, for actions that discard work. */
 function confirmStep(btn, ask, needed, fn) {
@@ -6044,6 +6378,29 @@ $("smCsv").addEventListener("click", e => {
   const txt = gridCsv(), btn = e.currentTarget;
   const done = ok => { btn.textContent = ok ? "Copied" : "Select and copy below"; setTimeout(() => { btn.textContent = "Copy grid as CSV"; }, 2500); if (!ok) { $("csvFallback").hidden = false; $("csvFallback").value = txt; $("csvFallback").select(); } };
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => done(true), () => done(false)); else done(false);
+});
+/* 3D view */
+$("smMode").addEventListener("click", e => { const b = e.target.closest("button[data-mode]"); if (b) setSiteMode(b.dataset.mode); });
+$("sm3dPanel").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.v3) setView3(b.dataset.v3);
+  else if (b.id === "v3Flip") { V3.cut.flip = !V3.cut.flip; syncCut(); render3d(); }
+  else if (b.id === "v3AtXs") cutAtSection();
+});
+$("sm3dPanel").addEventListener("input", e => {
+  const t = e.target, v = +t.value, lab = t.closest("label") && t.closest("label").querySelector("b");
+  if (t.id === "v3Exag") { V3.exag = v; if (lab) lab.textContent = `${v}×`; V3.root.scale.set(1, 1, v); V3.orbit.target.z = V3.center[2] * v; syncCut(); render3d(); }
+  else if (t.id === "v3Op") { V3.opacity = v; if (lab) lab.textContent = `${Math.round(v * 100)}%`; v3changed(); }
+  else if (t.id === "v3Strike") { V3.cut.strike = v; if (lab) lab.textContent = `${v}°`; syncCut(); render3d(); }
+  else if (t.id === "v3Tilt") { V3.cut.tilt = v; if (lab) lab.textContent = `${v}°${v === 90 ? " (vertical)" : v === 0 ? " (level)" : ""}`; syncCut(); render3d(); }
+  else if (t.id === "v3Pos") { V3.cut.pos = v; if (lab) lab.textContent = `${v > 0 ? "+" : ""}${v} m`; syncCut(); render3d(); }
+});
+$("sm3dPanel").addEventListener("change", e => {
+  const t = e.target;
+  if (t.dataset.v3m) { V3.show[+t.dataset.v3m] = t.checked; v3changed(); }
+  else if (t.id === "v3Drape") { V3.drapeOn = t.checked; v3changed(); }
+  else if (t.id === "v3Cut") { V3.cut.on = t.checked; syncCut(); render3d3Panel(); render3d(); }
+  else if (t.id === "v3ShowPlane") { V3.cut.showPlane = t.checked; syncCut(); render3d(); }
 });
 /* Zones */
 $("tzDraw").addEventListener("click", () => startDraw("tz"));
