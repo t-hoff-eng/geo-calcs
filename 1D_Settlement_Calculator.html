@@ -156,6 +156,68 @@ input[aria-invalid="true"]{border-color:var(--bad);background:var(--bad-soft)}
 .msg.warn{background:var(--warn-soft);color:var(--ink)} .msg.warn b{color:var(--warn)}
 .msg.err{background:var(--bad-soft);color:var(--ink)} .msg.err b{color:var(--bad)}
 
+/* Site model */
+.smInputs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 28px;align-items:start}
+@media (max-width:1100px){.smInputs{grid-template-columns:minmax(0,1fr)}}
+.smsub{margin-top:16px}
+.smtable .mname{display:block;font-weight:500}
+.smtable .mfile{display:block;font-size:11.5px;color:var(--muted)}
+.smtable .mmeta{color:var(--muted);font-size:12px;white-space:normal}
+.smtable .bad{color:var(--bad)}
+.smtable tr.warnrow td{background:var(--warn-soft)}
+.smtable td{vertical-align:middle}
+.smtb{margin-top:8px}
+.smrun{margin-top:14px;align-items:center}
+.smprog{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.smneed{margin-top:10px}
+.smstats{margin:2px 0 14px;flex:1 1 auto}
+.smstats .sub{display:block;font:400 11.5px var(--body);color:var(--muted);margin:1px 0 0}
+#smStale{margin-bottom:10px}
+.smtools{margin:0 0 10px}
+.smMapGrid{display:grid;grid-template-columns:minmax(0,3fr) minmax(260px,1.15fr);gap:16px;align-items:start}
+@media (max-width:980px){.smMapGrid{grid-template-columns:minmax(0,1fr)}}
+.smmap{height:min(620px,72vh)}
+.smmap.placing,.smmap.placing .leaflet-grab,.smmap.placing .leaflet-interactive{cursor:crosshair}
+.heatcv{pointer-events:none}
+.smlegend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.smlegend .lt{color:var(--ink);font-weight:500}
+.smlegend .bar{display:inline-flex;gap:0}
+.smlegend .bar i{display:inline-block;width:14px;height:10px}
+.smlegend .bar i:first-child{border-radius:2px 0 0 2px}.smlegend .bar i:last-child{border-radius:0 2px 2px 0}
+.smlegend .ticks{display:inline-flex;gap:10px}
+.smlegend .hatchkey i{display:inline-block;width:14px;height:10px;vertical-align:-1px;margin-right:5px;border:1px solid #a32626;background:repeating-conic-gradient(#a32626 0 25%,#fff 0 50%) 0 0/4px 4px}
+.smkey{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin-top:4px}
+.smkey i{display:inline-block;width:18px;height:0;border-top:2.5px solid;vertical-align:middle;margin-right:5px}
+.smProbe{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--bg);min-width:0;font-size:13px}
+.smProbe h3{margin-bottom:4px}
+.smProbe .sub3{margin-top:12px}
+.smProbe .pcoord{margin:0 0 8px;font:12px/1.5 var(--mono);color:var(--muted)}
+.smProbe .msg{margin:6px 0}
+.smProbe .toolbar{margin-top:12px}
+.smProbe .data td{white-space:normal}
+.hint{color:var(--muted);font-size:12.5px;margin:6px 0 0}
+.chip.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.smZones{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px 28px;align-items:start}
+@media (max-width:1100px){.smZones{grid-template-columns:minmax(0,1fr)}}
+.zimport{align-items:center;margin-bottom:10px}
+.zimport select{width:auto;max-width:220px}
+.inl{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.inl select,.inl input{width:auto;max-width:160px}
+.zcard{border:1px solid var(--line);border-left:4px solid var(--zc);border-radius:4px;padding:10px 12px;margin-bottom:10px;background:var(--surface)}
+.zhead{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-bottom:6px}
+.zhead .zname{flex:1 1 180px;font-weight:500}
+.zhead .zsum{font-size:12px;color:var(--muted);flex:2 1 200px}
+.zfields{margin-top:6px}
+.zfields .check{grid-column:span 1;padding-top:22px}
+#pzTable .zname{min-width:150px;width:auto}
+.zlab{font-weight:600}
+.xshead{margin:18px 0 6px;align-items:center}
+.xsnav{align-items:center}
+.xsnav input[type=range]{width:min(360px,50vw);padding:0}
+.xsnav .inl input{width:90px}
+#xsLong,#xsCross{cursor:default}
+#xsLong{cursor:pointer}
+
 /* Charts */
 .charts{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px}
 @media (max-width:980px){.charts{grid-template-columns:minmax(0,1fr)}}
@@ -380,7 +442,7 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
     <button id="btnOpenProject" type="button">Open project</button>
     <button id="btnExample" type="button">Load example</button>
     <button id="btnClear" type="button">Clear all</button>
-    <input id="projectFile" type="file" accept=".json,application/json" hidden>
+    <input id="projectFile" type="file" accept=".json,.zip,application/json,application/zip" hidden>
   </div>
 
   <section class="panel reportpanel" id="reportPanel" aria-labelledby="h-report" hidden>
@@ -391,6 +453,7 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
       </div>
     </div>
     <label class="check surcheck"><input id="rpSite" type="checkbox" checked><span><b>Site summary</b> with the plan and a results table for the chosen locations</span></label>
+    <label class="check surcheck" id="rpGridRow" hidden><input id="rpGrid" type="checkbox" checked><span><b>Site model</b>: settlement maps, inputs, zone tables, and the long and cross sections</span></label>
     <h3 class="grouphead secthead">Locations</h3>
     <div class="rplocs" id="rpLocs"></div>
     <div class="toolbar rpbtns">
@@ -407,6 +470,7 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
     <button type="button" data-view="limits">Limitations</button>
     <button type="button" data-view="units">Project &amp; materials<span class="tv" id="unitsFlag" hidden>Fix inputs</span></button>
     <button type="button" data-view="loc">Calculations</button>
+    <button type="button" data-view="site">Site model</button>
   </nav>
 
   <div class="stick locview">
@@ -471,6 +535,155 @@ details .tablewrap{margin-top:10px;max-height:380px;overflow:auto}
       <button id="btnAddUnit" type="button" class="primary">Add soil unit</button>
     </div>
     <div class="tablewrap"><table class="data layers" id="unitTable"></table></div>
+  </section>
+
+  <section class="panel" id="sitePanel" aria-labelledby="h-site" hidden>
+    <div class="panel-head">
+      <div>
+        <h2 id="h-site">Site model</h2>
+        <p>Calculate settlement across the whole embankment instead of at single locations. Add the ground model as Leapfrog output volumes and the embankment as surfaces, match each volume to a soil unit, then sample a grid. Soil units and fill materials come from Project &amp; materials.</p>
+      </div>
+    </div>
+    <div class="msgs" id="smMsg" aria-live="polite"></div>
+    <input id="smFile" type="file" accept=".obj,.dxf" multiple hidden>
+
+    <div class="smInputs">
+      <div>
+        <div class="panel-head">
+          <div><h3>Ground model volumes</h3><p>Closed output volumes as OBJ or DXF, one object or layer per unit. A column stops at a volume set to <i>Base: stop here</i>.</p></div>
+          <button id="smAddVol" type="button" class="primary" data-role="vol">Add volumes</button>
+        </div>
+        <div class="tablewrap"><table class="data layers smtable" id="smVolTable"></table></div>
+        <div class="panel-head smsub">
+          <div><h3>Existing ground surface</h3><p>Optional. Without it, the top of the volumes is the ground.</p></div>
+          <button id="smAddGround" type="button" data-role="ground">Add surface</button>
+        </div>
+        <div class="tablewrap"><table class="data layers smtable" id="smGroundTable"></table></div>
+      </div>
+      <div>
+        <div class="panel-head">
+          <div><h3>Embankment surfaces, top to bottom</h3><p>The top of each embankment zone. Each zone runs down to the surface below it, or to existing ground, wherever it lies above them.</p></div>
+          <button id="smAddEmb" type="button" class="primary" data-role="emb">Add surfaces</button>
+        </div>
+        <div class="tablewrap"><table class="data layers smtable" id="smEmbTable"></table></div>
+        <div class="panel-head smsub">
+          <div><h3>Groundwater</h3></div>
+          <div class="seg" role="group" aria-label="Groundwater from" id="gwSeg">
+            <button type="button" data-gw="depth">Depth below ground</button>
+            <button type="button" data-gw="surface">Surface (DXF or OBJ)</button>
+          </div>
+        </div>
+        <div class="fields" id="gwDepthF"><div class="field"><label for="sm_gwDepth">Groundwater depth (m)</label><input id="sm_gwDepth" data-sk="gwDepth" type="number" min="0" step="any" inputmode="decimal"></div></div>
+        <div id="gwSurfBox">
+          <div class="tablewrap"><table class="data layers smtable" id="smGwTable"></table></div>
+          <div class="toolbar smtb"><button id="smAddGw" type="button" data-role="gw">Add groundwater surface</button></div>
+        </div>
+      </div>
+    </div>
+    <p class="hintline" id="smZoneNote"></p>
+
+    <div class="divider"></div>
+    <h3 class="grouphead">Grid and loading</h3>
+    <div class="fields">
+      <div class="field"><label for="smg_s">Grid spacing (m)</label><input id="smg_s" data-gk="s" type="number" min="0.5" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="smg_boundary">Area</label><select id="smg_boundary" data-gk="boundary"></select></div>
+      <div class="field"><label for="smg_minEmb">Min fill thickness (m)</label><input id="smg_minEmb" data-gk="minEmb" type="number" min="0" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="smg_maxDepth">Max depth below ground (m)</label><input id="smg_maxDepth" data-gk="maxDepth" type="number" min="0" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="smg_minLayer">Merge layers thinner than (m)</label><input id="smg_minLayer" data-gk="minLayer" type="number" min="0" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="sm_tc">Loading period (years)</label><input id="sm_tc" data-sk="tc" type="number" min="0" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="sm_q">Extra surface load, q (kPa)</label><input id="sm_q" data-sk="q" type="number" min="0" step="any" inputmode="decimal" placeholder="Blank = 0"></div>
+      <div class="field"><label for="sm_pcsReq">PCS requirement outside zones (mm)</label><input id="sm_pcsReq" data-sk="pcsReq" type="number" min="0" step="any" inputmode="decimal" placeholder="Blank = none"></div>
+    </div>
+    <p class="hintline">Grid points sit on whole multiples of the spacing in MGA eastings and northings. Points with less fill than the minimum are left out. Layers thinner than the merge thickness, where a volume pinches out, join the layer below. Design life, handover and stress history settings come from Project &amp; materials.</p>
+    <div id="smNeed" class="msgs smneed"></div>
+    <div class="toolbar smrun">
+      <button id="smRun" type="button" class="primary">Sample and calculate</button>
+      <button id="smCancel" type="button" hidden>Stop</button>
+      <span class="smprog" id="smProg" aria-live="polite"></span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="msg warn" id="smStale" hidden></div>
+    <div id="smResults" hidden>
+      <div class="stats smstats" id="smStats"></div>
+    </div>
+    <div class="maptools smtools">
+      <div class="seg" role="group" aria-label="Show on the map" id="smField">
+        <button type="button" data-f="H">Fill height</button>
+        <button type="button" data-f="tot">Total</button>
+        <button type="button" data-f="pcs">PCS</button>
+        <button type="button" data-f="ratio">PCS ÷ requirement</button>
+        <button type="button" data-f="diff">Differential</button>
+        <button type="button" data-f="soft">Clay thickness</button>
+      </div>
+      <div class="seg" role="group" aria-label="Ground treatment" id="smTreat">
+        <button type="button" data-t="0">No treatment</button>
+        <button type="button" data-t="1">With treatment</button>
+      </div>
+      <button type="button" id="smCsv">Copy grid as CSV</button>
+    </div>
+    <div class="smMapGrid">
+      <div class="planCol">
+        <div class="mapbox smmap" id="smMap" role="application" aria-label="Site model map. Select a cell to see its column."></div>
+        <div class="mapcoords" id="smCoords"></div>
+        <div class="smlegend" id="smLegend"></div>
+        <div class="smkey"><span><i style="border-color:#eb6834"></i>Embankment surface</span><span><i style="border-color:#8a8478;border-style:dotted"></i>Ground volume</span><span><i style="border-color:#2a78d6;border-style:dashed"></i>Groundwater surface</span><span><i style="border-color:#6250d6;border-style:dashed"></i>Treatment zone</span><span><i style="border-color:#d55181"></i>PCS zone</span></div>
+      </div>
+      <div class="smProbe" id="smProbe" aria-live="polite"></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="smZones">
+      <div>
+        <div class="panel-head">
+          <div><h3>Ground treatment zones</h3><p>Points inside a zone are calculated with its treatment. Where zones overlap, the higher one in the list applies.</p></div>
+          <button id="tzDraw" type="button" class="primary">Draw zone</button>
+        </div>
+        <div class="toolbar zimport" id="tzImport"></div>
+        <div id="tzList"></div>
+      </div>
+      <div>
+        <div class="panel-head">
+          <div><h3>PCS requirement zones</h3><p>A requirement for each area, such as pavement types or bridge approaches. Where zones overlap, the higher one in the list applies.</p></div>
+          <button id="pzDraw" type="button" class="primary">Draw zone</button>
+        </div>
+        <div class="toolbar zimport" id="pzImport"></div>
+        <div class="tablewrap"><table class="data layers" id="pzTable"></table></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div id="xsBox">
+      <div class="panel-head">
+        <div><h3>Long and cross sections</h3><p>Sections are sampled from the meshes along a centreline, separately from the grid. The lower panel is the differential PCS between neighbouring points, as an angular distortion.</p></div>
+        <div class="toolbar"><span id="xsLinePick" class="toolbar"></span><button id="xsDraw" type="button" class="primary">Draw centreline</button><button id="xsClear" type="button">Remove centreline</button></div>
+      </div>
+      <p class="hintline" id="xsLineInfo"></p>
+      <div id="xsBody" hidden>
+        <div class="fields">
+          <div class="field"><label for="sm_xsHalf">Cross-section half-width (m)</label><input id="sm_xsHalf" data-sk="xsHalf" type="number" min="1" step="any" inputmode="decimal"></div>
+          <div class="field"><label for="sm_xsStep">Cross-section spacing (m)</label><input id="sm_xsStep" data-sk="xsStep" type="number" min="0.25" step="any" inputmode="decimal"></div>
+          <div class="field"><label for="sm_diffLim">Differential limit, 1 in</label><input id="sm_diffLim" data-sk="diffLim" type="number" min="1" step="any" inputmode="decimal" placeholder="Blank = none"></div>
+        </div>
+        <h3 class="grouphead secthead">Long section</h3>
+        <div class="legend" id="xsLongLeg"></div>
+        <div class="chart" id="xsLong"></div>
+        <p class="hintline">Select a point on the long section to move the cross section there.</p>
+        <div class="panel-head xshead">
+          <h3 class="grouphead" id="xsCrossHead">Cross section</h3>
+          <div class="toolbar xsnav">
+            <button type="button" id="xsPrev" aria-label="Previous cross section">◀</button>
+            <input type="range" id="xsCh" min="0" max="100" step="5" aria-label="Chainage of the cross section">
+            <button type="button" id="xsNext" aria-label="Next cross section">▶</button>
+            <label class="inl">Ch<input type="number" id="xsChNum" step="any" inputmode="decimal" aria-label="Chainage in metres"></label>
+          </div>
+        </div>
+        <div class="legend" id="xsCrossLeg"></div>
+        <div class="chart" id="xsCross"></div>
+        <p class="hintline">Each point is a 1D column under its own fill height, so near the batters these results overstate settlement differences. The real ground spreads the load across the toe.</p>
+        <p class="smprog" id="xsStatus" aria-live="polite"></p>
+      </div>
+    </div>
   </section>
 
   <section class="panel locview" aria-labelledby="h-plan">
@@ -810,6 +1023,24 @@ N0 = 10 000 000 m, CM = 6·zone − 183°
 Krüger series (4th order)</div>
         <p>Eastings and northings in GIS files and in each location’s inputs are converted to latitude and longitude with the transverse Mercator formulas used for MGA2020. The zone named in a shapefile’s .prj or a GeoJSON crs takes priority over the zone chosen. GDA2020 is shown on the map as if it were WGS84, a difference well under a metre. <span class="ref">Ref: ICSM (2021) GDA2020 Technical Manual.</span></p>
       </div>
+      <div>
+        <h3>Site model: sampling the 3D model</h3>
+        <div class="eq">for each grid node (i·s, j·s):
+  ground RL  zg = top of existing ground
+  zone k (bottom up): h = max(0, zk − zb)
+                      zb = max(zb, zk)
+  volumes: inside where crossings
+           change from up- to down-facing
+  layers from zg down to base volume
+  or zg − max depth</div>
+        <p>Grid nodes sit on whole multiples of the spacing in MGA eastings and northings. At each node a vertical line is cast through every mesh. For a closed Leapfrog output volume, a face looking up marks where the line enters it and a face looking down where it leaves, so lenses, pinch-outs and faulted blocks come out as the right depth intervals. Embankment zones are built from the bottom up: each runs from the higher of existing ground and the zone below it up to its own surface, so a surface only adds fill where it lies above the others. Layers thinner than the merge thickness join the layer below, and adjacent layers of the same unit merge. Each column is then calculated exactly as a location, with the treatment and PCS requirement of the zones it falls in.</p>
+      </div>
+      <div>
+        <h3>Site model: differential settlement</h3>
+        <div class="eq">β = |PCS(a) − PCS(b)| / L
+reported as 1 in (1/β)</div>
+        <p>On the grid, β at a point is the largest difference in PCS to its four neighbours, divided by the spacing. On the long and cross sections it is the difference between neighbouring section points. Each grid point is a separate 1D column, so β near batters, at the edges of ground treatment zones and where the ground model changes sharply is an upper bound.</p>
+      </div>
     </div>
     </div>
 
@@ -910,6 +1141,12 @@ Krüger series (4th order)</div>
       </div>
     </div>
     <div class="limits" id="limitsList">
+      <article>
+        <h3>Site model columns are independent and 1D</h3>
+        <p class="dir over">Likely overestimates differential settlement near batters</p>
+        <p><b>Impact.</b> Each grid point is calculated as its own column under its own fill height, with Δσ equal to that fill’s weight at every depth. Load does not spread to neighbouring columns, so settlement near the toe and differential settlement across batters and treatment zone edges are shown sharper than they are. Results also depend on the ground model: a grid point only knows the units the volumes give it.</p>
+        <p><b>To address.</b> Use the grid to find where settlement matters, then check those areas with stress distribution under the full embankment shape, or 2D or 3D numerical analysis. Check the ground model against the boreholes with the point probe, and review hatched points.</p>
+      </article>
       <article>
         <h3>Very wide, uniform load (no stress spread)</h3>
         <p class="dir over">Likely overestimates beneath edges and narrow loads</p>
@@ -1014,7 +1251,8 @@ Krüger series (4th order)</div>
 <script>
 "use strict";
 /* ---------- Calculation engine: pure functions, SI units (m, kPa, years) ---------- */
-const Engine = (() => {
+/* Written as a factory so the site-model worker can run its own copy from the same source. */
+function engineFactory() {
   const GW = 9.81;
 
   function U(Tv) {
@@ -1321,7 +1559,8 @@ const Engine = (() => {
     return { errors, advisories, preOn, tw: preOn ? tw : 0, thBase, q, qAdd: qAdd > 0 ? qAdd : 0, qEmb, emb: E, he, gwt, td, th, tc, eop, L, clays, depth: top, sigma0, sigmaP, at, atPerm, atBase, layerAt, immAt, immOn, SiTot, SpTot, t90All, surOn, qs, tr, caRatio, treq, embT1, creepAt, zoneCreep, drOn, drS, drPattern, drDw, drSmear, drKhKs, drChCv, de, mu, drainLen, drainArea, pcs, pcsBase: atBase(td).total - atBase(thBase).total, treated: surOn || drOn || preOn };
   }
   return { GW, U, TvForU, tForU, hansboMu, analyse };
-})();
+}
+const Engine = engineFactory();
 
 /* ---------- GDA2020 / MGA2020 coordinates (GRS80, Krüger series to 4th order, accurate to about a millimetre) ---------- */
 const MGA = (() => {
@@ -1438,6 +1677,45 @@ const S = new Proxy({}, {
 });
 const withLoc = (loc, fn) => { const a = P.active; P.active = loc.id; try { return fn(); } finally { P.active = a; } };
 
+/* Site model settings (see the Site model section further down). Defined here because stored projects are read at start-up. */
+const SITE_GRID_DEFAULTS = { s: "10", boundary: 0, maxDepth: "40", minEmb: "0.1", minLayer: "0.1" };
+const newSite = () => ({ origin: null, zone: null, meshes: [], gwMode: "depth", gwDepth: "1", q: "", tc: "0.5", pcsReq: "", grid: { ...SITE_GRID_DEFAULTS }, show: "pcs", treated: true, tz: [], pz: [], line: null, lineSrc: "", xsHalf: "40", xsStep: "2", diffLim: "500", hasGrid: false });
+const SITE_ROLES = ["vol", "ground", "emb", "gw"];
+function normalizeSite(o) {
+  const d = newSite();
+  if (!o || typeof o !== "object") return d;
+  const str = (v, def = "") => (v === undefined || v === null ? def : String(v).slice(0, 200));
+  const num = v => (typeof v === "number" && Number.isFinite(v) ? v : null);
+  const ring = r => (Array.isArray(r) ? r.filter(p => Array.isArray(p) && Math.abs(p[0]) <= 90 && Math.abs(p[1]) <= 180).slice(0, 5000).map(p => [+p[0], +p[1]]) : []);
+  d.origin = Array.isArray(o.origin) && num(o.origin[0]) !== null && num(o.origin[1]) !== null ? [o.origin[0], o.origin[1]] : null;
+  d.zone = +o.zone >= 46 && +o.zone <= 59 ? Math.round(+o.zone) : null;
+  d.meshes = (Array.isArray(o.meshes) ? o.meshes : []).filter(m => m && num(m.id) !== null && SITE_ROLES.includes(m.role)).slice(0, 200).map(m => ({
+    id: Math.round(m.id), name: str(m.name, "Mesh").slice(0, 80), file: str(m.file).slice(0, 120), role: m.role,
+    unit: m.unit === "base" ? "base" : num(m.unit), dr: m.dr === "one" ? "one" : "two", fill: num(m.fill),
+    ntri: num(m.ntri) || 0, closed: !!m.closed, openEdges: num(m.openEdges) || 0,
+    bbox: Array.isArray(m.bbox) && m.bbox.length === 6 && m.bbox.every(x => num(x) !== null) ? m.bbox.slice() : [0, 0, 0, 0, 0, 0],
+    outline: Array.isArray(m.outline) ? m.outline.slice(0, 20).map(l => (Array.isArray(l) ? l.filter(p => Array.isArray(p) && num(p[0]) !== null && num(p[1]) !== null).slice(0, 3000) : [])).filter(l => l.length > 2) : [],
+  }));
+  if (!d.origin) d.meshes = [];
+  d.gwMode = o.gwMode === "surface" ? "surface" : "depth";
+  ["gwDepth", "q", "tc", "pcsReq", "xsHalf", "xsStep", "diffLim"].forEach(k => { if (o[k] !== undefined) d[k] = str(o[k]); });
+  const g = o.grid || {};
+  d.grid = { s: str(g.s, SITE_GRID_DEFAULTS.s), boundary: num(g.boundary) || 0, maxDepth: str(g.maxDepth, SITE_GRID_DEFAULTS.maxDepth), minEmb: str(g.minEmb, SITE_GRID_DEFAULTS.minEmb), minLayer: str(g.minLayer, SITE_GRID_DEFAULTS.minLayer) };
+  d.show = ["H", "tot", "pcs", "ratio", "diff", "soft"].includes(o.show) ? o.show : "pcs";
+  d.treated = o.treated !== false;
+  d.tz = (Array.isArray(o.tz) ? o.tz : []).slice(0, 100).map((z, i) => {
+    const gt = { ...GT_DEFAULTS, mode: "manual" }, src = (z && z.gt) || {};
+    GT_KEYS.forEach(k => { if (k === "drOn" || k === "surOn" || k === "preOn") gt[k] = !!src[k]; else if (src[k] !== undefined && src[k] !== null) gt[k] = str(src[k]); });
+    gt.drPattern = gt.drPattern === "sq" ? "sq" : "tri";
+    return { id: i + 1, name: str(z && z.name, `Treatment zone ${i + 1}`).slice(0, 80), ring: ring(z && z.ring), gt };
+  }).filter(z => z.ring.length >= 3);
+  d.pz = (Array.isArray(o.pz) ? o.pz : []).slice(0, 200).map((z, i) => ({ id: i + 1, name: str(z && z.name, `PCS zone ${i + 1}`).slice(0, 80), ring: ring(z && z.ring), req: str(z && z.req) })).filter(z => z.ring.length >= 3);
+  d.line = Array.isArray(o.line) ? ring(o.line) : null;
+  if (d.line && d.line.length < 2) d.line = null;
+  d.lineSrc = str(o.lineSrc).slice(0, 120);
+  d.hasGrid = !!o.hasGrid;
+  return d;
+}
 /* Everything read from storage or a project file goes through here, so a bad file cannot break the page. */
 function normalizeProject(o) {
   if (!o || !Array.isArray(o.locations) || !o.locations.length || o.locations.length > 200) throw new Error("bad project");
@@ -1508,8 +1786,14 @@ function normalizeProject(o) {
     histMode: o.histMode === "pop" ? "pop" : "ocr", sub: str(o.sub, "10"), reduce: !!o.reduce, immOn: o.immOn !== false, isExample: !!o.isExample,
     project: str(o.project), jobRef: str(o.jobRef), author: str(o.author), planMode: o.planMode === "map" ? "map" : "image",
     zone: +o.zone >= 46 && +o.zone <= 59 ? String(Math.round(+o.zone)) : "56", gis: Array.isArray(o.gis) && o.gis.length ? normalizeGis(o.gis) : [], hasGis: !!(o.hasGis || (Array.isArray(o.gis) && o.gis.length)), planSample: !!o.planSample, hasPlan: !!(o.hasPlan || plan), plan, map,
-    active: ids.get(o.active) || 1, view: ["methods", "limits", "units"].includes(o.view) ? o.view : "loc", embT1: str(o.embT1, "1"), fills, units, locations,
+    active: ids.get(o.active) || 1, view: ["methods", "limits", "units", "site"].includes(o.view) ? o.view : "loc", embT1: str(o.embT1, "1"), fills, units, locations,
+    site: normalizeSite(remapSite(o.site, unitIds, fillIds)),
   };
+}
+/* Unit and fill ids are renumbered when a project is read, so the site model's references follow them. */
+function remapSite(site, unitIds, fillIds) {
+  if (!site || !Array.isArray(site.meshes)) return site;
+  return { ...site, meshes: site.meshes.map(m => (m ? { ...m, unit: m.unit === "base" ? "base" : unitIds.get(m.unit) || null, fill: fillIds.get(m.fill) || null } : m)) };
 }
 const fromOldDraft = p => normalizeProject({
   ...p, isExample: false, active: 1, locations: [{ id: 1, name: "Location 1", q: p.q, gwt: p.gwt, tc: p.tc, surOn: p.surOn, qs: p.qs, tr: p.tr, caRatio: p.caRatio, layers: p.layers }],
@@ -1711,18 +1995,20 @@ function updateLoadSum() {
 }
 
 /* Switches between the four parent tabs. "loc" is Calculations, with one sub-tab per location. */
-const VIEWS = ["methods", "limits", "units", "loc"];
+const VIEWS = ["methods", "limits", "units", "loc", "site"];
 function applyView() {
   const v = P.view;
   document.querySelector(".page").classList.toggle("calcView", v === "loc");
   $("unitsPanel").hidden = v !== "units";
   $("methodsPanel").hidden = v !== "methods";
   $("limitsPanel").hidden = v !== "limits";
-  $("msgs").hidden = v === "methods" || v === "limits";
+  $("sitePanel").hidden = v !== "site";
+  $("msgs").hidden = v === "methods" || v === "limits" || v === "site";
   document.querySelectorAll("#mainTabs button").forEach(b => b.dataset.view === v ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
   if (v === "units") { renderUnits(); renderFills(); }
   if (v === "methods") setMethodsTab(methodsTab);
   if (v === "loc") planShown();
+  if (v === "site") { renderSite(); if (P.site.line && !XS.long) updateSections(true); }
 }
 function setView(v) { P.view = v; placing = null; save(); applyView(); if (v === "loc") { syncGeneral(); renderLayers(); renderEmb(); } recalc(); window.scrollTo(0, 0); }
 
@@ -1740,6 +2026,7 @@ function setMethodsTab(t) {
 
 /* Version keeping: add a row at the top of VERSIONS with each change. Reports and project files record APP_VERSION. */
 const VERSIONS = [
+  ["3.2", "2026-11-10", "Site model tab: load Leapfrog output volumes and embankment, ground and groundwater surfaces as OBJ or DXF, match each volume to a soil unit, and sample a grid of any spacing across the embankment. Heat maps of fill height, settlement, PCS, PCS against the requirement and differential settlement, with a point probe that turns any grid point into a location. Ground treatment zones and PCS requirement zones, drawn on the map or imported from GIS polygons, with only the points inside a changed treatment zone recalculated. Long section and scrollable cross sections along a centreline, showing the ground, fill, settlement and differential settlement between neighbouring points. Site model pages in the PDF report. Projects with a site model save as one zip."],
   ["3.1", "2026-11-08", "Pattern and colour for each soil unit and fill material, shown in the soil column and reports. Preload (a wait before handover) as a ground treatment, included in the suggestions with a programme limit. GIS layers on the site map from GeoJSON, KML/KMZ, zipped shapefiles and CSV, with GDA2020 MGA zones and easting/northing entry for locations. The map now works inside claude.ai without imagery. PDF report: choose the locations, ground treatment graphics and summary table, one shared methods, assumptions and limitations page, and tables sized to fit the page."],
   ["3.0", "2026-11-07", "Several projects kept in the browser, with a project menu and Clear all. Embankment zones with their own fill materials: their weight now loads the ground, added to any extra surface load. Post-construction settlement requirement and a Ground treatment section that suggests and checks vertical drains and surcharge. Live satellite or street map for the site plan in the standalone file. Methods sub-tabs with a new Learning tab."],
   ["2.0", "2026-11-07", "Four parent tabs: Methods & information, Limitations, Project & materials, and Calculations with a sub-tab per location. Added input guidance, a full reference list, limitations with advice, and this version history."],
@@ -3290,7 +3577,7 @@ after removal: Cα′ ≈ Cα · Cr/Cc</div>
 }
 
 /* ---------- A4 PDF report ---------- */
-const PRINT = { "--surface": "#ffffff", "--ink": "#14222a", "--muted": "#4f606a", "--line": "#cbd5da", "--grid": "#e3e9ec", "--band": "#e4ebee", "--sur-band": "#fbefd2", "--s1": "#2a78d6", "--s2": "#eb6834", "--s3": "#1baf7a", "--s4": "#eda100", "--s5": "#e87ba4", "--clay": "#cdbb9f", "--clay2": "#bda98a", "--clay-mark": "#77623f", "--sand": "#ebe0b4", "--sand-mark": "#94823f", "--water": "#2a78d6", "--warn": "#8a5300", "--bad": "#a32626", "--accent": "#0d5c75", "--accent-soft": "#dcebf0",
+const PRINT = { "--surface": "#ffffff", "--ink": "#14222a", "--muted": "#4f606a", "--line": "#cbd5da", "--grid": "#e3e9ec", "--band": "#e4ebee", "--sur-band": "#fbefd2", "--s1": "#2a78d6", "--s2": "#eb6834", "--s3": "#1baf7a", "--s4": "#eda100", "--s5": "#e87ba4", "--clay": "#cdbb9f", "--clay2": "#bda98a", "--clay-mark": "#77623f", "--sand": "#ebe0b4", "--sand-mark": "#94823f", "--water": "#2a78d6", "--warn": "#8a5300", "--bad": "#a32626", "--bad-soft": "#fae5e4", "--accent": "#0d5c75", "--accent-soft": "#dcebf0",
   "--c-tan": "#d8c3a0", "--c-brown": "#b08d64", "--c-grey": "#c5c8c6", "--c-bluegrey": "#a9bcc8", "--c-olive": "#b9b98a", "--c-yellow": "#ece0a6", "--c-orange": "#e7b98a", "--c-red": "#c99a86", "--c-green": "#a9c7a0", "--c-dark": "#8a8478", "--c-white": "#f3f1ea" };
 const printSvg = svg => svg
   .replace(/var\((--[\w-]+)\)/g, (m, k) => PRINT[k] || "#000000")
@@ -3512,7 +3799,7 @@ function locationContent(item, keyImg) {
 }
 
 /* Methods, assumptions and limitations: once per report, at the end. Limitations and references are read from the page. */
-function methodsContent(items) {
+function methodsContent(items, grid) {
   const ink = PRINT["--ink"], muted = PRINT["--muted"];
   const anyDr = items.some(a => a.res.drOn), anySur = items.some(a => a.res.surOn), anyPre = items.some(a => a.res.preOn), anyEmb = items.some(a => a.res.he > 0);
   const M = [
@@ -3525,6 +3812,7 @@ function methodsContent(items) {
     ...(anyDr ? [["Vertical drains", "Hansbo (1981) with smear and no well resistance: μ = ln(n/s′) + (kh/ks)·ln(s′) − 0.75, Uh = 1 − exp(−8·ch·t/(μ·de²)). Combined with vertical drainage by Carrillo’s rule. Drains assumed to pass fully through every clay layer."]] : []),
     ...(anySur ? [["Surcharge", "Placed with Q and removed in full. Each sublayer uses its layer’s average U at removal. Rebound on Cr with the same rate. Where the stress reached is above σ′f, secondary afterwards uses Cα′ = Cα·Cr/Cc unless set."]] : []),
     ...(anyPre ? [["Preload", "A wait tw after construction moves handover from th to th + tw. Consolidation continues under the permanent load during the wait. PCS is counted from the new handover."]] : []),
+    ...(grid ? [["Site model", "At each grid point a vertical line is cast through the ground model volumes and the embankment, groundwater and ground surfaces. Each volume gives the depths where the line is inside it, which build the layer profile down to the base volume or the maximum depth. Each embankment zone runs from its surface down to the higher of existing ground and the zone below. The column is then calculated as a location, with the treatment of the zone it falls in."]] : []),
     ["PCS and treatment", "PCS = S(td) − S(th). Where PCS without treatment exceeds the limit, options are tried from least to most costly: a wait up to the programme limit, a surcharge up to half of Q, drains alone, a surcharge up to Q, then drains with a surcharge. Each uses the shortest wait that works. Surcharges start at 20% of Q, drains at 1.0–3.5 m spacing."],
   ];
   const assumptions = [
@@ -3532,6 +3820,7 @@ function methodsContent(items) {
     "One-dimensional compression with no lateral movement, undrained shear distortion or stability effects.",
     "Constant soil parameters within each unit, small strain theory, and hydrostatic groundwater at a fixed level.",
     "Each location is calculated on its own. Nothing is interpolated between locations.",
+    ...(grid ? ["Site model grid points are 1D columns under their own fill height, so results near the batters and differential settlement across the toe are conservative."] : []),
     "Results are preliminary estimates and need review by a qualified geotechnical engineer before use in design.",
   ];
   const lims = Array.from(document.querySelectorAll("#limitsList article")).map(a => {
@@ -3574,11 +3863,12 @@ async function buildReport(sel) {
   const content = [];
   const push = (stack, opts = {}) => content.push({ stack, ...(content.length ? { pageBreak: "before" } : {}), ...opts });
   if (sel.site && items.length) push(sitePage(base ? await planCanvas(1600, "site", null, base, items) : null, items));
+  if (sel.grid && SG) for (const pg of await sitePages()) push(pg);
   for (const item of items) {
     const keyImg = base && base.pos(item.loc) ? await planCanvas(480, "key", item.loc.id, base, items) : null;
     push(withLoc(item.loc, () => locationContent(item, keyImg)));
   }
-  push(methodsContent(items));
+  push(methodsContent(items, sel.grid && SG));
   const doc = { ...PAGE, defaultStyle: { font: "Roboto", fontSize: 7.2, color: PRINT["--ink"], lineHeight: 1.1 }, info: { title: `1D Settlement Report - ${P.project || "Untitled project"}`, subject: "Immediate, primary and secondary settlement" }, content };
   return { bytes: await pdfBytes(doc), noMap: mapMode() && !base };
 }
@@ -3607,7 +3897,8 @@ function renderReportPanel() {
   if (!rpSel) rpSel = new Set(P.locations.map(l => l.id));
   [...rpSel].forEach(id => { if (!P.locations.some(l => l.id === id)) rpSel.delete(id); });
   $("rpLocs").innerHTML = ALL.map(({ loc, res }) => `<label class="check"><input type="checkbox" data-rp="${loc.id}"${rpSel.has(loc.id) ? " checked" : ""}><span>${esc(loc.name || "Unnamed")} <span class="tv">${totalOf(res) === null ? "Fix inputs" : `${mm(totalOf(res))} mm`}</span></span></label>`).join("");
-  $("rpGo").disabled = !rpSel.size;
+  $("rpGridRow").hidden = !SG;
+  $("rpGo").disabled = !rpSel.size && !(SG && $("rpGrid").checked);
 }
 function setReportPanel(open) {
   $("reportPanel").hidden = !open; $("btnReportOpen").setAttribute("aria-expanded", String(open));
@@ -3638,13 +3929,21 @@ async function saveReport(sel) {
 async function saveProject() {
   reportNote();
   try {
+    const name = `Settlement_Project${slug() ? "_" + slug() : ""}`;
+    if (P.site && P.site.meshes.length) {
+      const btn = $("btnSaveProject"); btn.disabled = true; btn.textContent = "Saving…";
+      let blob; try { blob = await saveProjectZip(); } finally { btn.disabled = false; btn.textContent = "Save project"; }
+      const where = await saveFile(blob, `${name}.zip`);
+      reportNote("warn", `Project saved${where ? " " + where : ""} as one zip, with the plan, every location and the site model meshes.`, "Project");
+      return;
+    }
     const data = JSON.stringify({ app: "1d-settlement-calculator", version: 3, appVersion: APP_VERSION, ...P });
-    const where = await saveFile(new Blob([data], { type: "application/json" }), `Settlement_Project${slug() ? "_" + slug() : ""}.json`);
+    const where = await saveFile(new Blob([data], { type: "application/json" }), `${name}.json`);
     reportNote("warn", `Project saved${where ? " " + where : ""}, including the plan and every location.`, "Project");
   } catch (e) {
     const code = e && e.code;
     if (code === "declined") return;
-    reportNote("err", code === "no_save" ? "This view can’t save files. Open the artifact in claude.ai, or use the HTML file on your computer." : "The project could not be saved. Try again.", "Project");
+    reportNote("err", code === "no_save" ? "This view can’t save files. Open the artifact in claude.ai, or use the HTML file on your computer." : code === "missing" ? `The mesh data for ${e.name} isn’t in this browser any more. Remove it and add it again, then save.` : !window.JSZip && P.site && P.site.meshes.length ? "The tool for writing zip files couldn’t load. Check your internet connection and try again." : "The project could not be saved. Try again.", "Project");
   }
 }
 /* Redraws everything for the project now in P. */
@@ -3652,6 +3951,10 @@ function showProject() {
   placing = null; destroyMap(); rpSel = null; if (!$("reportPanel").hidden) setReportPanel(false);
   if (P.planSample && !P.plan) P.plan = makeSamplePlan();
   if (!Array.isArray(P.gis)) P.gis = [];
+  if (!P.site) P.site = newSite();
+  SG = null; probe = null; XS = { ch: 0, long: null, cross: null, busy: false, seq: 0 }; smDraw = null; smNote();
+  if (SMAP) { SMAP.remove(); SMAP = null; smHeat = null; smProbeMk = null; xsMk = null; }
+  if (P.site.hasGrid) restoreGrid();
   syncGeneral(); renderLayers(); renderEmb(); applyView(); recalc(); renderProjects();
   if (!P.plan && P.hasPlan && !P.planSample) restorePlan();
   if (P.hasGis && !P.gis.length) restoreGis();
@@ -3675,8 +3978,10 @@ function addProject(p) {
 }
 function deleteProject(id) {
   if (!STORE.projects[id]) return;
+  const site = STORE.projects[id].site;
   delete STORE.projects[id];
-  planStore("readwrite", s => { s.delete(`gis-${id}`); return s.delete(planKey(id)); }).catch(() => { /* nothing stored */ });
+  planStore("readwrite", s => { s.delete(`gis-${id}`); s.delete(gridKey(id)); ((site && site.meshes) || []).forEach(m => s.delete(meshKey(id, m.id))); return s.delete(planKey(id)); }).catch(() => { /* nothing stored */ });
+  if (SW.loadedFor === id) SW.loadedFor = null;
   if (id !== STORE.current) { persist(); renderProjects(); return; }
   const ids = projectIds();
   if (!ids.length) STORE.projects[nextProjectId()] = stripPlan(BLANK());
@@ -3698,6 +4003,13 @@ function setProjMenu(open) {
 }
 async function openProjectFile(file) {
   reportNote();
+  if (/\.zip$/i.test(file.name)) {
+    try {
+      const p = await openProjectZip(file);
+      reportNote("warn", `Opened ${p.project || file.name} with ${p.locations.length} location${p.locations.length > 1 ? "s" : ""}${p.site.meshes.length ? ` and ${p.site.meshes.length} site model mesh${p.site.meshes.length > 1 ? "es" : ""}` : ""} as a new project. Switch projects from the menu at the top.`, "Project");
+    } catch (e) { reportNote("err", !window.JSZip ? "The tool for reading zip files couldn’t load. Check your internet connection and try again." : "That zip isn’t a project saved from this calculator, so nothing was changed.", "Project"); }
+    return;
+  }
   let p;
   try {
     const o = JSON.parse(await file.text());
@@ -3710,6 +4022,1681 @@ async function openProjectFile(file) {
   p.isExample = false; p.planSample = false; p.hasPlan = !!p.plan;
   addProject(p);
   reportNote("warn", `Opened ${p.project || file.name} with ${p.locations.length} location${p.locations.length > 1 ? "s" : ""} as a new project. Switch projects from the menu at the top.`, "Project");
+}
+
+/* ---------- Site model worker: reads meshes, samples columns through them and runs the engine at each point ---------- */
+/* This function runs inside a Web Worker built from its own source text, so it must not use anything outside itself
+   except the engine it is given. If the page can't start a worker, it runs on the page instead (see siteHost). */
+function siteWorkerBody(self, Engine) {
+  "use strict";
+  const meshes = new Map(); // id -> { v: Float32Array (x, y relative to the site origin, z), t: Uint32Array, sign, idx }
+  const idb = (mode, fn) => new Promise((ok, no) => {
+    const o = indexedDB.open("settlement-1d", 1);
+    o.onupgradeneeded = () => o.result.createObjectStore("kv");
+    o.onerror = () => no(o.error);
+    o.onsuccess = () => { const tx = o.result.transaction("kv", mode), r = fn(tx.objectStore("kv")); tx.oncomplete = () => { o.result.close(); ok(r.result); }; tx.onerror = tx.onabort = () => no(tx.error); };
+  });
+  const grow = (T, n = 1 << 15) => {
+    let a = new T(n), len = 0;
+    return {
+      push(x) { if (len === a.length) { const b = new T(a.length * 2); b.set(a); a = b; } a[len++] = x; },
+      get len() { return len; }, get arr() { return a; },
+      out(T2) { return T2 && T2 !== T ? T2.from(a.subarray(0, len)) : a.slice(0, len); },
+    };
+  };
+  /* Text is decoded in slices so a large export never becomes one huge string. */
+  function eachLine(buf, fn) {
+    const dec = new TextDecoder(), u8 = new Uint8Array(buf), CH = 1 << 23;
+    let rest = "";
+    for (let o = 0; o < u8.length; o += CH) {
+      const end = Math.min(u8.length, o + CH), txt = rest + dec.decode(u8.subarray(o, end), { stream: end < u8.length });
+      const parts = txt.split("\n"); rest = parts.pop();
+      for (let i = 0; i < parts.length; i++) if (fn(parts[i]) === false) return;
+    }
+    if (rest) fn(rest);
+  }
+
+  /* OBJ: v, f and o/g lines. Faces with more than three corners are fanned into triangles. */
+  function parseObj(buf, base) {
+    const V = grow(Float64Array, 1 << 16), objs = [];
+    let cur = null;
+    const obj = name => { cur = { name, f: grow(Uint32Array) }; objs.push(cur); };
+    eachLine(buf, line => {
+      const c0 = line.charCodeAt(0), c1 = line.charCodeAt(1);
+      if (c0 === 118 && (c1 === 32 || c1 === 9)) { // "v "
+        const p = line.trim().split(/\s+/); V.push(+p[1]); V.push(+p[2]); V.push(+p[3]);
+      } else if (c0 === 102 && (c1 === 32 || c1 === 9)) { // "f "
+        if (!cur) obj(base);
+        const p = line.trim().split(/\s+/), nv = V.len / 3, ix = [];
+        for (let k = 1; k < p.length; k++) { let n = parseInt(p[k], 10); if (!n) continue; n = n < 0 ? nv + n : n - 1; ix.push(n); }
+        for (let k = 1; k + 1 < ix.length; k++) { cur.f.push(ix[0]); cur.f.push(ix[k]); cur.f.push(ix[k + 1]); }
+      } else if ((c0 === 111 || c0 === 103) && (c1 === 32 || c1 === 9)) { // "o " or "g "
+        const name = line.slice(2).trim() || base;
+        if (cur && !cur.f.len && objs.length) cur.name = name; // "o" then "g" with no faces between: keep the later name
+        else obj(name);
+      }
+    });
+    const v = V.out(), out = [];
+    for (const o of objs) {
+      const f = o.f.out();
+      if (!f.length) continue;
+      // Keep only the vertices this object uses, renumbered from 0.
+      const map = new Int32Array(v.length / 3).fill(-1), lv = grow(Float64Array, 1 << 12);
+      let n = 0;
+      for (let k = 0; k < f.length; k++) {
+        const g = f[k];
+        if (g >= map.length) { f[k] = 0; continue; }
+        if (map[g] < 0) { map[g] = n++; lv.push(v[3 * g]); lv.push(v[3 * g + 1]); lv.push(v[3 * g + 2]); }
+        f[k] = map[g];
+      }
+      out.push({ name: o.name, v: lv.out(), t: f });
+    }
+    return out;
+  }
+
+  /* DXF (ASCII): 3DFACE, polyface meshes and polygon meshes, grouped by layer. */
+  function parseDxf(buf, base) {
+    const head = new TextDecoder().decode(new Uint8Array(buf, 0, Math.min(buf.byteLength, 22)));
+    if (/^AutoCAD Binary DXF/.test(head)) throw { code: "dxf_binary" };
+    const layers = new Map(), notes = new Set();
+    const L = name => {
+      if (!layers.has(name)) layers.set(name, { name, v: grow(Float64Array), t: grow(Uint32Array), keys: new Map() });
+      return layers.get(name);
+    };
+    const vert = (o, x, y, z) => {
+      const k = `${Math.round(x * 1e3)}|${Math.round(y * 1e3)}|${Math.round(z * 1e3)}`;
+      let i = o.keys.get(k);
+      if (i === undefined) { i = o.v.len / 3; o.keys.set(k, i); o.v.push(x); o.v.push(y); o.v.push(z); }
+      return i;
+    };
+    const tri = (o, a, b, c) => { if (a !== b && b !== c && a !== c) { o.t.push(a); o.t.push(b); o.t.push(c); } };
+    let code = null, ent = null, g = {}, poly = null, section = "";
+    const finish = () => {
+      if (!ent) return;
+      const lay = g[8] || "0";
+      if (ent === "3DFACE") {
+        const o = L(lay), p = k => vert(o, +g[10 + k] || 0, +g[20 + k] || 0, +g[30 + k] || 0);
+        const a = p(0), b = p(1), c = p(2), d = g[13] === undefined ? c : p(3);
+        tri(o, a, b, c); if (d !== c) tri(o, a, c, d);
+      } else if (ent === "POLYLINE") {
+        const fl = +g[70] || 0;
+        poly = fl & 64 ? { kind: "pface", o: L(lay), vs: [] } : fl & 16 ? { kind: "pmesh", o: L(lay), vs: [], m: +g[71] || 0, n: +g[72] || 0, closeM: !!(fl & 1), closeN: !!(fl & 32) } : { kind: "skip" };
+      } else if (ent === "VERTEX" && poly && poly.kind !== "skip") {
+        const fl = +g[70] || 0;
+        if (poly.kind === "pmesh") poly.vs.push(vert(poly.o, +g[10] || 0, +g[20] || 0, +g[30] || 0));
+        else if (fl & 64) poly.vs.push(vert(poly.o, +g[10] || 0, +g[20] || 0, +g[30] || 0));
+        else if (fl & 128) {
+          const ix = [71, 72, 73, 74].map(k => Math.abs(+g[k] || 0)).filter(n => n > 0).map(n => poly.vs[n - 1]).filter(n => n !== undefined);
+          if (ix.length >= 3) { tri(poly.o, ix[0], ix[1], ix[2]); if (ix.length === 4) tri(poly.o, ix[0], ix[2], ix[3]); }
+        }
+      } else if (ent === "SEQEND" && poly) {
+        if (poly.kind === "pmesh" && poly.m > 1 && poly.n > 1 && poly.vs.length >= poly.m * poly.n) {
+          const { m, n, vs, o } = poly, id = (i, j) => vs[(i % m) * n + (j % n)];
+          for (let i = 0; i < (poly.closeM ? m : m - 1); i++) for (let j = 0; j < (poly.closeN ? n : n - 1); j++) { tri(o, id(i, j), id(i + 1, j), id(i + 1, j + 1)); tri(o, id(i, j), id(i + 1, j + 1), id(i, j + 1)); }
+        }
+        poly = null;
+      } else if (ent === "MESH") notes.add("mesh");
+      else if (ent === "INSERT") notes.add("insert");
+      ent = null; g = {};
+    };
+    eachLine(buf, raw => {
+      const s = raw.trim();
+      if (code === null) { code = parseInt(s, 10); return; }
+      const c = code; code = null;
+      if (c === 0) {
+        finish();
+        if (s === "SECTION") { section = "?"; return; }
+        if (s === "ENDSEC") { section = ""; return; }
+        if (s === "EOF") return false;
+        if (section === "ENTITIES") ent = s;
+        return;
+      }
+      if (c === 2 && section === "?") { section = s; return; }
+      if (ent) g[c] = s;
+    });
+    finish();
+    const out = [];
+    for (const o of layers.values()) if (o.t.len) out.push({ name: o.name === "0" ? base : o.name, v: o.v.out(), t: o.t.out() });
+    return { objs: out, notes: [...notes] };
+  }
+
+  /* Edges used once are the open edge of a surface. A volume has none. */
+  function edgesOf(t, nv) {
+    const E = new Map(), key = (a, b) => (a < b ? a * nv + b : b * nv + a);
+    for (let k = 0; k < t.length; k += 3) for (let e = 0; e < 3; e++) {
+      const a = t[k + e], b = t[k + (e + 1) % 3], kk = key(a, b);
+      const c = E.get(kk); if (c === undefined) E.set(kk, [a, b]); else if (c !== 2) E.set(kk, 2); else E.set(kk, 3);
+    }
+    return E;
+  }
+  function outlineOf(v, t, closed, E) {
+    const nv = v.length / 3, loops = [];
+    if (!closed) {
+      const next = new Map();
+      for (const val of E.values()) if (Array.isArray(val)) next.set(val[0], val[1]);
+      const seen = new Set();
+      for (const s of next.keys()) {
+        if (seen.has(s)) continue;
+        const loop = []; let p = s, guard = 0;
+        while (p !== undefined && !seen.has(p) && guard++ < 2e6) { seen.add(p); loop.push([v[3 * p], v[3 * p + 1]]); p = next.get(p); }
+        if (loop.length > 2) loops.push(loop);
+      }
+    }
+    if (!loops.length) { // convex hull of the vertices in plan
+      const P = [];
+      const step = Math.max(1, Math.floor(nv / 20000));
+      for (let i = 0; i < nv; i += step) P.push([v[3 * i], v[3 * i + 1]]);
+      P.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+      const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+      const lo = [], up = [];
+      for (const p of P) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+      for (let i = P.length - 1; i >= 0; i--) { const p = P[i]; while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+      loops.push(lo.slice(0, -1).concat(up.slice(0, -1)));
+    }
+    // Keep the outline small: longest loops first, about 1500 points in all.
+    loops.sort((a, b) => b.length - a.length);
+    const keep = loops.slice(0, 20), total = keep.reduce((a, l) => a + l.length, 0), step = Math.max(1, Math.ceil(total / 1500));
+    return keep.map(l => l.filter((_, i) => i % step === 0).map(p => [+p[0].toFixed(2), +p[1].toFixed(2)])).filter(l => l.length > 2);
+  }
+  /* Turns one parsed object into a stored mesh: coordinates relative to the site origin, kept as 32-bit floats. */
+  function finalize(o, origin) {
+    const nv = o.v.length / 3, v = new Float32Array(o.v.length);
+    for (let i = 0; i < nv; i++) { v[3 * i] = o.v[3 * i] - origin[0]; v[3 * i + 1] = o.v[3 * i + 1] - origin[1]; v[3 * i + 2] = o.v[3 * i + 2]; }
+    const t = o.t;
+    const E = edgesOf(t, nv);
+    let open = 0, bad = 0;
+    for (const val of E.values()) { if (Array.isArray(val)) open++; else if (val === 3) bad++; }
+    const closed = open === 0 && t.length > 0;
+    let vol = 0;
+    for (let k = 0; k < t.length; k += 3) {
+      const a = 3 * t[k], b = 3 * t[k + 1], c = 3 * t[k + 2];
+      vol += v[a] * (v[b + 1] * v[c + 2] - v[b + 2] * v[c + 1]) - v[a + 1] * (v[b] * v[c + 2] - v[b + 2] * v[c]) + v[a + 2] * (v[b] * v[c + 1] - v[b + 1] * v[c]);
+    }
+    const bb = [Infinity, Infinity, Infinity, -Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < nv; i++) for (let d = 0; d < 3; d++) { const x = v[3 * i + d]; if (x < bb[d]) bb[d] = x; if (x > bb[d + 3]) bb[d + 3] = x; }
+    return { v, t, sign: vol < 0 ? -1 : 1, closed, openEdges: open, badEdges: bad, ntri: t.length / 3, bbox: bb.map(x => +x.toFixed(3)), outline: outlineOf(v, t, closed, E) };
+  }
+
+  /* Plan-view index: a uniform grid of cells, each listing the triangles whose plan box touches it. */
+  function indexOf(m) {
+    if (m.idx) return m.idx;
+    const { v, t } = m, nt = t.length / 3, bb = m.bbox;
+    const w = Math.max(bb[3] - bb[0], 1e-3), h = Math.max(bb[4] - bb[1], 1e-3);
+    let cs = Math.max(Math.sqrt(w * h / Math.max(1, nt)) * 1.5, 0.25);
+    while ((w / cs + 1) * (h / cs + 1) > 4e6) cs *= 1.5;
+    const nx = Math.ceil(w / cs) + 1, ny = Math.ceil(h / cs) + 1, x0 = bb[0], y0 = bb[1];
+    const cnt = new Uint32Array(nx * ny + 1), keep = new Uint8Array(nt);
+    const range = (k, fn) => {
+      const a = 3 * t[3 * k], b = 3 * t[3 * k + 1], c = 3 * t[3 * k + 2];
+      const ar = (v[b] - v[a]) * (v[c + 1] - v[a + 1]) - (v[c] - v[a]) * (v[b + 1] - v[a + 1]);
+      if (Math.abs(ar) < 1e-9) return; // vertical faces never give a single crossing
+      keep[k] = 1;
+      const i0 = Math.max(0, Math.floor((Math.min(v[a], v[b], v[c]) - x0) / cs)), i1 = Math.min(nx - 1, Math.floor((Math.max(v[a], v[b], v[c]) - x0) / cs));
+      const j0 = Math.max(0, Math.floor((Math.min(v[a + 1], v[b + 1], v[c + 1]) - y0) / cs)), j1 = Math.min(ny - 1, Math.floor((Math.max(v[a + 1], v[b + 1], v[c + 1]) - y0) / cs));
+      for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) fn(j * nx + i);
+    };
+    for (let k = 0; k < nt; k++) range(k, c => { cnt[c + 1]++; });
+    for (let c = 0; c < nx * ny; c++) cnt[c + 1] += cnt[c];
+    const fill = cnt.slice(0, nx * ny), list = new Uint32Array(cnt[nx * ny]);
+    for (let k = 0; k < nt; k++) range(k, c => { list[fill[c]++] = k; });
+    m.idx = { x0, y0, cs, nx, ny, start: cnt, list };
+    return m.idx;
+  }
+  /* Every crossing of the vertical line at (x, y): z, and +1 where the face looks up, -1 where it looks down. */
+  const HZ = [], HS = [];
+  function hits(m, x, y) {
+    HZ.length = 0; HS.length = 0;
+    const I = indexOf(m), i = Math.floor((x - I.x0) / I.cs), j = Math.floor((y - I.y0) / I.cs);
+    if (i < 0 || j < 0 || i >= I.nx || j >= I.ny) return 0;
+    const { v, t } = m, c = j * I.nx + i;
+    for (let k = I.start[c]; k < I.start[c + 1]; k++) {
+      const q = 3 * I.list[k], a = 3 * t[q], b = 3 * t[q + 1], d3 = 3 * t[q + 2];
+      const ax = v[a] - x, ay = v[a + 1] - y, bx = v[b] - x, by = v[b + 1] - y, cx = v[d3] - x, cy = v[d3 + 1] - y;
+      const w0 = bx * cy - cx * by, w1 = cx * ay - ax * cy, w2 = ax * by - bx * ay, d = w0 + w1 + w2;
+      if (d > 0 ? (w0 < 0 || w1 < 0 || w2 < 0) : (w0 > 0 || w1 > 0 || w2 > 0)) continue;
+      if (d === 0) continue;
+      HZ.push((w0 * v[a + 2] + w1 * v[b + 2] + w2 * v[d3 + 2]) / d); HS.push(d > 0 ? m.sign : -m.sign);
+    }
+    return HZ.length;
+  }
+  const topOf = (m, x, y) => { const n = hits(m, x, y); if (!n) return null; let z = -Infinity; for (let k = 0; k < n; k++) if (HZ[k] > z) z = HZ[k]; return z; };
+  /* Inside intervals of a closed volume, from the top down: [top, bottom, top, bottom, ...]. */
+  function intervals(m, x, y, out) {
+    const n = hits(m, x, y); if (!n) return 0;
+    const ord = Array.from({ length: n }, (_, k) => k).sort((a, b) => HZ[b] - HZ[a]);
+    let depth = 0, top = 0, bad = 0, lastZ = NaN, lastS = 0;
+    for (const k of ord) {
+      const z = HZ[k], s = HS[k];
+      if (s === lastS && Math.abs(z - lastZ) < 1e-5) continue; // the same crossing seen twice on a shared edge
+      lastZ = z; lastS = s;
+      if (s > 0) { if (depth === 0) top = z; depth++; }
+      else { depth--; if (depth === 0) { if (top - z > 1e-4) out.push(top, z); } else if (depth < 0) { bad = 1; depth = 0; } }
+    }
+    return depth !== 0 || bad ? -1 : 1;
+  }
+
+  /* Flags on a sampled column. */
+  const F = { gap: 1, overlap: 2, open: 4, noBase: 8, deep: 16 };
+  /* One column at (x, y). M is the model: { vols, ground, emb (top to bottom), gw, gwMode, gwDepth, maxDepth, minEmb }. */
+  function column(M, x, y, full) {
+    x += 0.00137; y += 0.00071; // keeps the line off shared edges and vertices
+    const c = { st: "ok", fl: 0, zg: null, H: 0, emb: [], gwt: null, L: [], zb: null };
+    let ints = null;
+    const getInts = () => {
+      if (ints) return ints;
+      ints = [];
+      for (const vo of M.vols) {
+        const out = [], r = intervals(vo.m, x, y, out);
+        if (r < 0) c.fl |= F.open;
+        for (let k = 0; k < out.length; k += 2) ints.push({ top: out[k], bot: out[k + 1], vo });
+      }
+      ints.sort((a, b) => b.top - a.top);
+      return ints;
+    };
+    c.zg = M.ground ? topOf(M.ground, x, y) : null;
+    if (c.zg === null) { const I = getInts(); if (I.length) c.zg = I[0].top; }
+    // Embankment zones, bottom up: each runs from the higher of the ground and the zones below it, up to its own surface.
+    let zb = c.zg === null ? -Infinity : c.zg;
+    const emb = [];
+    for (let k = M.emb.length - 1; k >= 0; k--) {
+      const z = topOf(M.emb[k].m, x, y);
+      if (z === null || c.zg === null) continue;
+      const h = Math.round((z - zb) * 100) / 100;
+      if (h > 0) { emb.push([M.emb[k].fill, h]); c.H += h; }
+      if (z > zb) zb = z;
+    }
+    c.emb = emb.reverse(); c.H = Math.round(c.H * 100) / 100;
+    if (c.zg === null) { c.st = "nomodel"; return c; }
+    if (c.H < M.minEmb && !full) { c.st = "nofill"; return c; }
+    // Ground profile from the ground surface down, through the mapped volumes.
+    const I = getInts(), tol = 0.2, zMax = c.zg - M.maxDepth;
+    let cur = c.zg;
+    const L = [];
+    const add = (u, h, dr) => { const p = L[L.length - 1]; if (p && p[0] === u && p[2] === dr) p[1] += h; else L.push([u, h, dr]); };
+    let done = false;
+    for (let k = 0; k < I.length && !done; k++) {
+      let { top, bot, vo } = I[k];
+      if (bot >= cur - 1e-4) { if (top > cur + tol) c.fl |= F.overlap; continue; }
+      if (top > cur + tol && L.length) c.fl |= F.overlap;
+      if (top < cur - tol) { c.fl |= F.gap; c.st = "gap"; c.gapAt = +(c.zg - top).toFixed(2); done = true; break; }
+      top = cur; // small differences at the ground surface or between volumes are taken up by this volume
+      if (vo.unit === "base") { c.base = true; done = true; break; }
+      if (vo.unit === null || vo.unit === undefined) { c.st = "unmapped"; c.unmapped = vo.id; done = true; break; }
+      if (bot <= zMax) { bot = zMax; c.fl |= F.deep; done = true; }
+      add(vo.unit, top - bot, vo.dr);
+      cur = bot;
+    }
+    if (!done && !c.base) c.fl |= F.noBase;
+    c.zb = +cur.toFixed(3);
+    // Slivers where a volume pinches out are merged into the layer below (or above, at the base), so a
+    // centimetre of clay at the surface doesn't give a meaningless strain.
+    for (let k = 0; k < L.length; k++) if (L[k][1] < M.minLayer && L.length > 1) {
+      const into = k + 1 < L.length ? k + 1 : k - 1;
+      L[into][1] += L[k][1]; L.splice(k, 1); k = -1;
+      for (let q = 0; q + 1 < L.length; q++) if (L[q][0] === L[q + 1][0] && L[q][2] === L[q + 1][2]) { L[q][1] += L[q + 1][1]; L.splice(q + 1, 1); q--; }
+    }
+    c.L = L.map(([u, h, dr]) => [u, Math.round(h * 100) / 100, dr]).filter(l => l[1] > 0);
+    if (!c.L.length && c.st === "ok") c.st = "noground";
+    if (M.gwMode === "surface") {
+      const z = M.gw ? topOf(M.gw, x, y) : null;
+      if (z === null) { if (c.st === "ok") c.st = "nogw"; }
+      else c.gwt = Math.max(0, Math.round((c.zg - z) * 100) / 100);
+    } else c.gwt = M.gwDepth;
+    return c;
+  }
+  const modelOf = d => ({
+    vols: d.vols.map(x => ({ ...x, m: meshes.get(x.id) })).filter(x => x.m),
+    ground: d.ground ? meshes.get(d.ground) || null : null,
+    emb: d.emb.map(x => ({ ...x, m: meshes.get(x.id) })).filter(x => x.m),
+    gw: d.gw ? meshes.get(d.gw) || null : null,
+    gwMode: d.gwMode, gwDepth: d.gwDepth, maxDepth: d.maxDepth, minEmb: d.minEmb, minLayer: d.minLayer || 0,
+  });
+  const inPoly = (rings, x, y) => {
+    let inside = false;
+    for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const [xi, yi] = r[i], [xj, yj] = r[j];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+
+  /* Engine input for one column. ctx carries the project settings, units and fills; gt is the treatment. */
+  function engineInput(ctx, c, gt) {
+    return {
+      ...ctx.proj, q: ctx.q, tc: ctx.tc, gwt: String(c.gwt),
+      layers: c.L.map(([u, h, dr], i) => ({ ...(ctx.units[u] || {}), id: i + 1, unitId: u, h: String(h), drainage: dr })),
+      emb: c.emb.map(([f, h], i) => { const fl = ctx.fills[f]; return { ...(fl || {}), found: !!fl, id: i + 1, fillId: f, h: String(h) }; }),
+      surOn: false, drOn: false, preOn: false, ...(gt || {}),
+    };
+  }
+  function analyseCols(ctx, cols, gtOf) {
+    const cache = new Map(), out = [];
+    for (let k = 0; k < cols.length; k++) {
+      const c = cols[k];
+      if (!c || c.st !== "ok") { out.push(null); continue; }
+      const g = gtOf(k), key = JSON.stringify([c.L, c.emb, c.gwt, g]);
+      let r = cache.get(key);
+      if (!r) {
+        const res = Engine.analyse(engineInput(ctx, c, ctx.gts[g]));
+        if (res.errors.length) r = { err: res.errors[0].msg };
+        else { const a = res.at(res.td); r = { tot: a.total, pcs: res.pcs, i: a.i, p: a.p, s: a.s, e: a.e, q: res.q, drA: res.drOn ? res.drainArea : 0, drL: res.drainLen }; }
+        if (cache.size > 20000) cache.clear();
+        cache.set(key, r);
+      }
+      out.push(r);
+    }
+    return out;
+  }
+
+  const ops = {
+    ping: () => "pong",
+    reset: () => { meshes.clear(); return true; },
+    async import(d) {
+      const ext = d.ext, base = d.name;
+      let objs, notes = [];
+      if (ext === "obj") objs = parseObj(d.buf, base);
+      else if (ext === "dxf") { const r = parseDxf(d.buf, base); objs = r.objs; notes = r.notes; }
+      else throw { code: "type" };
+      if (!objs.length) throw { code: "empty" };
+      // Y-up OBJ files carry elevation in y and northing (often negated) in z.
+      let yUp = false;
+      if (ext === "obj") {
+        const o = objs[0], n = o.v.length / 3; let my = 0, mz = 0;
+        for (let i = 0; i < n; i++) { my += Math.abs(o.v[3 * i + 1]); mz += Math.abs(o.v[3 * i + 2]); }
+        if (mz / n > 1e5 && my / n < 1e4) { yUp = true; for (const ob of objs) for (let i = 0; i < ob.v.length; i += 3) { const y = ob.v[i + 1]; ob.v[i + 1] = Math.abs(ob.v[i + 2]); ob.v[i + 2] = y; } }
+      }
+      const origin = d.origin || [Math.round(objs[0].v[0] / 1000) * 1000, Math.round(objs[0].v[1] / 1000) * 1000];
+      const out = [];
+      let id = d.firstId;
+      for (const o of objs) {
+        const m = finalize(o, origin);
+        meshes.set(id, m);
+        await idb("readwrite", s => s.put({ v: m.v, t: m.t, sign: m.sign }, d.keyBase + id));
+        out.push({ id, name: o.name, ntri: m.ntri, closed: m.closed, openEdges: m.openEdges, bbox: m.bbox, outline: m.outline });
+        id++;
+      }
+      return { origin, meshes: out, notes, yUp };
+    },
+    async load(d) {
+      const missing = [];
+      for (const it of d.items) {
+        if (meshes.has(it.id)) continue;
+        const r = await idb("readonly", s => s.get(it.key)).catch(() => null);
+        if (!r || !r.v || !r.t) { missing.push(it.id); continue; }
+        const m = { v: r.v, t: r.t, sign: r.sign || 1 };
+        const bb = [Infinity, Infinity, Infinity, -Infinity, -Infinity, -Infinity];
+        for (let i = 0; i < m.v.length; i += 3) for (let k = 0; k < 3; k++) { const x = m.v[i + k]; if (x < bb[k]) bb[k] = x; if (x > bb[k + 3]) bb[k + 3] = x; }
+        m.bbox = bb; meshes.set(it.id, m);
+      }
+      return { missing };
+    },
+    /* Raw mesh data, for saving a project file. */
+    get(d) { const m = meshes.get(d.mid); return m ? { v: m.v, t: m.t, sign: m.sign } : null; },
+    async put(d) {
+      const m = { v: d.v, t: d.t, sign: d.sign || 1 }, bb = [Infinity, Infinity, Infinity, -Infinity, -Infinity, -Infinity];
+      for (let i = 0; i < m.v.length; i += 3) for (let k = 0; k < 3; k++) { const x = m.v[i + k]; if (x < bb[k]) bb[k] = x; if (x > bb[k + 3]) bb[k + 3] = x; }
+      m.bbox = bb; meshes.set(d.mid, m);
+      await idb("readwrite", s => s.put({ v: m.v, t: m.t, sign: m.sign }, d.key));
+      return true;
+    },
+    async drop(d) {
+      d.ids.forEach(id => meshes.delete(id));
+      await idb("readwrite", s => { let r; d.keys.forEach(k => { r = s.delete(k); }); return r; }).catch(() => {});
+      return true;
+    },
+    /* Samples the whole grid. Nodes sit at whole multiples of the spacing, inside the boundary if there is one. */
+    sample(d, progress) {
+      const M = modelOf(d.model), s = d.grid.s, bb = d.grid.bbox;
+      const i0 = Math.ceil(bb[0] / s), i1 = Math.floor(bb[2] / s), j0 = Math.ceil(bb[1] / s), j1 = Math.floor(bb[3] / s);
+      const nI = i1 - i0 + 1, nJ = j1 - j0 + 1, cols = [], I = [], J = [];
+      const rings = d.grid.rings, total = Math.max(1, nI * nJ);
+      let done = 0, last = 0;
+      for (let j = j0; j <= j1; j++) {
+        for (let i = i0; i <= i1; i++) {
+          const x = i * s, y = j * s;
+          if (rings && !inPoly(rings, x, y)) continue;
+          const c = column(M, x, y, false);
+          if (c.st === "nofill" || (c.st === "nomodel" && !(c.H > 0))) continue;
+          cols.push(c); I.push(i); J.push(j);
+          if (cols.length > d.grid.maxPts) throw { code: "too_many", n: cols.length };
+        }
+        done += nI;
+        if (done - last > total / 50) { last = done; progress(done / total); }
+      }
+      return { cols, I, J };
+    },
+    analyse(d) { return analyseCols(d.ctx, d.cols, k => d.gtIdx[k]); },
+    /* Columns at any points, for the probe and the sections. full = sample even where there is no fill. */
+    columns(d) {
+      const M = modelOf(d.model);
+      const cols = d.pts.map(p => column(M, p[0], p[1], true));
+      let res = null;
+      if (d.ctx) {
+        const off = cols.map(c => c.st === "ok" && c.H < d.model.minEmb);
+        res = analyseCols(d.ctx, cols.map((c, k) => (off[k] ? null : c)), k => d.gtIdx[k]);
+        off.forEach((o, k) => { if (o) res[k] = { tot: 0, pcs: 0, i: 0, p: 0, s: 0, e: 0, q: 0, off: true }; });
+      }
+      return { cols, res };
+    },
+  };
+  self.onmessage = async ev => {
+    const { id, op } = ev.data;
+    try {
+      const result = await ops[op](ev.data, p => self.postMessage({ id, progress: p }));
+      self.postMessage({ id, ok: true, result });
+    } catch (e) {
+      self.postMessage({ id, ok: false, err: e && e.code ? e : { code: "fail", msg: String((e && e.message) || e) } });
+    }
+  };
+}
+
+/* ---------- Site model: a 3D ground model and embankment surfaces, sampled on a grid ---------- */
+/* P.site holds settings and small per-mesh summaries. Meshes and grid results live in IndexedDB, keyed by project. */
+const siteZone = () => (P.site.zone || zoneNow());
+const relToLL = (x, y) => MGA.toLL(x + P.site.origin[0], y + P.site.origin[1], siteZone());
+const llToRel = (lat, lng) => { const p = MGA.fromLL(lat, lng, siteZone()); return [p.E - P.site.origin[0], p.N - P.site.origin[1]]; };
+const meshKey = (proj, id) => `mesh-${proj}-${id}`;
+const gridKey = proj => `grid-${proj}`;
+const meshesOf = role => P.site.meshes.filter(m => m.role === role);
+const smNum = v => (v === "" || v === null || v === undefined ? NaN : Number(v));
+
+/* ---------- Worker host ---------- */
+/* One worker holds the meshes and samples. Extra workers share the engine runs. Where the page can't start
+   workers, the same code runs here, in turn, which is slower and holds up the page while it runs. */
+const SW = { main: null, pool: [], seq: 0, pend: new Map(), inline: false, loadedFor: null, loaded: new Set(), busy: false, cancel: false };
+function inlineWorker() {
+  const w = { onmessage: null, terminate() {} }, inner = { onmessage: null, postMessage: m => setTimeout(() => w.onmessage && w.onmessage({ data: m })) };
+  w.postMessage = m => setTimeout(() => inner.onmessage({ data: m }));
+  siteWorkerBody(inner, Engine);
+  return w;
+}
+function wire(w) {
+  w.onmessage = ev => {
+    const m = ev.data, p = SW.pend.get(m.id);
+    if (!p) return;
+    if (m.progress !== undefined) { if (p.onp) p.onp(m.progress); return; }
+    SW.pend.delete(m.id);
+    if (m.ok) p.ok(m.result); else p.no(m.err);
+  };
+  return w;
+}
+let swStart = null;
+function startWorkers() {
+  if (swStart) return swStart;
+  swStart = (async () => {
+    let url = null;
+    try {
+      const src = `"use strict";\n${engineFactory.toString()}\n${siteWorkerBody.toString()}\nsiteWorkerBody(self, engineFactory());`;
+      url = URL.createObjectURL(new Blob([src], { type: "text/javascript" }));
+      const w = wire(new Worker(url));
+      const ok = await Promise.race([callW(w, "ping"), new Promise(r => setTimeout(() => r(null), 5000))]).catch(() => null);
+      if (ok !== "pong") throw new Error("no worker");
+      SW.main = w;
+      const n = Math.max(0, Math.min(5, (navigator.hardwareConcurrency || 2) - 1));
+      for (let k = 0; k < n; k++) SW.pool.push(wire(new Worker(url)));
+    } catch (e) {
+      if (SW.main) SW.main.terminate();
+      SW.main = wire(inlineWorker()); SW.pool = []; SW.inline = true;
+    }
+  })();
+  return swStart;
+}
+function callW(w, op, data = {}, onp, transfer) {
+  return new Promise((ok, no) => {
+    const id = ++SW.seq;
+    SW.pend.set(id, { ok, no, onp });
+    w.postMessage({ ...data, id, op }, transfer || []); // the request id always wins over a field of the same name
+  });
+}
+const siteCall = async (op, data, onp, transfer) => { await startWorkers(); return callW(SW.main, op, data, onp, transfer); };
+/* Brings the worker's meshes into line with the open project. */
+async function ensureMeshes() {
+  await startWorkers();
+  if (SW.loadedFor !== STORE.current) { await callW(SW.main, "reset"); SW.loaded = new Set(); SW.loadedFor = STORE.current; }
+  const need = P.site.meshes.filter(m => !SW.loaded.has(m.id));
+  if (!need.length) return [];
+  const { missing } = await callW(SW.main, "load", { items: need.map(m => ({ id: m.id, key: meshKey(STORE.current, m.id) })) });
+  need.forEach(m => { if (!missing.includes(m.id)) SW.loaded.add(m.id); });
+  return missing;
+}
+
+/* ---------- Importing meshes ---------- */
+let smRole = "vol";
+const SM_LIMIT = 600e6;
+function smNote(kind, text, title = "Site model") { $("smMsg").innerHTML = text ? `<div class="msg ${kind}"><b>${esc(title)}</b><span>${esc(text)}</span></div>` : ""; }
+/* Guesses the soil unit for a Leapfrog volume from its name: the longest unit name it contains. */
+const looseName = t => String(t || "").toLowerCase().replace(/[_\-.]+/g, " ").replace(/\s+/g, " ").trim();
+function guessUnit(name) {
+  const n = looseName(name);
+  if (/\b(bedrock|basement|rock)\b/.test(n)) return "base";
+  let best = null, len = 0;
+  P.units.forEach(u => { const un = looseName(u.name); if (un && n.includes(un) && un.length > len) { best = u.id; len = un.length; } });
+  return best;
+}
+async function smImport(files) {
+  const role = smRole, btns = ["smAddVol", "smAddGround", "smAddEmb", "smAddGw"].map($);
+  btns.forEach(b => { b.disabled = true; }); smNote();
+  const added = [], notes = [];
+  try {
+    for (const file of files) {
+      const ext = (file.name.match(/\.([^.]+)$/) || [])[1]?.toLowerCase();
+      if (!["obj", "dxf"].includes(ext)) throw { code: "type", file: file.name };
+      if (file.size > SM_LIMIT) throw { code: "too_big", file: file.name };
+      $("smProg").textContent = `Reading ${file.name}…`;
+      await ensureMeshes();
+      const firstId = P.site.meshes.reduce((a, m) => Math.max(a, m.id), 0) + 1;
+      const buf = await file.arrayBuffer();
+      if (!P.site.origin) P.site.zone = zoneNow();
+      const r = await siteCall("import", { buf, ext, name: file.name.replace(/\.[^.]+$/, ""), origin: P.site.origin, keyBase: `mesh-${STORE.current}-`, firstId }, null, [buf]);
+      if (!P.site.origin) P.site.origin = r.origin;
+      let list = r.meshes;
+      if (role !== "vol" && list.length > 1) {
+        // A surface file with several layers: keep them as separate surfaces only for embankment zones.
+        if (role !== "emb") { await siteCall("drop", { ids: list.slice(1).map(m => m.id), keys: list.slice(1).map(m => meshKey(STORE.current, m.id)) }); list = list.slice(0, 1); notes.push(`${file.name} has several layers. Only ${list[0].name} was used.`); }
+      }
+      if (role === "ground" || role === "gw") {
+        const old = meshesOf(role);
+        if (old.length) await smDrop(old.map(m => m.id));
+      }
+      list.forEach(m => {
+        SW.loaded.add(m.id);
+        const rec = { id: m.id, name: m.name, file: file.name, role, unit: null, dr: "two", fill: null, ntri: m.ntri, closed: m.closed, openEdges: m.openEdges, bbox: m.bbox, outline: m.outline };
+        if (role === "vol") rec.unit = guessUnit(m.name);
+        if (role === "emb") { const f = P.fills.find(x => x.name && looseName(m.name).includes(looseName(x.name))) || P.fills[0]; rec.fill = f ? f.id : null; }
+        if (role === "emb") { // new surfaces go on top of the list
+          const firstEmb = P.site.meshes.findIndex(x => x.role === "emb");
+          P.site.meshes.splice(firstEmb < 0 ? P.site.meshes.length : firstEmb, 0, rec);
+        } else P.site.meshes.push(rec);
+        added.push(rec);
+        if (role === "vol" && !m.closed) notes.push(`${m.name} is not a closed volume (${m.openEdges} open edges), so columns through it may be wrong. Export Leapfrog output volumes, not surfaces.`);
+        if (role !== "vol" && m.closed) notes.push(`${m.name} is a closed volume. Its top is used as the surface.`);
+      });
+      if (r.yUp) notes.push(`${file.name} was written with Y up, so its axes were swapped.`);
+      if (r.notes.includes("mesh")) notes.push(`${file.name} has MESH entities, which can't be read. Export as 3DFACE or polyface meshes.`);
+      if (r.notes.includes("insert")) notes.push(`${file.name} places blocks (INSERT), which are not read. Explode them before export.`);
+    }
+    const dist = added.length ? Math.hypot(...[0, 1].map(k => (added[0].bbox[k] + added[0].bbox[k + 3]) / 2)) : 0;
+    if (dist > 80000) notes.push("These coordinates are far from the other meshes. Check they use the same coordinate system.");
+    P.isExample = false; siteChanged(true);
+    smNote("warn", `Added ${added.map(m => `${m.name} (${m.ntri.toLocaleString()} triangles)`).join(", ")}. Coordinates are read as GDA2020 MGA zone ${siteZone()}, with elevations in metres. ${notes.join(" ")}`.trim());
+  } catch (e) {
+    const c = e && e.code, f = e && e.file ? `${e.file}: ` : "";
+    smNote("err", c === "type" ? `${f}use OBJ or DXF files.`
+      : c === "too_big" ? `${f}this file is over 600 MB. Export a smaller area, or decimate the meshes in Leapfrog.`
+      : c === "dxf_binary" ? `${f}binary DXF can't be read. Export ASCII DXF.`
+      : c === "empty" ? `${f}no triangles were found. Export meshes as OBJ, or as DXF 3DFACE or polyface meshes.`
+      : e && e.name === "QuotaExceededError" ? "The browser ran out of storage for these meshes. Remove unused meshes, or decimate them in Leapfrog."
+      : `${f}the file couldn’t be read. Check it opens in your CAD or GIS software, then try again.`);
+  } finally { btns.forEach(b => { b.disabled = false; }); $("smProg").textContent = ""; renderSite(); }
+}
+async function smDrop(ids) {
+  await siteCall("drop", { ids, keys: ids.map(id => meshKey(STORE.current, id)) }).catch(() => {});
+  ids.forEach(id => SW.loaded.delete(id));
+  P.site.meshes = P.site.meshes.filter(m => !ids.includes(m.id));
+  if (!P.site.meshes.length) { P.site.origin = null; P.site.zone = null; }
+}
+
+/* ---------- Tables ---------- */
+const unitOptions = sel => `<option value=""${sel === null ? " selected" : ""}>Not matched</option>` + P.units.map(u => `<option value="${u.id}"${u.id === sel ? " selected" : ""}>${esc(u.name || "Unnamed unit")}</option>`).join("") + `<option value="base"${sel === "base" ? " selected" : ""}>Base: stop here</option>`;
+const fillOptions = sel => `<option value=""${sel === null ? " selected" : ""}>Choose…</option>` + P.fills.map(f => `<option value="${f.id}"${f.id === sel ? " selected" : ""}>${esc(f.name || "Unnamed fill")}</option>`).join("");
+const triTxt = m => `${m.ntri.toLocaleString()}${m.role === "vol" ? (m.closed ? " · closed" : ` · <span class="bad">${m.openEdges.toLocaleString()} open edges</span>`) : ""}`;
+const delBtn = m => `<button class="icon" type="button" data-sact="del" data-mid="${m.id}" aria-label="Remove ${esc(m.name)}">✕</button>`;
+function renderSiteTables() {
+  const vols = meshesOf("vol"), emb = meshesOf("emb"), gr = meshesOf("ground"), gw = meshesOf("gw");
+  const empty = t => `<tbody><tr><td class="l" style="color:var(--muted)">${t}</td></tr></tbody>`;
+  $("smVolTable").innerHTML = vols.length ? `<thead><tr><th class="l">Volume</th><th class="l">Triangles</th><th class="l">Soil unit</th><th class="l">Drainage</th><th></th></tr></thead><tbody>` + vols.map(m => `<tr${m.unit === null ? ' class="warnrow"' : ""}>
+    <td class="l"><span class="mname">${esc(m.name)}</span><span class="mfile">${esc(m.file)}</span></td><td class="l mmeta">${triTxt(m)}</td>
+    <td><select class="unitsel" data-mid="${m.id}" data-key="unit" aria-label="Soil unit for ${esc(m.name)}">${unitOptions(m.unit)}</select></td>
+    <td><select class="dr" data-mid="${m.id}" data-key="dr" aria-label="Drainage for ${esc(m.name)}"${m.unit === "base" ? " disabled" : ""}><option value="two"${m.dr === "two" ? " selected" : ""}>Two-way</option><option value="one"${m.dr === "one" ? " selected" : ""}>One-way</option></select></td>
+    <td>${delBtn(m)}</td></tr>`).join("") + `</tbody>` : empty("No volumes yet. Export Leapfrog output volumes as OBJ or DXF.");
+  $("smGroundTable").innerHTML = gr.length ? `<tbody>${gr.map(m => `<tr><td class="l"><span class="mname">${esc(m.name)}</span><span class="mfile">${esc(m.file)}</span></td><td class="l mmeta">${triTxt(m)}</td><td>${delBtn(m)}</td></tr>`).join("")}</tbody>` : empty("None. The top of the volumes is used.");
+  $("smEmbTable").innerHTML = emb.length ? `<thead><tr><th class="l">Surface (top of zone)</th><th class="l">Triangles</th><th class="l">Fill material</th><th></th></tr></thead><tbody>` + emb.map((m, i) => `<tr${m.fill === null ? ' class="warnrow"' : ""}>
+    <td class="l"><span class="mname">${esc(m.name)}</span><span class="mfile">${esc(m.file)}</span></td><td class="l mmeta">${triTxt(m)}</td>
+    <td><select class="unitsel" data-mid="${m.id}" data-key="fill" aria-label="Fill material for ${esc(m.name)}">${fillOptions(m.fill)}</select></td>
+    <td><div class="rowbtns"><button class="icon" type="button" data-sact="up" data-mid="${m.id}"${i === 0 ? " disabled" : ""} aria-label="Move ${esc(m.name)} up">▲</button><button class="icon" type="button" data-sact="down" data-mid="${m.id}"${i === emb.length - 1 ? " disabled" : ""} aria-label="Move ${esc(m.name)} down">▼</button>${delBtn(m)}</div></td></tr>`).join("") + `</tbody>` : empty("No embankment surfaces yet.");
+  $("smGwTable").innerHTML = gw.length ? `<tbody>${gw.map(m => `<tr><td class="l"><span class="mname">${esc(m.name)}</span><span class="mfile">${esc(m.file)}</span></td><td class="l mmeta">${triTxt(m)}</td><td>${delBtn(m)}</td></tr>`).join("")}</tbody>` : empty("No groundwater surface yet.");
+  const surf = P.site.gwMode === "surface";
+  $("gwDepthF").hidden = surf; $("gwSurfBox").hidden = !surf;
+  document.querySelectorAll("#gwSeg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.gw === P.site.gwMode)));
+  $("smZoneNote").textContent = P.site.origin ? `Meshes are read as GDA2020 MGA zone ${siteZone()}, the zone chosen when the first mesh was added.` : `Meshes are read as GDA2020 MGA zone ${zoneNow()} (change it on the Calculations tab’s map before adding the first mesh), with elevations in metres.`;
+}
+function renderSiteFields() {
+  const S2 = P.site;
+  ["gwDepth", "q", "tc", "pcsReq"].forEach(k => { const el = $("sm_" + k); if (document.activeElement !== el) el.value = S2[k]; });
+  ["s", "maxDepth", "minEmb", "minLayer"].forEach(k => { const el = $("smg_" + k); if (document.activeElement !== el) el.value = S2.grid[k]; });
+  const polys = (P.gis || []).filter(l => l.data.features.some(f => /Polygon/.test(f.geometry.type)));
+  if (S2.grid.boundary && !polys.some(l => l.id === S2.grid.boundary)) S2.grid.boundary = 0;
+  $("smg_boundary").innerHTML = `<option value="0">Whole embankment</option>` + polys.map(l => `<option value="${l.id}"${l.id === S2.grid.boundary ? " selected" : ""}>Inside ${esc(l.name)}</option>`).join("");
+}
+
+/* Problems that stop a run, as messages. */
+function siteProblems() {
+  const p = [], S2 = P.site;
+  if (!meshesOf("vol").length) p.push("Add the ground model volumes.");
+  if (!meshesOf("emb").length) p.push("Add at least one embankment surface.");
+  const un = meshesOf("vol").filter(m => m.unit === null);
+  if (un.length) p.push(`Match ${un.map(m => m.name).join(", ")} to a soil unit, or mark it as the base.`);
+  const gone = meshesOf("vol").filter(m => m.unit !== null && m.unit !== "base" && !P.units.some(u => u.id === m.unit));
+  if (gone.length) p.push(`The soil unit for ${gone.map(m => m.name).join(", ")} was deleted. Choose another.`);
+  const nf = meshesOf("emb").filter(m => m.fill === null || !P.fills.some(f => f.id === m.fill));
+  if (nf.length) p.push(`Choose a fill material for ${nf.map(m => m.name).join(", ")}.`);
+  if (S2.gwMode === "surface" && !meshesOf("gw").length) p.push("Add a groundwater surface, or use a depth below ground.");
+  if (S2.gwMode === "depth" && !(smNum(S2.gwDepth) >= 0)) p.push("Enter a groundwater depth of 0 m or more.");
+  const s = smNum(S2.grid.s);
+  if (!(s >= 0.5 && s <= 500)) p.push("Grid spacing must be from 0.5 to 500 m.");
+  if (!(smNum(S2.grid.maxDepth) > 0)) p.push("Maximum depth must be greater than 0 m.");
+  if (!(smNum(S2.grid.minEmb) >= 0)) p.push("Minimum fill thickness must be 0 m or more.");
+  if (!(smNum(S2.grid.minLayer) >= 0)) p.push("Minimum layer thickness must be 0 m or more.");
+  if (S2.q !== "" && !(smNum(S2.q) >= 0)) p.push("Extra surface load must be 0 kPa or more, or blank.");
+  if (!(smNum(S2.tc) >= 0)) p.push("Enter a loading period of 0 years or more.");
+  if (S2.pcsReq !== "" && !(smNum(S2.pcsReq) >= 0)) p.push("The PCS requirement must be 0 mm or more, or blank.");
+  return p;
+}
+/* What the worker needs to sample columns. Embankment surfaces are listed top to bottom. */
+const siteModel = () => {
+  const S2 = P.site, g = S2.grid;
+  return {
+    vols: meshesOf("vol").map(m => ({ id: m.id, unit: m.unit, dr: m.dr })),
+    ground: (meshesOf("ground")[0] || {}).id || null,
+    emb: meshesOf("emb").map(m => ({ id: m.id, fill: m.fill })),
+    gw: S2.gwMode === "surface" ? (meshesOf("gw")[0] || {}).id || null : null,
+    gwMode: S2.gwMode, gwDepth: Math.round(smNum(S2.gwDepth) * 100) / 100,
+    maxDepth: smNum(g.maxDepth), minEmb: smNum(g.minEmb), minLayer: smNum(g.minLayer),
+  };
+};
+/* Engine settings for the whole grid. gts is the list of treatments, index 0 being none. */
+function siteCtx() {
+  const proj = {}; PROJ_KEYS.forEach(k => { proj[k] = P[k]; });
+  const units = {}, fills = {};
+  P.units.forEach(u => { units[u.id] = u; }); P.fills.forEach(f => { fills[f.id] = f; });
+  return { proj, q: P.site.q, tc: P.site.tc, units, fills, gts: [null, ...P.site.tz.map(z => gtFields(z.gt))] };
+}
+const gtFields = gt => { const f = {}; GT_KEYS.forEach(k => { f[k] = gt[k]; }); return f; };
+const sampleSig = () => JSON.stringify([siteModel(), P.site.grid, P.site.origin, siteZone(), (P.gis || []).find(l => l.id === P.site.grid.boundary)?.data.features.length || 0]);
+const baseSig = () => { const c = siteCtx(); return JSON.stringify([c.proj, c.q, c.tc, c.units, c.fills]); };
+
+/* ---------- Grid run ---------- */
+/* SG holds the grid in memory: nodes, sampled columns, untreated results (r0), and results with treatment (r1). */
+let SG = null;
+const ptRel = (k) => [SG.I[k] * SG.s, SG.J[k] * SG.s];
+function boundaryRings() {
+  const id = P.site.grid.boundary; if (!id) return null;
+  const l = (P.gis || []).find(x => x.id === id); if (!l) return null;
+  const rings = [];
+  l.data.features.forEach(f => {
+    const g = f.geometry, polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+    polys.forEach(pg => pg.forEach(r => rings.push(r.map(c => llToRel(c[1], c[0])))));
+  });
+  return rings.length ? rings : null;
+}
+const ringRel = ring => ring.map(p => llToRel(p[0], p[1]));
+const inRing = (r, x, y) => { let ins = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) ins = !ins; } return ins; };
+/* Treatment and PCS zone of each point. The first zone in the list that holds the point applies. */
+function zoneIndex(list, pts) {
+  const rings = list.map(z => { const r = ringRel(z.ring); let b = [Infinity, Infinity, -Infinity, -Infinity]; r.forEach(([x, y]) => { b = [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)]; }); return { r, b }; });
+  return pts.map(([x, y]) => { for (let k = 0; k < rings.length; k++) { const { r, b } = rings[k]; if (x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3] && inRing(r, x, y)) return k + 1; } return 0; });
+}
+async function runAnalysis(cols, gtIdx, onp) {
+  const ctx = siteCtx(), workers = SW.inline ? [SW.main] : [SW.main, ...SW.pool], n = cols.length;
+  const chunk = Math.max(200, Math.ceil(n / (workers.length * 4))), jobs = [];
+  for (let a = 0; a < n; a += chunk) jobs.push(a);
+  const out = new Array(n); let done = 0, next = 0;
+  await Promise.all(workers.map(async w => {
+    while (next < jobs.length) {
+      if (SW.cancel) throw { code: "cancel" };
+      const a = jobs[next++], b = Math.min(n, a + chunk);
+      const r = await callW(w, "analyse", { ctx, cols: cols.slice(a, b), gtIdx: gtIdx.slice(a, b) });
+      for (let k = a; k < b; k++) out[k] = r[k - a];
+      done += b - a; onp(done / n);
+    }
+  }));
+  return out;
+}
+const prog = t => { $("smProg").textContent = t; };
+async function siteRun(only) {
+  const probs = siteProblems();
+  if (probs.length) { smNote("err", probs.join(" "), "Before sampling"); return; }
+  if (SW.busy) return;
+  SW.busy = true; SW.cancel = false; smNote();
+  $("smRun").disabled = true; $("smCancel").hidden = false;
+  const projId = STORE.current;
+  try {
+    const missing = await ensureMeshes();
+    if (missing.length) throw { code: "missing", names: P.site.meshes.filter(m => missing.includes(m.id)).map(m => m.name) };
+    const sSig = sampleSig(), bSig = baseSig();
+    let g = SG && SG.sampleSig === sSig ? SG : null;
+    if (!g) {
+      const s = smNum(P.site.grid.s), embs = meshesOf("emb");
+      let bb = [Infinity, Infinity, -Infinity, -Infinity];
+      embs.forEach(m => { bb = [Math.min(bb[0], m.bbox[0]), Math.min(bb[1], m.bbox[1]), Math.max(bb[2], m.bbox[3]), Math.max(bb[3], m.bbox[4])]; });
+      const rings = boundaryRings();
+      if (rings) { let rb = [Infinity, Infinity, -Infinity, -Infinity]; rings.forEach(r => r.forEach(([x, y]) => { rb = [Math.min(rb[0], x), Math.min(rb[1], y), Math.max(rb[2], x), Math.max(rb[3], y)]; })); bb = [Math.max(bb[0], rb[0]), Math.max(bb[1], rb[1]), Math.min(bb[2], rb[2]), Math.min(bb[3], rb[3])]; }
+      if (!(bb[2] > bb[0] && bb[3] > bb[1])) throw { code: "nogrid" };
+      const cells = (bb[2] - bb[0]) / s * (bb[3] - bb[1]) / s;
+      if (cells > 6e7) throw { code: "too_many" };
+      prog("Sampling the grid… 0%");
+      const r = await siteCall("sample", { model: siteModel(), grid: { s, bbox: bb, rings, maxPts: 400000 } }, p => prog(`Sampling the grid… ${Math.round(p * 100)}%`));
+      g = { s, I: r.I, J: r.J, cols: r.cols, sampleSig: sSig, baseSig: null, r0: null, r1: null, gtSig: [], tzIdx: null };
+    }
+    if (!g.cols.length) throw { code: "nofill" };
+    if (SW.cancel) throw { code: "cancel" };
+    const pts = g.cols.map((_, k) => [g.I[k] * g.s, g.J[k] * g.s]);
+    const tzIdx = zoneIndex(P.site.tz, pts), tzSig = P.site.tz.map(z => JSON.stringify(gtFields(z.gt)));
+    if (g.baseSig !== bSig) {
+      prog("Calculating settlement… 0%");
+      g.r0 = await runAnalysis(g.cols, g.cols.map(() => 0), p => prog(`Calculating settlement… ${Math.round(p * 100)}%`));
+      g.baseSig = bSig; g.r1 = g.r0.slice(); g.gtSig = g.cols.map(() => "");
+    }
+    // With treatment: only points whose zone or treatment changed are calculated again.
+    const want = tzIdx.map(k => (k ? tzSig[k - 1] : "")), redo = [];
+    want.forEach((w, k) => { if (w !== g.gtSig[k]) redo.push(k); });
+    if (redo.length) {
+      prog(`Calculating ${redo.length.toLocaleString()} treated points… 0%`);
+      const sub = await runAnalysis(redo.map(k => g.cols[k]), redo.map(k => tzIdx[k]), p => prog(`Calculating ${redo.length.toLocaleString()} treated points… ${Math.round(p * 100)}%`));
+      redo.forEach((k, q) => { g.r1[k] = want[k] ? sub[q] : g.r0[k]; g.gtSig[k] = want[k]; });
+    }
+    g.tzIdx = tzIdx;
+    if (STORE.current !== projId) return;
+    SG = g; P.site.hasGrid = true; save();
+    gridDerived(); storeGrid();
+    smNote("warn", `Calculated ${g.cols.length.toLocaleString()} points at ${g.s} m spacing.${redo.length && g.r0 !== g.r1 ? ` ${redo.length.toLocaleString()} points were recalculated for ground treatment.` : ""}${SW.inline ? " This browser couldn’t run the calculation in the background, so it held up the page." : ""}`, "Grid");
+  } catch (e) {
+    const c = e && e.code;
+    if (c === "cancel") smNote("warn", "Stopped. Nothing was changed.", "Grid");
+    else smNote("err", c === "missing" ? `The stored mesh data for ${e.names.join(", ")} couldn’t be found in this browser. Remove and add them again, or open the project file.`
+      : c === "too_many" ? "That spacing gives too many points (over 400,000). Use a larger grid spacing, or a boundary around part of the site."
+      : c === "nogrid" ? "The embankment surfaces don’t overlap the chosen boundary."
+      : c === "nofill" ? "No grid point has fill on it. Check the embankment surfaces sit above existing ground, and that the minimum fill thickness isn’t too large."
+      : `The grid couldn’t be calculated. ${e && e.msg ? e.msg : ""}`.trim(), "Grid");
+  } finally {
+    SW.busy = false; prog(""); $("smRun").disabled = false; $("smCancel").hidden = true;
+    renderSite();
+  }
+}
+/* Requirement, differential settlement and lookups, worked out after each run or zone change. */
+let gridVer = 0;
+function gridDerived() {
+  const g = SG; if (!g) return;
+  g.ver = ++gridVer;
+  const pts = g.cols.map((_, k) => [g.I[k] * g.s, g.J[k] * g.s]);
+  g.pzIdx = zoneIndex(P.site.pz, pts);
+  const def = P.site.pcsReq === "" ? null : smNum(P.site.pcsReq);
+  g.req = g.pzIdx.map(k => { if (k) { const v = smNum(P.site.pz[k - 1].req); return P.site.pz[k - 1].req !== "" && v >= 0 ? v : null; } return def; });
+  let i0 = Infinity, j0 = Infinity, i1 = -Infinity, j1 = -Infinity;
+  g.I.forEach(i => { if (i < i0) i0 = i; if (i > i1) i1 = i; }); g.J.forEach(j => { if (j < j0) j0 = j; if (j > j1) j1 = j; });
+  g.i0 = i0; g.j0 = j0; g.nI = i1 - i0 + 1; g.nJ = j1 - j0 + 1;
+  g.at = new Int32Array(g.nI * g.nJ).fill(-1);
+  g.I.forEach((i, k) => { g.at[(g.J[k] - j0) * g.nI + (i - i0)] = k; });
+  // Angular distortion of PCS: the largest difference to a neighbouring point, over the spacing.
+  const diff = r => g.cols.map((_, k) => {
+    const a = r[k]; if (!a || a.err) return null;
+    let m = 0;
+    for (const [di, dj] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      const n = lookup(g.I[k] + di, g.J[k] + dj); if (n < 0) continue;
+      const b = r[n]; if (b && !b.err) m = Math.max(m, Math.abs(a.pcs - b.pcs) / g.s);
+    }
+    return m;
+  });
+  g.d0 = diff(g.r0); g.d1 = g.r1 === g.r0 ? g.d0 : diff(g.r1);
+}
+const lookup = (i, j) => { const g = SG, a = i - g.i0, b = j - g.j0; return a < 0 || b < 0 || a >= g.nI || b >= g.nJ ? -1 : g.at[b * g.nI + a]; };
+async function storeGrid() {
+  const g = SG; if (!g) return;
+  try { await planStore("readwrite", s => s.put({ s: g.s, I: g.I, J: g.J, cols: g.cols, r0: g.r0, r1: g.r1, gtSig: g.gtSig, sampleSig: g.sampleSig, baseSig: g.baseSig }, gridKey(STORE.current))); }
+  catch (e) { /* the grid can be calculated again */ }
+}
+function restoreGrid() {
+  const id = STORE.current;
+  planStore("readonly", s => s.get(gridKey(id))).then(v => {
+    if (STORE.current !== id || !v || !Array.isArray(v.cols)) return;
+    SG = { ...v, r1: v.r1 || v.r0 };
+    gridDerived(); renderSite();
+  }).catch(() => {});
+}
+
+/* ---------- Results: values, colours and statistics ---------- */
+const SM_FIELDS = {
+  H: ["Fill height", "m"], tot: ["Total settlement", "mm"], pcs: ["PCS", "mm"], ratio: ["PCS ÷ requirement", ""], diff: ["Differential PCS", "1 in N"], soft: ["Clay thickness", "m"],
+};
+const resOf = () => (SG ? (P.site.treated ? SG.r1 : SG.r0) : null);
+function valueAt(k, f, treated = P.site.treated) {
+  const g = SG, c = g.cols[k], r = (treated ? g.r1 : g.r0)[k];
+  if (f === "H") return c.H;
+  if (f === "soft") return c.st === "ok" || c.st === "nogw" ? c.L.reduce((a, [u, h]) => a + ((P.units.find(x => x.id === u) || {}).type === "clay" ? h : 0), 0) : null;
+  if (!r || r.err) return null;
+  if (f === "tot") return r.tot * 1000;
+  if (f === "pcs") return r.pcs * 1000;
+  if (f === "ratio") return g.req[k] > 0 ? r.pcs * 1000 / g.req[k] : g.req[k] === 0 ? (r.pcs > 0 ? Infinity : 0) : null;
+  if (f === "diff") { const d = (treated ? g.d1 : g.d0)[k]; return d === null ? null : d; }
+  return null;
+}
+const SEQ = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b"];
+const DIV = ["#1c5cab", "#3987e5", "#86b6ef", "#cde2fb", "#f0efec", "#f6c9c6", "#ec8a86", "#e34948", "#b52f2e", "#7f1f1e"];
+/* The colour scale for a field: upper limit from the data, rounded to a tidy number. */
+function scaleOf(f) {
+  if (f === "ratio") return { kind: "div", stops: [0, 0.25, 0.5, 0.75, 0.95, 1.05, 1.25, 1.5, 2, 3], fmt: v => v.toFixed(2) };
+  const vals = [];
+  for (let k = 0; k < SG.cols.length; k++) { const v = valueAt(k, f); if (v !== null && Number.isFinite(v)) vals.push(v); }
+  vals.sort((a, b) => a - b);
+  let hi = vals.length ? vals[Math.min(vals.length - 1, Math.floor(vals.length * 0.99))] : 1;
+  if (f === "diff") { const lim = smNum(P.site.diffLim) > 0 ? 1 / smNum(P.site.diffLim) : 1 / 500; hi = Math.max(hi, lim * 1.5); }
+  const top = niceTicks(hi > 0 ? hi : 1, 5).top;
+  return { kind: "seq", lo: 0, hi: top, fmt: f === "diff" ? v => (v > 0 ? `1 in ${Math.round(1 / v).toLocaleString()}` : "0") : f === "H" || f === "soft" ? v => v.toFixed(1) : v => Math.round(v).toLocaleString() };
+}
+function colourOf(v, sc) {
+  if (v === null) return null;
+  if (sc.kind === "div") { let i = 0; while (i < sc.stops.length - 1 && v >= sc.stops[i + 1]) i++; return DIV[Math.min(i, DIV.length - 1)]; }
+  const t = Math.max(0, Math.min(1, (v - sc.lo) / (sc.hi - sc.lo || 1)));
+  return SEQ[Math.min(SEQ.length - 1, Math.floor(t * SEQ.length))];
+}
+function gridStats() {
+  const g = SG, r = resOf(), n = g.cols.length, A = g.s * g.s;
+  let ok = 0, bad = 0, over = 0, noReq = 0, maxT = 0, maxP = 0, worst = -1, flagged = 0;
+  const pcs = [];
+  for (let k = 0; k < n; k++) {
+    const x = r[k];
+    if (!x) { flagged++; continue; }
+    if (x.err) { bad++; continue; }
+    ok++; pcs.push(x.pcs);
+    if (x.tot > maxT) maxT = x.tot;
+    if (x.pcs > maxP) { maxP = x.pcs; worst = k; }
+    if (g.req[k] === null) noReq++; else if (x.pcs * 1000 > g.req[k] + 1e-9) over++;
+  }
+  pcs.sort((a, b) => a - b);
+  const p95 = pcs.length ? pcs[Math.min(pcs.length - 1, Math.floor(pcs.length * 0.95))] : 0;
+  const lim = smNum(P.site.diffLim) > 0 ? 1 / smNum(P.site.diffLim) : null, d = P.site.treated ? g.d1 : g.d0;
+  let dMax = 0, dOver = 0; d.forEach(v => { if (v !== null) { if (v > dMax) dMax = v; if (lim && v > lim) dOver++; } });
+  return { n, ok, bad, flagged, over, noReq, maxT, maxP, p95, worst, area: n * A, overArea: over * A, dMax, dOver, A };
+}
+function renderSiteResults() {
+  const box = $("smResults"), g = SG;
+  $("smStale").hidden = true;
+  if (!g) { box.hidden = true; return; }
+  box.hidden = false;
+  const stale = g.sampleSig !== sampleSig() || g.baseSig !== baseSig();
+  const tzSig = P.site.tz.map(z => JSON.stringify(gtFields(z.gt)));
+  const pts = g.cols.map((_, k) => [g.I[k] * g.s, g.J[k] * g.s]);
+  const tzNow = zoneIndex(P.site.tz, pts).map(k => (k ? tzSig[k - 1] : ""));
+  const tzStale = tzNow.some((w, k) => w !== g.gtSig[k]);
+  $("smStale").hidden = !(stale || tzStale);
+  $("smStale").innerHTML = stale ? `<b>Out of date</b><span>Inputs have changed since this grid was calculated. Select <i>Sample and calculate</i> to update it.</span>` : `<b>Treatment changed</b><span>Ground treatment zones have changed. Select <i>Sample and calculate</i> to recalculate the points inside them.</span>`;
+  const st = gridStats(), A = v => (v >= 1e4 ? `${(v / 1e4).toFixed(2)} ha` : `${Math.round(v).toLocaleString()} m²`);
+  $("smStats").innerHTML = [
+    stat("Points", st.n.toLocaleString(), "", `<small class="sub">${g.s} m grid · ${A(st.area)}</small>`),
+    stat("Max total settlement", Math.round(st.maxT * 1000).toLocaleString(), "mm"),
+    stat("Max PCS", Math.round(st.maxP * 1000).toLocaleString(), "mm", `<small class="sub">95% of points ≤ ${Math.round(st.p95 * 1000)} mm</small>`),
+    stat("Over PCS requirement", st.over.toLocaleString(), st.over === 1 ? "point" : "points", `<small class="sub">${A(st.overArea)}${st.noReq ? ` · ${st.noReq.toLocaleString()} with no requirement` : ""}</small>`),
+    stat("Max differential PCS", st.dMax > 0 ? `1 in ${Math.round(1 / st.dMax).toLocaleString()}` : "–", "", smNum(P.site.diffLim) > 0 ? `<small class="sub">${st.dOver.toLocaleString()} points steeper than 1 in ${P.site.diffLim}</small>` : ""),
+    stat("Need checking", (st.bad + st.flagged).toLocaleString(), st.bad + st.flagged === 1 ? "point" : "points", `<small class="sub">red and white check on the map</small>`),
+  ].join("");
+  document.querySelectorAll("#smField button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === P.site.show)));
+  document.querySelectorAll("#smTreat button").forEach(b => b.setAttribute("aria-pressed", String((b.dataset.t === "1") === P.site.treated)));
+  $("smTreat").hidden = !P.site.tz.length;
+  renderHeatLegend();
+  if (SMAP) { drawHeat(); }
+  renderProbe();
+}
+function renderHeatLegend() {
+  const f = P.site.show, sc = scaleOf(f), [name, unit] = SM_FIELDS[f];
+  const sw = cs => cs.map(c => `<i style="background:${c}"></i>`).join("");
+  $("smLegend").innerHTML = sc.kind === "div"
+    ? `<span class="lt">${name}</span><span class="bar">${sw(DIV)}</span><span class="ticks"><span>under</span><span>1.0 = at the requirement</span><span>over</span></span>`
+    : `<span class="lt">${name}${unit && f !== "diff" ? ` (${unit})` : ""}</span><span class="bar">${sw(SEQ)}</span><span class="ticks"><span>${sc.fmt(sc.lo)}</span><span>${sc.fmt(sc.hi)}${f === "diff" ? "" : "+"}</span></span>`;
+  $("smLegend").insertAdjacentHTML("beforeend", `<span class="hatchkey"><i></i>Not calculated: check the point</span>`);
+}
+
+/* ---------- Site map ---------- */
+let SMAP = null, smTiles = null, smOutlines = null, smGis = null, smHeat = null, smProbeMk = null, smDraw = null, smZones = null, smLineL = null;
+const SM_COL = { vol: "#8a8478", ground: "#1baf7a", emb: "#eb6834", gw: "#2a78d6" };
+function ensureSiteMap() {
+  if (SMAP && $("smMap") && SMAP.getContainer() === $("smMap")) { SMAP.invalidateSize(); syncSiteMap(); return; }
+  if (SMAP) { SMAP.remove(); SMAP = null; }
+  const projId = STORE.current;
+  loadLeaflet().then(() => {
+    if (STORE.current !== projId || P.view !== "site" || SMAP) return;
+    const L = window.L;
+    SMAP = L.map("smMap", { zoomControl: true, maxZoom: 21, zoomAnimation: false, doubleClickZoom: false });
+    L.control.scale({ imperial: false }).addTo(SMAP);
+    const base = baseNow(), t = TILES[base];
+    if (t.url) smTiles = L.tileLayer(t.url, { maxZoom: t.max, attribution: t.attr, crossOrigin: true }).addTo(SMAP);
+    smOutlines = L.layerGroup().addTo(SMAP); smGis = L.layerGroup().addTo(SMAP); smZones = L.layerGroup().addTo(SMAP);
+    smHeat = new (heatLayerClass())().addTo(SMAP);
+    smOutlines.bringToFront && smOutlines.bringToFront();
+    fitSiteMap();
+    SMAP.on("mousemove", ev => { const ll = ev.latlng; $("smCoords").textContent = fmtEN(ll.lat, ll.lng) + hoverText(ll); });
+    SMAP.on("mouseout", () => { $("smCoords").textContent = ""; });
+    SMAP.on("click", ev => siteMapClick(ev));
+    SMAP.on("dblclick", ev => { if (smDraw) { L.DomEvent.stop(ev); finishDraw(); } });
+    syncSiteMap();
+  }).catch(() => { $("smMap").innerHTML = `<div class="planempty"><p>The map could not load. Check your internet connection.</p></div>`; });
+}
+function fitSiteMap() {
+  if (!SMAP) return;
+  const ms = P.site.meshes;
+  if (ms.length) {
+    let b = [Infinity, Infinity, -Infinity, -Infinity];
+    (meshesOf("emb").length ? meshesOf("emb") : ms).forEach(m => { b = [Math.min(b[0], m.bbox[0]), Math.min(b[1], m.bbox[1]), Math.max(b[2], m.bbox[3]), Math.max(b[3], m.bbox[4])]; });
+    const a = relToLL(b[0], b[1]), c = relToLL(b[2], b[3]);
+    SMAP.fitBounds([[a.lat, a.lng], [c.lat, c.lng]], { padding: [20, 20], maxZoom: 18 });
+  } else if (P.map) SMAP.setView([P.map.lat, P.map.lng], P.map.z);
+  else SMAP.setView([-25.5, 134], 4);
+}
+function syncSiteMap() {
+  if (!SMAP) return;
+  const L = window.L;
+  smOutlines.clearLayers();
+  if (P.site.origin) P.site.meshes.forEach(m => {
+    const latlngs = m.outline.map(l => l.map(([x, y]) => { const p = relToLL(x, y); return [p.lat, p.lng]; }));
+    const opt = { color: SM_COL[m.role], weight: m.role === "emb" ? 2 : 1.5, opacity: 0.9, fill: false, dashArray: m.role === "gw" ? "6 4" : m.role === "vol" ? "2 4" : null, interactive: false };
+    latlngs.forEach(ll => L.polygon(ll, opt).addTo(smOutlines));
+  });
+  smGis.clearLayers();
+  (P.gis || []).filter(l => l.visible).forEach(l => L.geoJSON(l.data, { style: () => ({ color: gisHex(l.color), weight: 1.5, opacity: 0.8, fill: false }), pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 3, color: gisHex(l.color), weight: 1, fillOpacity: 1 }), interactive: false }).addTo(smGis));
+  syncZoneLayers();
+  if (smHeat) smHeat.redraw();
+}
+const fmtNum = (v, d = 2) => (v === null || v === undefined || !Number.isFinite(v) ? "–" : (+v.toFixed(d)).toLocaleString());
+function hoverText(ll) {
+  if (!SG || !P.site.origin) return "";
+  const [x, y] = llToRel(ll.lat, ll.lng), k = lookup(Math.round(x / SG.s), Math.round(y / SG.s));
+  if (k < 0) return "";
+  const f = P.site.show, v = valueAt(k, f), sc = scaleOf(f);
+  return `  ·  ${SM_FIELDS[f][0]}: ${v === null ? "not calculated" : f === "ratio" ? v.toFixed(2) : `${sc.fmt(v)}${f === "diff" ? "" : " " + SM_FIELDS[f][1]}`}`;
+}
+/* Canvas layer for the grid. Each block of cells gets its own local transform from MGA to the screen,
+   so the cells stay square to the MGA grid however far the site runs. */
+function heatLayerClass() {
+  const L = window.L;
+  return L.Layer.extend({
+    onAdd(map) {
+      this._map = map; this._c = L.DomUtil.create("canvas", "heatcv");
+      map.getPanes().overlayPane.appendChild(this._c);
+      map.on("moveend zoomend resize viewreset", this.redraw, this); this.redraw();
+    },
+    onRemove(map) { L.DomUtil.remove(this._c); map.off("moveend zoomend resize viewreset", this.redraw, this); },
+    redraw() {
+      const map = this._map, c = this._c; if (!map) return;
+      const size = map.getSize(), dpr = window.devicePixelRatio || 1;
+      c.width = size.x * dpr; c.height = size.y * dpr; c.style.width = size.x + "px"; c.style.height = size.y + "px";
+      L.DomUtil.setPosition(c, map.containerPointToLayerPoint([0, 0]));
+      const ctx = c.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size.x, size.y);
+      if (!SG || !P.site.origin || !SG.at) return;
+      // Drawn opaque off screen, then laid over the map once, so overlapping blocks don't darken.
+      const off = this._buf || (this._buf = document.createElement("canvas"));
+      off.width = c.width; off.height = c.height;
+      const oc = off.getContext("2d"); oc.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawCells(oc, (x, y) => { const p = relToLL(x, y), q = map.latLngToContainerPoint([p.lat, p.lng]); return [q.x, q.y]; }, size.x, size.y);
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 0.88; ctx.drawImage(off, 0, 0); ctx.globalAlpha = 1;
+    },
+  });
+}
+/* The grid as an image, one pixel per cell, cached until the results or the field change. Cells that couldn't be
+   calculated are a red and white check. */
+let heatCache = null;
+const hexRgb = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+function heatRaster(field, treated) {
+  const g = SG, sc = scaleOf(field), key = JSON.stringify([g.ver, field, treated, sc.hi, sc.kind, P.units.map(u => u.type)]);
+  if (heatCache && heatCache.key === key) return heatCache.c;
+  const c = document.createElement("canvas"); c.width = g.nI; c.height = g.nJ;
+  const ctx = c.getContext("2d"), img = ctx.createImageData(g.nI, g.nJ), d = img.data, rgb = new Map();
+  for (let jj = 0; jj < g.nJ; jj++) for (let ii = 0; ii < g.nI; ii++) {
+    const k = g.at[jj * g.nI + ii]; if (k < 0) continue;
+    const col = colourOf(valueAt(k, field, treated), sc), o = 4 * (jj * g.nI + ii);
+    let v;
+    if (col) { v = rgb.get(col); if (!v) rgb.set(col, v = hexRgb(col)); }
+    else v = (ii + jj) % 2 ? [163, 38, 38] : [255, 255, 255];
+    d[o] = v[0]; d[o + 1] = v[1]; d[o + 2] = v[2]; d[o + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  heatCache = { key, c };
+  return c;
+}
+/* Draws the grid through proj (MGA x, y to screen). Each block of cells gets its own affine transform. */
+function drawCells(ctx, proj, W, H, field = P.site.show, treated = P.site.treated) {
+  const g = SG, s = g.s, src = heatRaster(field, treated), B = 32;
+  ctx.save(); ctx.imageSmoothingEnabled = false;
+  const base = ctx.getTransform();
+  for (let bj = 0; bj < g.nJ; bj += B) for (let bi = 0; bi < g.nI; bi += B) {
+    const w = Math.min(B, g.nI - bi), h = Math.min(B, g.nJ - bj), i0 = g.i0 + bi, j0 = g.j0 + bj;
+    const o = proj((i0 - 0.5) * s, (j0 - 0.5) * s), ox = proj((i0 + w - 0.5) * s, (j0 - 0.5) * s), oy = proj((i0 - 0.5) * s, (j0 + h - 0.5) * s);
+    const xs = [o[0], ox[0], oy[0], ox[0] + oy[0] - o[0]], ys = [o[1], ox[1], oy[1], ox[1] + oy[1] - o[1]];
+    if (Math.max(...xs) < 0 || Math.max(...ys) < 0 || Math.min(...xs) > W || Math.min(...ys) > H) continue;
+    ctx.setTransform(base);
+    ctx.transform((ox[0] - o[0]) / w, (ox[1] - o[1]) / w, (oy[0] - o[0]) / h, (oy[1] - o[1]) / h, o[0], o[1]);
+    // One extra cell from the next block overlaps the seam, so no gaps show between blocks.
+    const sw = Math.min(w + 1, g.nI - bi), sh = Math.min(h + 1, g.nJ - bj);
+    ctx.drawImage(src, bi, bj, sw, sh, 0, 0, sw, sh);
+  }
+  ctx.restore();
+}
+const drawHeat = () => { if (smHeat) smHeat.redraw(); };
+
+/* ---------- Point probe: one column, its profile and results ---------- */
+let probe = null; // { k } a grid point, or { x, y, col, res } a point sampled on demand
+const ST_MSG = {
+  gap: c => `The ground model has a gap ${c.gapAt} m below ground here, so the column can’t be built. Check the volumes.`,
+  unmapped: c => `${(P.site.meshes.find(m => m.id === c.unmapped) || {}).name || "A volume"} isn’t matched to a soil unit.`,
+  nogw: () => "The groundwater surface doesn’t cover this point.",
+  noground: () => "No mapped soil volumes lie below the ground surface here.",
+  nomodel: () => "The ground model doesn’t cover this point.",
+};
+function siteMapClick(ev) {
+  if (smDraw) { addDrawPoint(ev.latlng); return; }
+  if (!SG || !P.site.origin) return;
+  const [x, y] = llToRel(ev.latlng.lat, ev.latlng.lng), k = lookup(Math.round(x / SG.s), Math.round(y / SG.s));
+  if (k < 0) { probe = null; renderProbe(); return; }
+  probe = { k }; renderProbe();
+}
+function renderProbe() {
+  const box = $("smProbe"), L = window.L;
+  if (!probe || !SG || probe.k >= SG.cols.length) {
+    box.innerHTML = `<p class="hint">Select a cell on the map to see its embankment zones, ground profile and settlement.</p>`;
+    if (smProbeMk) { smProbeMk.remove(); smProbeMk = null; }
+    return;
+  }
+  const k = probe.k, c = SG.cols[k], [x, y] = ptRel(k), ll = relToLL(x, y);
+  if (SMAP && L) { if (!smProbeMk) smProbeMk = L.circleMarker([ll.lat, ll.lng], { radius: 6, color: "#fff", weight: 2, fillColor: "#14222a", fillOpacity: 1, interactive: false }).addTo(SMAP); else smProbeMk.setLatLng([ll.lat, ll.lng]); }
+  const r0 = SG.r0[k], r1 = SG.r1[k], tz = SG.tzIdx ? SG.tzIdx[k] : 0, pz = SG.pzIdx[k], req = SG.req[k];
+  const E = x + P.site.origin[0], N = y + P.site.origin[1];
+  const fillName = id => (P.fills.find(f => f.id === id) || {}).name || "Missing fill";
+  const unitName = id => (P.units.find(u => u.id === id) || {}).name || "Missing unit";
+  const msg = c.st !== "ok" ? (ST_MSG[c.st] || (() => "This point couldn’t be sampled."))(c) : r1 && r1.err ? r1.err : null;
+  const row = (a, b) => `<tr><td class="l">${a}</td><td>${b}</td></tr>`;
+  const res = (r, lab) => (r && !r.err ? row(lab, `${mm(r.tot)} mm total · <b>${mm(r.pcs)} mm PCS</b>`) : "");
+  const pass = r1 && !r1.err && req !== null ? (r1.pcs * 1000 <= req + 1e-9 ? `<span class="chip ok">Meets ${req} mm</span>` : `<span class="chip bad">Over ${req} mm</span>`) : "";
+  box.innerHTML = `<h3>Grid point</h3>
+    <p class="pcoord">E ${E.toFixed(1)} · N ${N.toFixed(1)}<br>Ground RL ${fmtNum(c.zg)} m</p>
+    ${msg ? `<div class="msg err"><b>Check</b><span>${esc(msg)}</span></div>` : ""}
+    <table class="data"><tbody>
+      ${res(r0, tz ? "No treatment" : "Settlement")}${tz ? res(r1, esc(P.site.tz[tz - 1].name)) : ""}
+      ${row("PCS requirement", req === null ? "None" : `${req} mm${pz ? ` · ${esc(P.site.pz[pz - 1].name)}` : ""}`)}${pass ? row("", pass) : ""}
+      ${row("Groundwater depth", c.gwt === null ? "–" : `${fmtNum(c.gwt)} m`)}
+    </tbody></table>
+    <h3 class="sub3">Embankment, ${fmtNum(c.H)} m</h3>
+    <table class="data"><tbody>${c.emb.map(([f, h]) => row(esc(fillName(f)), `${fmtNum(h)} m`)).join("") || row("No fill", "")}</tbody></table>
+    <h3 class="sub3">Ground profile</h3>
+    <table class="data"><tbody>${c.L.map(([u, h, dr]) => row(esc(unitName(u)), `${fmtNum(h)} m${dr === "one" ? " · one-way" : ""}`)).join("") || row("None", "")}
+      ${c.base ? row("Base reached", `RL ${fmtNum(c.zb)} m`) : c.fl & 16 ? row("Stopped at maximum depth", `RL ${fmtNum(c.zb)} m`) : c.L.length ? row("Model ends", `RL ${fmtNum(c.zb)} m`) : ""}</tbody></table>
+    ${c.fl & 2 ? `<p class="hint">Volumes overlap here. The upper one was used.</p>` : ""}${c.fl & 4 ? `<p class="hint">A volume here isn’t closed, so its intervals may be wrong.</p>` : ""}
+    <div class="toolbar"><button type="button" id="smPromote"${c.st !== "ok" ? " disabled" : ""}>Make a location from this point</button></div>`;
+}
+/* Copies a grid point into a full location, with its own charts, ground treatment design and report page. */
+function promotePoint(k) {
+  if (P.locations.length >= 200) { smNote("err", "A project can hold up to 200 locations. Delete one first.", "Locations"); return; }
+  const c = SG.cols[k], [x, y] = ptRel(k), ll = relToLL(x, y), tz = SG.tzIdx ? SG.tzIdx[k] : 0, req = SG.req[k];
+  const id = P.locations.reduce((a, l) => Math.max(a, l.id), 0) + 1;
+  const gt = tz ? { ...P.site.tz[tz - 1].gt, mode: "manual" } : newGt();
+  P.locations.push({ ...LOC_DEFAULTS, id, name: `Grid E${Math.round(x + P.site.origin[0])} N${Math.round(y + P.site.origin[1])}`, lat: +ll.lat.toFixed(7), lng: +ll.lng.toFixed(7),
+    q: P.site.q, gwt: String(c.gwt), tc: P.site.tc, pcsReq: req === null ? "" : String(req), twMax: "1", gt,
+    emb: c.emb.map(([f, h], i) => zoneOf(i + 1, f, String(h))), layers: c.L.map(([u, h, dr], i) => ({ id: i + 1, unitId: u, h: String(h), drainage: dr })) });
+  if (P.planMode !== "map") P.planMode = "map";
+  P.isExample = false; save(); setActive(id);
+}
+
+/* Every grid point with its column and results, for a spreadsheet. */
+function gridCsv() {
+  const g = SG, un = id => (P.units.find(u => u.id === id) || {}).name || "?", fn = id => (P.fills.find(f => f.id === id) || {}).name || "?";
+  const q = v => (/[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v);
+  const n2 = v => (v === null || v === undefined || !Number.isFinite(v) ? "" : String(+v.toFixed(3)));
+  const rows = [["Easting", "Northing", "Ground RL (m)", "Fill height (m)", "Embankment zones", "Groundwater depth (m)", "Ground profile", "Status", "Treatment zone", "PCS requirement (mm)", "Total, no treatment (mm)", "PCS, no treatment (mm)", "Total (mm)", "PCS (mm)", "Meets requirement", "Differential PCS (1 in N)"].join(",")];
+  g.cols.forEach((c, k) => {
+    const [x, y] = ptRel(k), r0 = g.r0[k], r1 = g.r1[k], req = g.req[k], tz = g.tzIdx ? g.tzIdx[k] : 0, d = g.d1[k];
+    const ok = r => r && !r.err;
+    rows.push([n2(x + P.site.origin[0]), n2(y + P.site.origin[1]), n2(c.zg), n2(c.H), q(c.emb.map(([f, h]) => `${fn(f)} ${h} m`).join("; ")), n2(c.gwt), q(c.L.map(([u, h]) => `${un(u)} ${h} m`).join("; ")),
+      q(c.st !== "ok" ? (ST_MSG[c.st] ? ST_MSG[c.st](c) : c.st) : r1 && r1.err ? r1.err : "OK"), q(tz ? P.site.tz[tz - 1].name : ""), req === null ? "" : req,
+      ok(r0) ? n2(r0.tot * 1000) : "", ok(r0) ? n2(r0.pcs * 1000) : "", ok(r1) ? n2(r1.tot * 1000) : "", ok(r1) ? n2(r1.pcs * 1000) : "",
+      ok(r1) && req !== null ? (r1.pcs * 1000 <= req + 1e-9 ? "Yes" : "No") : "", d ? Math.round(1 / d) : ""].join(","));
+  });
+  return rows.join("\n");
+}
+
+/* ---------- Rendering ---------- */
+function renderSite() {
+  if (P.view !== "site") return;
+  renderSiteTables(); renderSiteFields(); renderZoneTables(); renderSectionControls();
+  const probs = siteProblems();
+  $("smNeed").innerHTML = probs.length && P.site.meshes.length ? `<div class="msg warn"><b>To sample</b><span>${esc(probs.join(" "))}</span></div>` : "";
+  renderSiteResults();
+  ensureSiteMap();
+}
+/* Something in the site inputs changed. reframe moves the map to the meshes. */
+function siteChanged(reframe) { P.isExample = false; save(); renderSite(); if (reframe) fitSiteMap(); }
+
+/* ---------- Treatment zones and PCS requirement zones ---------- */
+/* Both are polygons kept in latitude and longitude. Where zones overlap, the one higher in its list applies. */
+const ZONE_COL = { tz: "#6250d6", pz: "#d55181" };
+const polyLayers = () => (P.gis || []).filter(l => l.data.features.some(f => /Polygon/.test(f.geometry.type)));
+const numericKeys = l => { const keys = new Set(); l.data.features.forEach(f => Object.entries(f.properties || {}).forEach(([k, v]) => { if (v !== "" && v !== null && Number.isFinite(Number(v))) keys.add(k); })); return [...keys]; };
+const gtSummary = gt => {
+  const p = [];
+  if (gt.preOn) p.push(`preload ${gt.tw} yr`);
+  if (gt.drOn) p.push(`drains at ${gt.drS} m ${gt.drPattern === "sq" ? "square" : "triangular"}`);
+  if (gt.surOn) p.push(`${gt.qs} kPa surcharge to ${gt.tr || "?"} yr`);
+  return p.length ? p.join(" + ") : "no treatment set";
+};
+function renderZoneTables() {
+  const S2 = P.site, pl = polyLayers();
+  const lsel = (id, kind) => `<select id="${id}" aria-label="GIS layer to import ${kind} zones from">${pl.length ? pl.map(l => `<option value="${l.id}">${esc(l.name)}</option>`).join("") : `<option value="">No polygon GIS layers</option>`}</select>`;
+  const keep = id => ($(id) ? $(id).value : "");
+  const tzL = keep("tzLayer"), pzL = keep("pzLayer"), pzA = keep("pzAttr");
+  $("tzImport").innerHTML = `${lsel("tzLayer", "treatment")}<button type="button" id="tzFromGis"${pl.length ? "" : " disabled"}>Add from GIS layer</button>`;
+  $("pzImport").innerHTML = `${lsel("pzLayer", "PCS")}<label class="inl">Requirement from<select id="pzAttr" aria-label="Attribute holding the PCS requirement in mm"></select></label><button type="button" id="pzFromGis"${pl.length ? "" : " disabled"}>Add from GIS layer</button>`;
+  if (tzL && pl.some(l => String(l.id) === tzL)) $("tzLayer").value = tzL;
+  if (pzL && pl.some(l => String(l.id) === pzL)) $("pzLayer").value = pzL;
+  fillAttr(pzA);
+  const drawing = k => smDraw && smDraw.kind === k;
+  $("tzDraw").textContent = drawing("tz") ? "Finish zone" : "Draw zone"; $("pzDraw").textContent = drawing("pz") ? "Finish zone" : "Draw zone";
+  $("tzDraw").classList.toggle("primary", !drawing("tz")); $("pzDraw").classList.toggle("primary", !drawing("pz"));
+  const ord = (k, z, i, n) => `<button class="icon" type="button" data-zact="up" data-zk="${k}" data-zid="${z.id}"${i === 0 ? " disabled" : ""} aria-label="Move ${esc(z.name)} up">▲</button><button class="icon" type="button" data-zact="down" data-zk="${k}" data-zid="${z.id}"${i === n - 1 ? " disabled" : ""} aria-label="Move ${esc(z.name)} down">▼</button><button class="icon" type="button" data-zact="zoom" data-zk="${k}" data-zid="${z.id}">Zoom to</button><button class="icon" type="button" data-zact="del" data-zk="${k}" data-zid="${z.id}" aria-label="Remove ${esc(z.name)}">✕</button>`;
+  const fld = (z, key, lab, unit, extra = "") => `<div class="field"><label for="tz${z.id}-${key}">${lab}${unit ? ` (${unit})` : ""}</label><input id="tz${z.id}-${key}" data-zid="${z.id}" data-tk="${key}" type="number" step="any" inputmode="decimal" value="${esc(z.gt[key])}"${extra}></div>`;
+  const chk = (z, key, lab) => `<label class="check"><input type="checkbox" data-zid="${z.id}" data-tk="${key}"${z.gt[key] ? " checked" : ""}><span><b>${lab}</b></span></label>`;
+  $("tzList").innerHTML = S2.tz.length ? S2.tz.map((z, i) => `<div class="zcard" style="--zc:${ZONE_COL.tz}">
+    <div class="zhead"><input class="zname" data-zk="tz" data-zid="${z.id}" value="${esc(z.name)}" aria-label="Zone name"><span class="zsum">${esc(gtSummary(z.gt))}</span><div class="rowbtns">${ord("tz", z, i, S2.tz.length)}</div></div>
+    <div class="fields zfields">
+      ${chk(z, "preOn", "Preload")}${z.gt.preOn ? fld(z, "tw", "Wait before handover", "years") : ""}
+    </div>
+    <div class="fields zfields">
+      ${chk(z, "drOn", "Vertical drains")}
+      ${z.gt.drOn ? `${fld(z, "drS", "Spacing", "m")}<div class="field"><label for="tz${z.id}-drPattern">Pattern</label><select id="tz${z.id}-drPattern" data-zid="${z.id}" data-tk="drPattern"><option value="tri"${z.gt.drPattern === "tri" ? " selected" : ""}>Triangular</option><option value="sq"${z.gt.drPattern === "sq" ? " selected" : ""}>Square</option></select></div>${fld(z, "drDw", "Equivalent diameter d<sub>w</sub>", "mm")}${fld(z, "drSmear", "Smear d<sub>s</sub>/d<sub>w</sub>", "")}${fld(z, "drKhKs", "k<sub>h</sub>/k<sub>s</sub>", "")}${fld(z, "drChCv", "c<sub>h</sub>/c<sub>v</sub>", "")}` : ""}
+    </div>
+    <div class="fields zfields">
+      ${chk(z, "surOn", "Surcharge")}
+      ${z.gt.surOn ? `${fld(z, "qs", "Surcharge", "kPa")}${fld(z, "tr", "Removed at", "years")}<div class="field"><label for="tz${z.id}-caRatio">C<sub>α</sub>′/C<sub>α</sub> after removal</label><input id="tz${z.id}-caRatio" data-zid="${z.id}" data-tk="caRatio" type="number" step="any" inputmode="decimal" value="${esc(z.gt.caRatio)}" placeholder="Blank = Cr/Cc"></div>` : ""}
+    </div></div>`).join("") : `<p class="hint">No treatment zones. Draw one on the map, or add them from a GIS polygon layer. Points outside every zone have no treatment.</p>`;
+  $("pzTable").innerHTML = S2.pz.length ? `<thead><tr><th class="l">Zone</th><th class="l">Max PCS (mm)</th><th></th></tr></thead><tbody>` + S2.pz.map((z, i) => `<tr>
+    <td class="l"><span class="gdot" style="background:${ZONE_COL.pz}"></span><input class="zname" data-zk="pz" data-zid="${z.id}" value="${esc(z.name)}" aria-label="Zone name"></td>
+    <td><input type="number" min="0" step="any" inputmode="decimal" data-zid="${z.id}" data-pk="req" value="${esc(z.req)}" placeholder="None" aria-label="PCS requirement for ${esc(z.name)} in mm"></td>
+    <td><div class="rowbtns">${ord("pz", z, i, S2.pz.length)}</div></td></tr>`).join("") + `</tbody>`
+    : `<tbody><tr><td class="l" style="color:var(--muted)">No PCS zones. The site-wide requirement above applies everywhere.</td></tr></tbody>`;
+}
+function fillAttr(keepVal) {
+  const sel = $("pzAttr"); if (!sel) return;
+  const l = polyLayers().find(x => String(x.id) === $("pzLayer").value);
+  const keys = l ? numericKeys(l) : [];
+  const guess = keys.find(k => /pcs|req|limit|settle|mm/i.test(k)) || "";
+  sel.innerHTML = `<option value="">None (enter later)</option>` + keys.map(k => `<option value="${esc(k)}">${esc(k)}</option>`).join("");
+  sel.value = keepVal && keys.includes(keepVal) ? keepVal : guess;
+}
+function zonesFromGis(kind) {
+  const l = polyLayers().find(x => String(x.id) === $(kind + "Layer").value); if (!l) return;
+  const attr = kind === "pz" ? $("pzAttr").value : "", nk = labelKey((l.data.features[0] || {}).properties);
+  const list = P.site[kind], added = [];
+  l.data.features.forEach((f, n) => {
+    const g = f.geometry, polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+    polys.forEach(pg => {
+      const ring = pg[0].map(c => [+c[1].toFixed(7), +c[0].toFixed(7)]);
+      if (ring.length > 3 && ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) ring.pop();
+      if (ring.length < 3) return;
+      const id = list.reduce((a, z) => Math.max(a, z.id), 0) + 1, props = f.properties || {};
+      const name = String((nk && props[nk]) || `${l.name} ${n + 1}`).slice(0, 80);
+      if (kind === "tz") list.push({ id, name, ring, gt: { ...GT_DEFAULTS, mode: "manual" } });
+      else list.push({ id, name, ring, req: attr && Number.isFinite(Number(props[attr])) ? String(Number(props[attr])) : "" });
+      added.push(name);
+    });
+  });
+  smNote("warn", added.length ? `Added ${added.length} zone${added.length > 1 ? "s" : ""} from ${l.name}.${kind === "tz" ? " Set the treatment for each below." : attr ? "" : " Enter the PCS requirement for each below."}` : `${l.name} has no polygons.`, kind === "tz" ? "Treatment zones" : "PCS zones");
+  zonesChanged(kind);
+}
+/* PCS zones only change how results are judged. Treatment zones need the points inside them calculated again. */
+let tzTimer = 0;
+function zonesChanged(kind, rerender = true) {
+  P.isExample = false; save();
+  if (kind === "pz") { gridDerived(); if (rerender) renderSite(); else renderSiteResults(); syncZoneLayers(); return; }
+  if (rerender) renderSite(); else renderSiteResults();
+  syncZoneLayers();
+  clearTimeout(tzTimer);
+  if (SG && SG.baseSig === baseSig() && SG.sampleSig === sampleSig()) tzTimer = setTimeout(() => { if (P.view === "site" && !SW.busy) siteRun(); }, 1200);
+}
+function syncZoneLayers() {
+  if (!SMAP || !smZones) return;
+  const L = window.L; smZones.clearLayers();
+  ["pz", "tz"].forEach(kind => P.site[kind].forEach(z => {
+    L.polygon(z.ring, { color: ZONE_COL[kind], weight: 2.5, opacity: 1, fill: false, dashArray: kind === "tz" ? "7 5" : null, interactive: false })
+      .bindTooltip(esc(z.name) + (kind === "pz" && z.req !== "" ? ` · ${esc(z.req)} mm` : ""), { permanent: true, direction: "center", className: "gislab zlab" }).addTo(smZones);
+  }));
+  if (smDraw && smDraw.pts.length) {
+    L.polyline(smDraw.pts, { color: ZONE_COL[smDraw.kind] || "#14222a", weight: 2.5, dashArray: "4 4", interactive: false }).addTo(smZones);
+    smDraw.pts.forEach(p => L.circleMarker(p, { radius: 4, color: "#fff", weight: 1.5, fillColor: ZONE_COL[smDraw.kind] || "#14222a", fillOpacity: 1, interactive: false }).addTo(smZones));
+  }
+  if (P.site.line) {
+    L.polyline(P.site.line, { color: "#14222a", weight: 3, opacity: 0.9, interactive: false }).addTo(smZones);
+    L.polyline(P.site.line, { color: "#ffffff", weight: 1.2, opacity: 0.9, dashArray: "8 6", interactive: false }).addTo(smZones);
+  }
+  if (typeof syncXsMarker === "function") syncXsMarker();
+}
+/* Drawing: click to add corners, then Finish (or double-click). Escape cancels. kind "line" draws the centreline. */
+function startDraw(kind) {
+  if (smDraw && smDraw.kind === kind) { finishDraw(); return; }
+  smDraw = { kind, pts: [] };
+  $("smMap").classList.add("placing");
+  smNote("warn", kind === "line" ? "Click along the centreline, then select Finish line or double-click. Press Escape to cancel." : "Click the corners of the zone on the map, then select Finish zone or double-click. Press Escape to cancel.", "Drawing");
+  renderZoneTables(); renderSectionControls && renderSectionControls(); syncZoneLayers();
+}
+function addDrawPoint(ll) { smDraw.pts.push([+ll.lat.toFixed(7), +ll.lng.toFixed(7)]); syncZoneLayers(); }
+function finishDraw(cancel) {
+  const d = smDraw; smDraw = null;
+  if ($("smMap")) $("smMap").classList.remove("placing");
+  if (!cancel && d) {
+    // A double-click also lands as two clicks on the same spot.
+    const pts = d.pts.filter((p, i) => !i || p[0] !== d.pts[i - 1][0] || p[1] !== d.pts[i - 1][1]);
+    if (d.kind === "line") {
+      if (pts.length >= 2) { P.site.line = pts; P.site.lineSrc = "Drawn on the map"; smNote(); lineChanged(); }
+      else smNote("warn", "A centreline needs at least two points.", "Drawing");
+    } else if (pts.length >= 3) {
+      const list = P.site[d.kind], id = list.reduce((a, z) => Math.max(a, z.id), 0) + 1;
+      if (d.kind === "tz") list.push({ id, name: `Treatment zone ${id}`, ring: pts, gt: { ...GT_DEFAULTS, mode: "manual" } });
+      else list.push({ id, name: `PCS zone ${id}`, ring: pts, req: P.site.pcsReq });
+      smNote(); zonesChanged(d.kind); return;
+    } else smNote("warn", "A zone needs at least three corners.", "Drawing");
+  } else smNote();
+  renderZoneTables(); renderSectionControls && renderSectionControls(); syncZoneLayers();
+}
+
+/* ---------- Long section and cross sections along a centreline ---------- */
+/* Sections sample the meshes directly at their own spacing and run the engine there, untreated and with
+   the treatment of whichever zone each point falls in, so they don't depend on the grid. */
+let XS = { ch: 0, long: null, cross: null, busy: false, seq: 0 };
+const lineRel = () => (P.site.line && P.site.origin ? P.site.line.map(p => llToRel(p[0], p[1])) : null);
+function lineGeom() {
+  const pts = lineRel(); if (!pts) return null;
+  const cum = [0];
+  for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const len = cum[cum.length - 1];
+  const at = ch => {
+    ch = Math.max(0, Math.min(len, ch));
+    let i = 1; while (i < cum.length - 1 && cum[i] < ch) i++;
+    const seg = cum[i] - cum[i - 1] || 1, t = (ch - cum[i - 1]) / seg, a = pts[i - 1], b = pts[i];
+    const tx = (b[0] - a[0]) / seg, ty = (b[1] - a[1]) / seg;
+    return { x: a[0] + (b[0] - a[0]) * t, y: a[1] + (b[1] - a[1]) * t, tx, ty };
+  };
+  return { pts, len, at };
+}
+const lineLayers = () => (P.gis || []).filter(l => l.data.features.some(f => /LineString/.test(f.geometry.type)));
+function renderSectionControls() {
+  if (!$("xsBox")) return;
+  const ll = lineLayers(), opts = [];
+  ll.forEach(l => l.data.features.forEach((f, i) => { if (/LineString/.test(f.geometry.type)) { const nk = labelKey(f.properties); opts.push(`<option value="${l.id}:${i}">${esc(l.name)}${l.data.features.length > 1 ? ` · ${esc((nk && f.properties[nk]) || `line ${i + 1}`)}` : ""}</option>`); } }));
+  const keep = $("xsLineSel") ? $("xsLineSel").value : "";
+  $("xsLinePick").innerHTML = `<select id="xsLineSel" aria-label="GIS line to use as the centreline">${opts.length ? opts.join("") : `<option value="">No GIS line layers</option>`}</select><button type="button" id="xsUseLine"${opts.length ? "" : " disabled"}>Use line</button>`;
+  if (keep) $("xsLineSel").value = keep;
+  const drawing = smDraw && smDraw.kind === "line";
+  $("xsDraw").textContent = drawing ? "Finish line" : "Draw centreline";
+  $("xsDraw").classList.toggle("primary", !drawing);
+  const g = lineGeom();
+  $("xsLineInfo").textContent = g ? `${P.site.lineSrc || "Centreline"} · ${fmtNum(g.len, 0)} m long` : "No centreline yet.";
+  $("xsClear").hidden = !g;
+  $("xsBody").hidden = !g;
+  ["xsHalf", "xsStep", "diffLim"].forEach(k => { const el = $("sm_" + k); if (document.activeElement !== el) el.value = P.site[k]; });
+  if (g) {
+    const sl = $("xsCh"); sl.max = String(Math.floor(g.len)); sl.step = String(Math.max(1, smNum(P.site.grid.s) || 5));
+    if (XS.ch > g.len) XS.ch = g.len;
+    sl.value = String(XS.ch);
+    if (document.activeElement !== $("xsChNum")) $("xsChNum").value = String(Math.round(XS.ch));
+  }
+}
+function lineFromGis() {
+  const [lid, fi] = ($("xsLineSel").value || "").split(":").map(Number);
+  const l = (P.gis || []).find(x => x.id === lid); if (!l) return;
+  const f = l.data.features[fi]; if (!f) return;
+  const g = f.geometry, parts = g.type === "LineString" ? [g.coordinates] : g.coordinates;
+  const longest = parts.reduce((a, b) => (b.length > a.length ? b : a), []);
+  P.site.line = longest.map(c => [+c[1].toFixed(7), +c[0].toFixed(7)]);
+  const nk = labelKey(f.properties);
+  P.site.lineSrc = `${l.name}${nk && f.properties[nk] ? ` · ${f.properties[nk]}` : ""}`.slice(0, 120);
+  lineChanged();
+}
+function lineChanged() { XS.long = null; XS.cross = null; XS.ch = 0; P.isExample = false; save(); renderSectionControls(); syncZoneLayers(); updateSections(true); }
+
+/* Samples and calculates a list of points: untreated and, where a zone applies, with its treatment. */
+async function sectionCalc(pts) {
+  const missing = await ensureMeshes(); if (missing.length) throw { code: "missing" };
+  const model = siteModel(), ctx = siteCtx(), tz = zoneIndex(P.site.tz, pts);
+  const a = await siteCall("columns", { model, pts, ctx, gtIdx: pts.map(() => 0) });
+  let r1 = a.res;
+  if (tz.some(k => k)) { const b = await siteCall("columns", { model, pts, ctx, gtIdx: tz }); r1 = b.res; }
+  const def = P.site.pcsReq === "" ? null : smNum(P.site.pcsReq), pzI = zoneIndex(P.site.pz, pts);
+  const req = pzI.map(k => { if (k) { const z = P.site.pz[k - 1]; return z.req !== "" && smNum(z.req) >= 0 ? smNum(z.req) : null; } return def; });
+  return { cols: a.cols, r0: a.res, r1, tz, req };
+}
+let xsTimer = 0;
+function updateSections(longToo) {
+  clearTimeout(xsTimer);
+  xsTimer = setTimeout(() => runSections(longToo), 60);
+}
+async function runSections(longToo) {
+  const g = lineGeom();
+  if (!g || P.view !== "site" || siteProblems().length) { drawSections(); return; }
+  const seq = ++XS.seq;
+  try {
+    if (longToo || !XS.long) {
+      const step = Math.max(1, Math.min(smNum(P.site.grid.s) || 5, g.len / 600)), n = Math.floor(g.len / step) + 1;
+      const chs = Array.from({ length: n }, (_, i) => Math.min(g.len, i * step)), pts = chs.map(c => { const p = g.at(c); return [p.x, p.y]; });
+      $("xsStatus").textContent = "Calculating the long section…";
+      const r = await sectionCalc(pts);
+      if (seq !== XS.seq) return;
+      XS.long = { x: chs, ...r };
+      if (!XS.userCh) { // start where PCS without treatment is worst
+        let best = -1, at = XS.ch;
+        r.r0.forEach((v, i) => { if (v && !v.err && !v.off && v.pcs > best) { best = v.pcs; at = chs[i]; } });
+        XS.ch = at; renderSectionControls();
+      }
+    }
+    const half = Math.max(1, smNum(P.site.xsHalf) || 40), st = Math.max(0.25, smNum(P.site.xsStep) || 2), p = g.at(XS.ch);
+    const nx = -p.ty, ny = p.tx; // left of the direction of chainage
+    const offs = []; for (let o = -half; o <= half + 1e-9; o += st) offs.push(+o.toFixed(3));
+    const pts = offs.map(o => [p.x - o * nx, p.y - o * ny]); // offsets run left (negative) to right (positive)
+    const r = await sectionCalc(pts);
+    if (seq !== XS.seq) return;
+    XS.cross = { x: offs, ch: XS.ch, ...r };
+    $("xsStatus").textContent = "";
+  } catch (e) { if (seq === XS.seq) $("xsStatus").textContent = "The sections couldn’t be calculated. Check the meshes are loaded."; }
+  drawSections(); syncXsMarker();
+}
+let xsMk = null;
+function syncXsMarker() {
+  if (!SMAP || !window.L) return;
+  const g = lineGeom(), L = window.L;
+  if (xsMk) { xsMk.remove(); xsMk = null; }
+  if (!g || !$("xsBody") || $("xsBody").hidden) return;
+  const half = Math.max(1, smNum(P.site.xsHalf) || 40), p = g.at(XS.ch), nx = -p.ty, ny = p.tx;
+  const a = relToLL(p.x + half * nx, p.y + half * ny), b = relToLL(p.x - half * nx, p.y - half * ny);
+  xsMk = L.layerGroup([L.polyline([[a.lat, a.lng], [b.lat, b.lng]], { color: "#eb6834", weight: 3.5, interactive: false }), L.polyline([[a.lat, a.lng], [b.lat, b.lng]], { color: "#fff", weight: 1, dashArray: "3 4", interactive: false })]).addTo(SMAP);
+}
+
+/* ---------- Section charts ---------- */
+const unitOf = id => P.units.find(u => u.id === id) || null;
+const fillOf = id => P.fills.find(f => f.id === id) || null;
+const colVar = m => `var(--c-${m && COLOURS[m.col] ? m.col : "tan"})`;
+/* One section chart: geology and embankment, settlement, and differential settlement between neighbouring points.
+   sec has x (chainage or offset), cols, r0, r1 and req. With forW, returns SVG markup for the report. */
+let xsClipN = 0;
+function sectionSvg(sec, kind, forW, box) {
+  const W = forW || Math.max(320, (box && box.clientWidth) || 900), m = { l: 56, r: 18, t: 10 };
+  const geoH = kind === "long" ? 230 : 250, gap = 34, setH = 150, difH = 110, H = m.t + geoH + gap + setH + gap + difH + 34;
+  const xs = sec.x, n = xs.length, x0 = xs[0], x1 = xs[n - 1];
+  const X = v => m.l + (v - x0) / (x1 - x0 || 1) * (W - m.l - m.r);
+  const dx = n > 1 ? (xs[1] - xs[0]) : 1, half = Math.abs(X(x0 + dx) - X(x0)) / 2;
+  // RL range from the columns
+  let zTop = -Infinity, zBot = Infinity;
+  sec.cols.forEach(c => { if (c.zg === null) return; zTop = Math.max(zTop, c.zg + c.H); zBot = Math.min(zBot, c.zb === null ? c.zg : c.zb); });
+  if (!Number.isFinite(zTop)) { zTop = 1; zBot = 0; }
+  const zt = Math.ceil(zTop + 0.5), zb = Math.floor(zBot - 0.5), Yz = z => m.t + (zt - z) / (zt - zb || 1) * geoH;
+  let g = "";
+  const zStep = niceTicks(zt - zb, 5).ticks[1] || 1, zTicks = [];
+  for (let v = Math.ceil(zb / zStep) * zStep; v <= zt + 1e-9; v += zStep) zTicks.push(+v.toFixed(6));
+  zTicks.forEach(v => { g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Yz(v)}" y2="${Yz(v)}" style="stroke:var(--grid)"/><text x="${m.l - 6}" y="${Yz(v) + 4}" text-anchor="end">${v}</text>`; });
+  g += `<text transform="translate(12 ${m.t + geoH / 2}) rotate(-90)" text-anchor="middle">RL (m)</text>`;
+  // Columns: ground units, then fill zones above the ground.
+  const strips = [];
+  sec.cols.forEach((c, i) => {
+    if (c.zg === null) return;
+    const xa = (X(xs[i]) - half).toFixed(1), w = (2 * half + 0.6).toFixed(1);
+    let z = c.zg;
+    c.L.forEach(([u, h]) => { strips.push(`<rect x="${xa}" y="${Yz(z).toFixed(1)}" width="${w}" height="${(Yz(z - h) - Yz(z)).toFixed(1)}" style="fill:${colVar(unitOf(u))}"/>`); z -= h; });
+    if (c.base) strips.push(`<rect x="${xa}" y="${Yz(z).toFixed(1)}" width="${w}" height="${Math.max(0, Yz(zb) - Yz(z)).toFixed(1)}" style="fill:var(--c-dark);opacity:.55"/>`);
+    let ze = c.zg;
+    c.emb.slice().reverse().forEach(([f, h]) => { strips.push(`<rect x="${xa}" y="${Yz(ze + h).toFixed(1)}" width="${w}" height="${(Yz(ze) - Yz(ze + h)).toFixed(1)}" style="fill:${colVar(fillOf(f))}"/>`); ze += h; });
+  });
+  const clip = `xsclip${++xsClipN}`;
+  g += `<defs><clipPath id="${clip}"><rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${geoH}"/></clipPath></defs><g clip-path="url(#${clip})">${strips.join("")}`;
+  const line = (f, style) => { let d = "", pen = false; sec.cols.forEach((c, i) => { const v = f(c); if (v === null || !Number.isFinite(v)) { pen = false; return; } d += `${pen ? "L" : "M"}${X(xs[i]).toFixed(1)} ${Yz(v).toFixed(1)}`; pen = true; }); return d ? `<path d="${d}" style="fill:none;${style}"/>` : ""; };
+  g += line(c => (c.zg === null ? null : c.zg + c.H), "stroke:var(--ink);stroke-width:1.5");
+  g += line(c => c.zg, "stroke:var(--ink);stroke-width:1;stroke-dasharray:4 3");
+  g += line(c => (c.zg === null || c.gwt === null ? null : c.zg - c.gwt), "stroke:var(--water);stroke-width:1.5;stroke-dasharray:7 4") + "</g>";
+  g += `<rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${geoH}" style="fill:none;stroke:var(--line)"/>`;
+  // Settlement panel, plotted downward.
+  const y1 = m.t + geoH + gap, val = (r, f) => (r && !r.err && !r.off ? r[f] * 1000 : r && r.off ? 0 : null);
+  let peak = 1;
+  sec.r0.forEach((r, i) => { [val(r, "tot"), val(sec.r1[i], "tot")].forEach(v => { if (v !== null) peak = Math.max(peak, v); }); });
+  sec.req.forEach(v => { if (v !== null) peak = Math.max(peak, v); });
+  const st = niceTicks(peak, 4), Ys = v => y1 + v / st.top * setH;
+  st.ticks.forEach(v => { g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Ys(v)}" y2="${Ys(v)}" style="stroke:var(--grid)"/><text x="${m.l - 6}" y="${Ys(v) + 4}" text-anchor="end">${v}</text>`; });
+  g += `<text transform="translate(12 ${y1 + setH / 2}) rotate(-90)" text-anchor="middle">mm</text>`;
+  const sline = (arr, f, style) => { let d = "", pen = false; arr.forEach((v0, i) => { const v = f(v0, i); if (v === null) { pen = false; return; } d += `${pen ? "L" : "M"}${X(xs[i]).toFixed(1)} ${Ys(v).toFixed(1)}`; pen = true; }); return d ? `<path d="${d}" style="fill:none;${style}"/>` : ""; };
+  const treated = sec.tz.some(k => k);
+  // Requirement as a step line
+  g += sline(sec.req, v => v, "stroke:var(--bad);stroke-width:1.5;stroke-dasharray:2 3");
+  if (treated) g += sline(sec.r0, r => val(r, "pcs"), "stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 4");
+  g += sline(sec.r1, r => val(r, "tot"), "stroke:var(--s2);stroke-width:2;stroke-linejoin:round");
+  g += sline(sec.r1, r => val(r, "pcs"), "stroke:var(--s1);stroke-width:2;stroke-linejoin:round");
+  // Points that couldn't be calculated
+  sec.r1.forEach((r, i) => { if (sec.cols[i].zg !== null && (!r || r.err)) g += `<rect x="${(X(xs[i]) - half).toFixed(1)}" y="${y1}" width="${(2 * half).toFixed(1)}" height="${setH}" style="fill:var(--bad-soft)"/>`; });
+  g += `<rect x="${m.l}" y="${y1}" width="${W - m.l - m.r}" height="${setH}" style="fill:none;stroke:var(--line)"/>`;
+  // Differential PCS between neighbours, as angular distortion.
+  const y2 = y1 + setH + gap, lim = smNum(P.site.diffLim) > 0 ? 1 / smNum(P.site.diffLim) : null, D = [];
+  for (let i = 0; i + 1 < n; i++) { const a = val(sec.r1[i], "pcs"), b = val(sec.r1[i + 1], "pcs"); D.push(a === null || b === null ? null : Math.abs(a - b) / 1000 / Math.abs(xs[i + 1] - xs[i])); }
+  const dPeak = Math.max(lim ? lim * 1.5 : 0, ...D.filter(v => v !== null), 1e-4);
+  const dt = niceTicks(dPeak * 1000, 3), Yd = v => y2 + difH - v * 1000 / dt.top * difH;
+  dt.ticks.forEach(v => { g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Yd(v / 1000)}" y2="${Yd(v / 1000)}" style="stroke:var(--grid)"/><text x="${m.l - 6}" y="${Yd(v / 1000) + 4}" text-anchor="end">${v ? `1:${Math.round(1000 / v)}` : "0"}</text>`; });
+  D.forEach((v, i) => {
+    if (v === null) return;
+    const xa = X(xs[i]) + 0.6, w = Math.max(0.8, X(xs[i + 1]) - X(xs[i]) - 1.2), over = lim && v > lim;
+    g += `<rect x="${xa.toFixed(1)}" y="${Yd(v).toFixed(1)}" width="${w.toFixed(1)}" height="${(y2 + difH - Yd(v)).toFixed(1)}" style="fill:var(${over ? "--bad" : "--s1"});opacity:${over ? 1 : 0.7}"/>`;
+  });
+  if (lim) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Yd(lim)}" y2="${Yd(lim)}" style="stroke:var(--bad);stroke-dasharray:5 3"/><text x="${W - m.r - 4}" y="${Yd(lim) - 4}" text-anchor="end" class="ink">Limit 1 in ${P.site.diffLim}</text>`;
+  g += `<rect x="${m.l}" y="${y2}" width="${W - m.l - m.r}" height="${difH}" style="fill:none;stroke:var(--line)"/>`;
+  g += `<text transform="translate(12 ${y2 + difH / 2}) rotate(-90)" text-anchor="middle">ΔPCS</text>`;
+  // Horizontal axis
+  const span = x1 - x0, xt = niceTicks(span, kind === "long" ? 8 : 6);
+  xt.ticks.forEach(t => { const v = kind === "long" ? x0 + t : Math.ceil(x0 / xt.ticks[1] || 0) * (xt.ticks[1] || 1) + t; if (v > x1 + 1e-6) return; const px = X(v); g += `<line x1="${px}" x2="${px}" y1="${y2 + difH}" y2="${y2 + difH + 4}" style="stroke:var(--line)"/><text x="${px}" y="${y2 + difH + 17}" text-anchor="middle">${Math.round(v)}</text>`; });
+  g += `<text x="${(m.l + W - m.r) / 2}" y="${H - 2}" text-anchor="middle">${kind === "long" ? "Chainage (m)" : "Offset from centreline (m), left negative"}</text>`;
+  if (kind === "long" && XS.cross) g += `<line x1="${X(XS.cross.ch)}" x2="${X(XS.cross.ch)}" y1="${m.t}" y2="${y2 + difH}" style="stroke:var(--s2);stroke-width:1.5;stroke-dasharray:4 3"/>`;
+  if (kind === "cross") g += `<line x1="${X(0)}" x2="${X(0)}" y1="${m.t}" y2="${y2 + difH}" style="stroke:var(--muted);stroke-dasharray:2 3"/>`;
+  const geo = { m, W, H, X, xs, y1, y2, setH, difH, geoH };
+  if (forW) return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${g}</svg>`;
+  return { svg: `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${kind === "long" ? "Long section" : "Cross section"} with ground profile, settlement and differential settlement">${g}<line class="xsHover" x1="0" x2="0" y1="${m.t}" y2="${y2 + difH}" style="stroke:var(--ink);display:none"/></svg><div class="tip" hidden></div>`, geo, D };
+}
+/* Legend entries as [label, colour token, "box" | "line" | "dash" | "dot"]. */
+function sectionKeys(sec) {
+  const units = new Map(), fills = new Map();
+  sec.cols.forEach(c => { c.L.forEach(([u]) => units.set(u, unitOf(u))); c.emb.forEach(([f]) => fills.set(f, fillOf(f))); });
+  const col = m => `--c-${m && COLOURS[m.col] ? m.col : "tan"}`;
+  const k = [...[...fills.values()].filter(Boolean).map(f => [f.name || "Fill", col(f), "box"]), ...[...units.values()].filter(Boolean).map(u => [u.name || "Unit", col(u), "box"])];
+  if (sec.cols.some(c => c.base)) k.push(["Base", "--c-dark", "box"]);
+  k.push(["Groundwater", "--water", "dash"], ["PCS", "--s1", "line"], ["Total settlement", "--s2", "line"]);
+  if (sec.tz.some(z => z)) k.push(["PCS, no treatment", "--muted", "dash"]);
+  k.push(["PCS requirement", "--bad", "dot"]);
+  return k;
+}
+function sectionLegend(sec) {
+  return sectionKeys(sec).map(([n, c, t]) => t === "box" ? `<span><i class="box" style="background:var(${c});border:1px solid var(--line)"></i>${esc(n)}</span>`
+    : t === "line" ? `<span><i style="background:var(${c})"></i>${esc(n)}</span>` : `<span><i style="background:none;height:0;border-top:2px ${t === "dot" ? "dotted" : "dashed"} var(${c})"></i>${esc(n)}</span>`).join("");
+}
+function drawSections() {
+  const g = lineGeom();
+  [["long", "xsLong", "xsLongLeg"], ["cross", "xsCross", "xsCrossLeg"]].forEach(([kind, id, leg]) => {
+    const box = $(id), sec = XS[kind];
+    if (!box) return;
+    if (!g || !sec) { box.innerHTML = ""; $(leg).innerHTML = ""; return; }
+    const out = sectionSvg(sec, kind, null, box);
+    box.innerHTML = out.svg; $(leg).innerHTML = sectionLegend(sec);
+    const tip = box.querySelector(".tip"), hl = box.querySelector(".xsHover"), { geo } = out;
+    box.onpointermove = ev => {
+      const rect = box.getBoundingClientRect(), sx = (ev.clientX - rect.left) * geo.W / rect.width;
+      if (sx < geo.m.l || sx > geo.W - geo.m.r) { box.onpointerleave(); return; }
+      let i = 0, best = Infinity; geo.xs.forEach((v, k) => { const d = Math.abs(geo.X(v) - sx); if (d < best) { best = d; i = k; } });
+      const c = sec.cols[i], r1 = sec.r1[i], r0 = sec.r0[i], tzn = sec.tz[i] ? P.site.tz[sec.tz[i] - 1].name : "";
+      hl.style.display = ""; hl.setAttribute("x1", geo.X(geo.xs[i])); hl.setAttribute("x2", geo.X(geo.xs[i]));
+      const d = [out.D[i - 1], out.D[i]].filter(v => v !== null && v !== undefined), dm = d.length ? Math.max(...d) : null;
+      tip.hidden = false;
+      tip.innerHTML = `<div class="t">${kind === "long" ? `Ch ${Math.round(geo.xs[i])} m` : `Offset ${geo.xs[i] > 0 ? "+" : ""}${fmtNum(geo.xs[i], 1)} m`}</div>`
+        + (c.zg === null ? `<div><span>No ground model here</span></div>` : `<div><span>Ground RL</span>${fmtNum(c.zg)} m</div><div><span>Fill</span>${fmtNum(c.H)} m</div>`
+        + (r1 && !r1.err ? `<div><span>PCS</span>${r1.off ? "0" : mm(r1.pcs)} mm</div><div><span>Total</span>${r1.off ? "0" : mm(r1.tot)} mm</div>` : `<div><span>Not calculated</span></div>`)
+        + (tzn && r0 && !r0.err ? `<div><span>PCS, no treatment</span>${mm(r0.pcs)} mm</div><div><span>Treatment</span>${esc(tzn)}</div>` : "")
+        + (sec.req[i] !== null ? `<div><span>Requirement</span>${sec.req[i]} mm</div>` : "")
+        + (dm !== null ? `<div><span>Differential</span>${dm > 0 ? `1 in ${Math.round(1 / dm).toLocaleString()}` : "0"}</div>` : ""));
+      placeTip(tip, box, sx * rect.width / geo.W, ev.clientY - rect.top);
+    };
+    box.onpointerleave = () => { tip.hidden = true; hl.style.display = "none"; };
+    if (kind === "long") box.onclick = ev => {
+      const rect = box.getBoundingClientRect(), sx = (ev.clientX - rect.left) * geo.W / rect.width;
+      if (sx < geo.m.l || sx > geo.W - geo.m.r) return;
+      XS.userCh = true;
+      XS.ch = Math.max(0, Math.min(g.len, geo.xs[0] + (sx - geo.m.l) / (geo.W - geo.m.l - geo.m.r) * (geo.xs[geo.xs.length - 1] - geo.xs[0])));
+      renderSectionControls(); updateSections(false);
+    };
+  });
+  const c = XS.cross;
+  $("xsCrossHead").textContent = c ? `Cross section at chainage ${Math.round(c.ch)} m` : "Cross section";
+}
+
+
+/* ---------- Site model in the PDF report ---------- */
+/* Maps are drawn straight onto the MGA plane (grid north up), so they need no map imagery. */
+function gridImage(W, H, field, treated) {
+  const g = SG, c = document.createElement("canvas"); c.width = W; c.height = H;
+  const ctx = c.getContext("2d"); ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, H);
+  const pad = 44, x0 = (g.i0 - 1) * g.s, y0 = (g.j0 - 1) * g.s, x1 = (g.i0 + g.nI) * g.s, y1 = (g.j0 + g.nJ) * g.s;
+  const sc = Math.min((W - 2 * pad) / (x1 - x0), (H - 2 * pad) / (y1 - y0));
+  const ox = (W - (x1 - x0) * sc) / 2, oy = (H - (y1 - y0) * sc) / 2;
+  const proj = (x, y) => [ox + (x - x0) * sc, H - oy - (y - y0) * sc];
+  // Embankment outlines
+  ctx.lineWidth = 1.2; ctx.strokeStyle = "#eb6834";
+  meshesOf("emb").forEach(m => m.outline.forEach(l => { ctx.beginPath(); l.forEach(([x, y], i) => { const p = proj(x, y); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.closePath(); ctx.stroke(); }));
+  drawCells(ctx, proj, W, H, field, treated);
+  const ring = (r, col, dash, lw = 2) => { ctx.setLineDash(dash); ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.beginPath(); r.forEach(([lat, lng], i) => { const [x, y] = llToRel(lat, lng), p = proj(x, y); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.closePath(); ctx.stroke(); ctx.setLineDash([]); };
+  P.site.pz.forEach(z => ring(z.ring, ZONE_COL.pz, []));
+  if (treated) P.site.tz.forEach(z => ring(z.ring, ZONE_COL.tz, [7, 5]));
+  if (P.site.line) { ctx.strokeStyle = "#14222a"; ctx.lineWidth = 1.5; ctx.beginPath(); P.site.line.forEach(([lat, lng], i) => { const [x, y] = llToRel(lat, lng), p = proj(x, y); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.stroke(); }
+  // Zone labels
+  const fs = Math.round(W / 60);
+  ctx.font = `600 ${fs}px Arial, sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  const label = (r, txt) => { let sx = 0, sy = 0; r.forEach(([lat, lng]) => { const [x, y] = llToRel(lat, lng), p = proj(x, y); sx += p[0]; sy += p[1]; }); const px = sx / r.length, py = sy / r.length, w = ctx.measureText(txt).width + fs * 0.7, h = fs * 1.5; ctx.fillStyle = "rgba(255,255,255,.92)"; ctx.fillRect(px - w / 2, py - h / 2, w, h); ctx.strokeStyle = "#7c8a92"; ctx.lineWidth = 1; ctx.strokeRect(px - w / 2, py - h / 2, w, h); ctx.fillStyle = "#14222a"; ctx.fillText(txt, px, py + 1); };
+  if (treated) P.site.tz.forEach(z => label(z.ring, z.name));
+  else P.site.pz.forEach(z => label(z.ring, `${z.name}${z.req !== "" ? ` · ${z.req} mm` : ""}`));
+  // Scale bar and north arrow
+  const len = niceTicks((W * 0.22) / sc, 1).top, bl = len * sc;
+  ctx.fillStyle = "#14222a"; ctx.fillRect(pad, H - pad - 5, bl, 5); ctx.font = `${fs}px Arial, sans-serif`; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; ctx.fillText(`${len.toLocaleString()} m`, pad, H - pad - 12);
+  ctx.beginPath(); ctx.moveTo(W - pad, pad); ctx.lineTo(W - pad + 9, pad + 26); ctx.lineTo(W - pad, pad + 19); ctx.lineTo(W - pad - 9, pad + 26); ctx.closePath(); ctx.fill();
+  ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("N", W - pad, pad + 30);
+  return c.toDataURL("image/png");
+}
+function legendPdf(field) {
+  const sc = scaleOf(field), [name, unit] = SM_FIELDS[field], cols = sc.kind === "div" ? DIV : SEQ;
+  const bar = { canvas: cols.map((c, i) => ({ type: "rect", x: i * 12, y: 1, w: 12, h: 7, color: c })), width: cols.length * 12 + 6 };
+  const ends = sc.kind === "div" ? "under   |   1.0 = at the requirement   |   over" : `${sc.fmt(sc.lo)} to ${sc.fmt(sc.hi)}${field === "diff" ? "" : "+"}${unit && field !== "diff" ? ` ${unit}` : ""}`;
+  return { columns: [{ text: `${name}${unit && field !== "diff" ? ` (${unit})` : ""}`, bold: true, width: "auto", margin: [0, 0, 6, 0] }, bar, { text: ends, width: "auto", color: PRINT["--muted"] }, { canvas: [{ type: "rect", x: 10, y: 1, w: 10, h: 7, color: "#ffffff", lineColor: "#a32626", lineWidth: 0.8 }, { type: "line", x1: 11, y1: 8, x2: 19, y2: 1, lineColor: "#a32626", lineWidth: 0.6 }], width: 24 }, { text: "Not calculated", width: "auto", color: PRINT["--muted"] }], columnGap: 0, fontSize: 6.8, margin: [0, 3, 0, 6] };
+}
+/* Points, area and worst results inside each zone. */
+function zoneSummary(kind) {
+  const g = SG, idx = kind === "tz" ? g.tzIdx : g.pzIdx, A = g.s * g.s;
+  return P.site[kind].map((z, zi) => {
+    let n = 0, max0 = 0, max1 = 0, over = 0, drains = 0, dLen = 0, bad = 0;
+    g.cols.forEach((c, k) => {
+      if (idx[k] !== zi + 1) return;
+      n++;
+      const r0 = g.r0[k], r1 = g.r1[k];
+      if (!r1 || r1.err) { bad++; return; }
+      if (r0 && !r0.err) max0 = Math.max(max0, r0.pcs);
+      max1 = Math.max(max1, r1.pcs);
+      if (g.req[k] !== null && r1.pcs * 1000 > g.req[k] + 1e-9) over++;
+      if (r1.drA > 0) { drains += A / r1.drA; dLen += A / r1.drA * r1.drL; }
+    });
+    return { z, n, area: n * A, max0, max1, over, drains, dLen, bad };
+  });
+}
+async function sitePages() {
+  const g = SG, st = gridStats(), ink = PRINT["--ink"], muted = PRINT["--muted"], A = v => (v >= 1e4 ? `${(v / 1e4).toFixed(2)} ha` : `${Math.round(v).toLocaleString()} m²`);
+  const meta = [P.jobRef && `Job ${P.jobRef}`, P.author && `Prepared by ${P.author}`, reportDate()].filter(Boolean).join("   |   ");
+  const asp = (g.nJ + 2) / (g.nI + 2), W = 1600, H = Math.round(Math.max(420, Math.min(1000, W * asp)));
+  const hasT = P.site.tz.length > 0;
+  const page1 = [
+    { text: "1D Settlement Report: Site Model", fontSize: 16, bold: true, color: ink },
+    { text: P.project || "Untitled project", fontSize: 10, color: ink },
+    { text: meta, color: muted, margin: [0, 1, 0, 0] }, pdfRule(),
+  ];
+  const statC = (lab, val) => ({ stack: [{ text: lab, color: muted, fontSize: 6.6 }, { text: val, bold: true, fontSize: 10.5, color: ink }], margin: [3, 2, 3, 2] });
+  const stats = [statC("Grid points", `${st.n.toLocaleString()} at ${g.s} m`), statC("Area", A(st.area)), statC("Max total", `${Math.round(st.maxT * 1000)} mm`), statC("Max PCS", `${Math.round(st.maxP * 1000)} mm`), statC("95% of PCS within", `${Math.round(st.p95 * 1000)} mm`), statC("Over requirement", `${st.over.toLocaleString()} pts, ${A(st.overArea)}`), statC("Max differential", st.dMax > 0 ? `1 in ${Math.round(1 / st.dMax).toLocaleString()}` : "–"), statC("Not calculated", `${(st.bad + st.flagged).toLocaleString()} pts`)];
+  page1.push({ text: `Results ${hasT ? "with the ground treatment zones applied" : "without ground treatment"}. Design life ${P.td} yr, handover ${P.th} yr, loading period ${P.site.tc} yr, extra surface load ${P.site.q || 0} kPa.`, color: muted, margin: [0, 0, 0, 4] });
+  page1.push({ table: { widths: stats.map(() => "*"), body: [stats] }, layout: { hLineWidth: () => 0, vLineWidth: () => 0, fillColor: () => PRINT["--band"], paddingLeft: () => 2, paddingRight: () => 2, paddingTop: () => 0, paddingBottom: () => 0 } });
+  const fig = (field, treated, title) => [pdfSection(title), { image: gridImage(W, H, field, treated), fit: [PW, hasT ? 188 : 250], alignment: "center" }, legendPdf(field)];
+  page1.push(...fig("pcs", false, "PCS without ground treatment, with PCS requirement zones"));
+  if (hasT) page1.push(...fig("pcs", true, "PCS with ground treatment, with treatment zones"));
+  page1.push(...fig("ratio", true, `PCS against the requirement${hasT ? ", with treatment" : ""}`));
+  page1.push({ text: `Grid: GDA2020 MGA zone ${siteZone()}, grid north up. Each cell is a 1D column under its own fill height. Nothing is interpolated between grid points.`, color: muted, margin: [0, 2, 0, 0] });
+
+  const page2 = [{ text: "Site model: inputs and zones", fontSize: 14, bold: true, color: ink }, pdfRule()];
+  const unitName = id => (id === "base" ? "Base: column stops" : (P.units.find(u => u.id === id) || {}).name || "Not matched");
+  page2.push(pdfSection("Ground model and surfaces", true), pdfTable([
+    [pdfHead("Mesh", true), pdfHead("File", true), pdfHead("Role", true), pdfHead("Used as", true), pdfHead("Triangles")],
+    ...P.site.meshes.map(m => [m.name, m.file, { vol: "Ground volume", ground: "Existing ground", emb: "Top of embankment zone", gw: "Groundwater" }[m.role], m.role === "vol" ? `${unitName(m.unit)}${m.unit !== "base" && m.dr === "one" ? ", one-way drainage" : ""}` : m.role === "emb" ? (P.fills.find(f => f.id === m.fill) || {}).name || "–" : "–", pdfNum(m.ntri.toLocaleString())]),
+  ], ["*", 110, 84, 120, 46]));
+  page2.push({ text: `Groundwater: ${P.site.gwMode === "surface" ? "from the groundwater surface" : `${P.site.gwDepth} m below existing ground`}. Grid spacing ${g.s} m; minimum fill ${P.site.grid.minEmb} m; maximum depth ${P.site.grid.maxDepth} m; layers thinner than ${P.site.grid.minLayer} m merged into the layer below. PCS requirement outside zones: ${P.site.pcsReq === "" ? "none" : `${P.site.pcsReq} mm`}.`, color: muted, margin: [0, 4, 0, 0] });
+  if (P.site.pz.length) {
+    const zs = zoneSummary("pz");
+    page2.push(pdfSection("PCS requirement zones"), pdfTable([
+      [pdfHead("Zone", true), pdfHead("Requirement\n(mm)"), pdfHead("Points"), pdfHead("Area"), pdfHead("Max PCS\n(mm)"), pdfHead("Points\nover"), pdfHead("Result", true)],
+      ...zs.map(s => [s.z.name, pdfNum(s.z.req === "" ? "None" : s.z.req), pdfNum(s.n.toLocaleString()), pdfNum(A(s.area)), pdfNum(Math.round(s.max1 * 1000)), pdfNum(s.over.toLocaleString()), { text: s.z.req === "" ? "No requirement" : s.over ? "Exceeded" : "Met", color: s.over ? PRINT["--bad"] : ink, bold: !!s.over }]),
+    ], ["*", 54, 40, 50, 46, 40, 70]));
+  }
+  if (hasT) {
+    const zs = zoneSummary("tz");
+    page2.push(pdfSection("Ground treatment zones"), pdfTable([
+      [pdfHead("Zone", true), pdfHead("Treatment", true), pdfHead("Points"), pdfHead("Area"), pdfHead("Max PCS\nuntreated"), pdfHead("Max PCS\ntreated"), pdfHead("Points\nover req."), pdfHead("Drains\n(approx.)"), pdfHead("Drain length\n(approx. m)")],
+      ...zs.map(s => [s.z.name, gtSummary(s.z.gt), pdfNum(s.n.toLocaleString()), pdfNum(A(s.area)), pdfNum(`${Math.round(s.max0 * 1000)} mm`), { ...pdfNum(`${Math.round(s.max1 * 1000)} mm`), bold: true }, { ...pdfNum(s.over.toLocaleString()), color: s.over ? PRINT["--bad"] : ink }, pdfNum(s.drains ? Math.round(s.drains).toLocaleString() : "–"), pdfNum(s.dLen ? Math.round(s.dLen).toLocaleString() : "–")]),
+    ], [70, "*", 34, 44, 44, 42, 36, 40, 50]));
+    page2.push({ text: "Drain numbers are the zone’s grid area divided by the area each drain serves; lengths run to the base of the deepest clay layer at each point. Treat both as estimates for planning.", color: muted, margin: [0, 4, 0, 0] });
+  }
+  const pages = [page1, page2];
+  const line = lineGeom();
+  if (line) {
+    if (!XS.long || !XS.cross) await runSections(true);
+    if (XS.long && XS.cross) {
+      const p3 = [{ text: "Site model: sections", fontSize: 14, bold: true, color: ink }, { text: `Centreline: ${P.site.lineSrc || "drawn"} · ${Math.round(line.len)} m. Differential PCS is between neighbouring points${smNum(P.site.diffLim) > 0 ? `, against a limit of 1 in ${P.site.diffLim}` : ""}.`, color: muted }, pdfRule()];
+      const leg = sec => ({ columns: sectionKeys(sec).flatMap(([n, c, t]) => [{ width: 13, canvas: t === "box" ? [{ type: "rect", x: 0, y: 1, w: 10, h: 6, color: PRINT[c], lineColor: PRINT["--line"], lineWidth: 0.4 }] : [{ type: "line", x1: 0, y1: 4, x2: 11, y2: 4, lineWidth: 1.4, lineColor: PRINT[c], ...(t === "line" ? {} : { dash: { length: t === "dot" ? 1 : 2.5, space: 1.6 } }) }] }, { text: n, width: "auto", margin: [0, 0, 6, 0] }]), columnGap: 0, fontSize: 6.4, margin: [0, 0, 0, 3] });
+      p3.push(pdfSection("Long section", true), leg(XS.long), { svg: printSvg(sectionSvg(XS.long, "long", 1000)), width: PW });
+      p3.push(pdfSection(`Cross section at chainage ${Math.round(XS.cross.ch)} m`), leg(XS.cross), { svg: printSvg(sectionSvg(XS.cross, "cross", 1000)), width: PW });
+      p3.push({ text: "Each point is a 1D column under its own fill height, so near the batters these results overstate settlement differences.", color: muted, margin: [0, 2, 0, 0] });
+      pages.push(p3);
+    }
+  }
+  return pages;
+}
+
+/* ---------- Project files with a site model: one zip holding the project and its meshes ---------- */
+async function saveProjectZip() {
+  await loadJsZip();
+  await ensureMeshes();
+  const zip = new window.JSZip();
+  zip.file("project.json", JSON.stringify({ app: "1d-settlement-calculator", version: 3, appVersion: APP_VERSION, ...P }));
+  for (const m of P.site.meshes) {
+    const d = await siteCall("get", { mid: m.id });
+    if (!d) throw { code: "missing", name: m.name };
+    zip.file(`meshes/${m.id}.v.f32`, new Uint8Array(d.v.buffer, d.v.byteOffset, d.v.byteLength));
+    zip.file(`meshes/${m.id}.t.u32`, new Uint8Array(d.t.buffer, d.t.byteOffset, d.t.byteLength));
+    zip.file(`meshes/${m.id}.json`, JSON.stringify({ sign: d.sign }));
+  }
+  if (SG) zip.file("grid.json", JSON.stringify({ s: SG.s, I: SG.I, J: SG.J, cols: SG.cols, r0: SG.r0, r1: SG.r1, gtSig: SG.gtSig, sampleSig: SG.sampleSig, baseSig: SG.baseSig }));
+  zip.file("README.txt", "Project saved from the 1D Settlement Calculator. Open this zip with Open project. project.json holds the inputs; meshes/ holds each mesh as 32-bit float vertices (x, y relative to the site origin in project.json, then z) and 32-bit triangle indices.\n");
+  return zip.generateAsync({ type: "blob", compression: "DEFLATE", compressionOptions: { level: 6 } });
+}
+async function openProjectZip(file) {
+  await loadJsZip();
+  const zip = await window.JSZip.loadAsync(await file.arrayBuffer());
+  const pj = zip.file("project.json"); if (!pj) throw new Error("no project");
+  const o = JSON.parse(await pj.async("string"));
+  if (!o || o.app !== "1d-settlement-calculator") throw new Error("not ours");
+  const p = normalizeProject(o);
+  p.isExample = false; p.planSample = false; p.hasPlan = !!p.plan;
+  const meshes = [];
+  for (const m of p.site.meshes) {
+    const fv = zip.file(`meshes/${m.id}.v.f32`), ft = zip.file(`meshes/${m.id}.t.u32`), fj = zip.file(`meshes/${m.id}.json`);
+    if (!fv || !ft) continue;
+    const v = new Float32Array((await fv.async("uint8array")).slice().buffer), t = new Uint32Array((await ft.async("uint8array")).slice().buffer);
+    meshes.push({ id: m.id, v, t, sign: fj ? (JSON.parse(await fj.async("string")).sign || 1) : 1 });
+  }
+  p.site.meshes = p.site.meshes.filter(m => meshes.some(x => x.id === m.id));
+  const gf = zip.file("grid.json"), grid = gf ? JSON.parse(await gf.async("string")) : null;
+  p.site.hasGrid = false;
+  addProject(p);
+  await startWorkers();
+  await callW(SW.main, "reset"); SW.loaded = new Set(); SW.loadedFor = STORE.current;
+  for (const m of meshes) { await callW(SW.main, "put", { mid: m.id, key: meshKey(STORE.current, m.id), v: m.v, t: m.t, sign: m.sign }); SW.loaded.add(m.id); }
+  if (grid && Array.isArray(grid.cols)) {
+    SG = { ...grid, r1: grid.r1 || grid.r0 }; gridDerived(); P.site.hasGrid = true; save(); storeGrid();
+  }
+  renderSite();
+  return p;
 }
 
 /* ---------- Events ---------- */
@@ -3729,8 +5716,9 @@ $("rpCancel").addEventListener("click", () => setReportPanel(false));
 $("rpAll").addEventListener("click", () => { rpSel = new Set(P.locations.map(l => l.id)); renderReportPanel(); });
 $("rpNone").addEventListener("click", () => { rpSel = new Set(); renderReportPanel(); });
 $("rpSite").addEventListener("change", e => { e.target.dataset.touched = "1"; });
-$("rpLocs").addEventListener("change", e => { const id = +e.target.dataset.rp; if (!id) return; if (e.target.checked) rpSel.add(id); else rpSel.delete(id); $("rpGo").disabled = !rpSel.size; });
-$("rpGo").addEventListener("click", () => saveReport({ site: $("rpSite").checked, ids: P.locations.map(l => l.id).filter(id => rpSel.has(id)) }));
+$("rpLocs").addEventListener("change", e => { const id = +e.target.dataset.rp; if (!id) return; if (e.target.checked) rpSel.add(id); else rpSel.delete(id); $("rpGo").disabled = !rpSel.size && !(SG && $("rpGrid").checked); });
+$("rpGrid").addEventListener("change", () => { $("rpGo").disabled = !rpSel.size && !(SG && $("rpGrid").checked); });
+$("rpGo").addEventListener("click", () => saveReport({ site: $("rpSite").checked, grid: !!SG && $("rpGrid").checked, ids: P.locations.map(l => l.id).filter(id => rpSel.has(id)) }));
 $("btnSaveProject").addEventListener("click", saveProject);
 $("btnOpenProject").addEventListener("click", () => $("projectFile").click());
 $("projectFile").addEventListener("change", e => { const f = e.target.files[0]; e.target.value = ""; if (f) openProjectFile(f); });
@@ -3955,7 +5943,10 @@ $("btnNewProject").addEventListener("click", () => { setProjMenu(false); addProj
 document.addEventListener("click", e => { if (!$("projList").hidden && !e.target.closest("#projMenu")) setProjMenu(false); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("projList").hidden) { setProjMenu(false); $("btnProj").focus(); } });
 $("btnClear").addEventListener("click", e => confirmStep(e.currentTarget, "Clear every input?", () => true, () => {
+  const oldMeshes = (P.site && P.site.meshes || []).map(m => meshKey(STORE.current, m.id));
   P = normalizeProject(BLANK(P.project, { jobRef: P.jobRef, author: P.author }));
+  planStore("readwrite", s => { oldMeshes.forEach(k => s.delete(k)); return s.delete(gridKey(STORE.current)); }).catch(() => {});
+  SW.loadedFor = null;
   save(); storePlan(); storeGis(); showProject();
   reportNote("warn", "Every input in this project is cleared. Start with the soil units and fill materials, then build each location.", "Project");
 }));
@@ -4002,6 +5993,106 @@ new ResizeObserver(() => {
   if (w === lastW) return; lastW = w;
   cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { if (R) { drawTime(R); drawStress(R); } });
 }).observe(document.querySelector(".charts"));
+
+
+/* ---------- Site model events ---------- */
+["smAddVol", "smAddGround", "smAddEmb", "smAddGw"].forEach(id => $(id).addEventListener("click", e => { smRole = e.currentTarget.dataset.role; $("smFile").multiple = smRole === "vol" || smRole === "emb"; $("smFile").click(); }));
+$("smFile").addEventListener("change", e => { const f = [...e.target.files]; e.target.value = ""; if (f.length) smImport(f); });
+const smTables = ["smVolTable", "smGroundTable", "smEmbTable", "smGwTable"];
+smTables.forEach(id => {
+  $(id).addEventListener("change", e => {
+    const t = e.target, m = P.site.meshes.find(x => x.id === +t.dataset.mid); if (!m || !t.dataset.key) return;
+    if (t.dataset.key === "unit") m.unit = t.value === "base" ? "base" : t.value === "" ? null : +t.value;
+    else if (t.dataset.key === "fill") m.fill = t.value === "" ? null : +t.value;
+    else m[t.dataset.key] = t.value;
+    siteChanged();
+  });
+  $(id).addEventListener("click", e => {
+    const b = e.target.closest("button[data-sact]"); if (!b) return;
+    const mid = +b.dataset.mid, act = b.dataset.sact;
+    if (act === "del") { confirmStep(b, "Remove?", () => true, async () => { await smDrop([mid]); siteChanged(); }); return; }
+    const list = P.site.meshes, i = list.findIndex(x => x.id === mid), emb = list.filter(x => x.role === "emb"), j = emb.findIndex(x => x.id === mid);
+    const other = emb[act === "up" ? j - 1 : j + 1]; if (!other) return;
+    const k = list.indexOf(other); [list[i], list[k]] = [list[k], list[i]];
+    siteChanged();
+  });
+});
+$("gwSeg").addEventListener("click", e => { const b = e.target.closest("button[data-gw]"); if (!b) return; P.site.gwMode = b.dataset.gw; siteChanged(); });
+/* Inputs in the site panel: data-sk keys live on P.site, data-gk keys on P.site.grid. */
+$("sitePanel").addEventListener("input", e => {
+  const t = e.target;
+  if (t.dataset.sk) {
+    P.site[t.dataset.sk] = t.value; P.isExample = false; save();
+    if (t.dataset.sk === "pcsReq") { gridDerived(); renderSiteResults(); }
+    else if (["xsHalf", "xsStep"].includes(t.dataset.sk)) updateSections(false);
+    else if (t.dataset.sk === "diffLim") { gridDerived(); renderSiteResults(); drawSections(); }
+    else renderSiteResults();
+    $("smNeed").innerHTML = siteProblems().length && P.site.meshes.length ? `<div class="msg warn"><b>To sample</b><span>${esc(siteProblems().join(" "))}</span></div>` : "";
+  } else if (t.dataset.gk && t.tagName !== "SELECT") {
+    P.site.grid[t.dataset.gk] = t.value; P.isExample = false; save(); renderSiteResults();
+    $("smNeed").innerHTML = siteProblems().length && P.site.meshes.length ? `<div class="msg warn"><b>To sample</b><span>${esc(siteProblems().join(" "))}</span></div>` : "";
+  }
+});
+$("smg_boundary").addEventListener("change", e => { P.site.grid.boundary = +e.target.value || 0; siteChanged(); });
+$("smRun").addEventListener("click", () => siteRun());
+$("smCancel").addEventListener("click", () => { SW.cancel = true; });
+$("smField").addEventListener("click", e => { const b = e.target.closest("button[data-f]"); if (!b) return; P.site.show = b.dataset.f; save(); renderSiteResults(); });
+$("smTreat").addEventListener("click", e => { const b = e.target.closest("button[data-t]"); if (!b) return; P.site.treated = b.dataset.t === "1"; save(); renderSiteResults(); });
+$("smProbe").addEventListener("click", e => { if (e.target.id === "smPromote" && probe) promotePoint(probe.k); });
+$("smCsv").addEventListener("click", e => {
+  if (!SG) return;
+  const txt = gridCsv(), btn = e.currentTarget;
+  const done = ok => { btn.textContent = ok ? "Copied" : "Select and copy below"; setTimeout(() => { btn.textContent = "Copy grid as CSV"; }, 2500); if (!ok) { $("csvFallback").hidden = false; $("csvFallback").value = txt; $("csvFallback").select(); } };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => done(true), () => done(false)); else done(false);
+});
+/* Zones */
+$("tzDraw").addEventListener("click", () => startDraw("tz"));
+$("pzDraw").addEventListener("click", () => startDraw("pz"));
+$("xsDraw").addEventListener("click", () => startDraw("line"));
+document.addEventListener("keydown", e => { if (e.key === "Escape" && smDraw) finishDraw(true); });
+$("sitePanel").addEventListener("click", e => {
+  const t = e.target;
+  if (t.id === "tzFromGis") zonesFromGis("tz");
+  else if (t.id === "pzFromGis") zonesFromGis("pz");
+  else if (t.id === "xsUseLine") lineFromGis();
+  else if (t.id === "xsClear") confirmStep(t, "Remove the centreline?", () => true, () => { P.site.line = null; P.site.lineSrc = ""; lineChanged(); });
+  const b = t.closest("button[data-zact]"); if (!b) return;
+  const kind = b.dataset.zk, list = P.site[kind], i = list.findIndex(z => z.id === +b.dataset.zid); if (i < 0) return;
+  if (b.dataset.zact === "del") { confirmStep(b, "Remove?", () => true, () => { list.splice(i, 1); zonesChanged(kind); }); return; }
+  if (b.dataset.zact === "zoom") { if (SMAP) SMAP.fitBounds(list[i].ring, { padding: [30, 30], maxZoom: 19 }); return; }
+  const j = b.dataset.zact === "up" ? i - 1 : i + 1; if (j < 0 || j >= list.length) return;
+  [list[i], list[j]] = [list[j], list[i]]; zonesChanged(kind);
+});
+$("sitePanel").addEventListener("change", e => {
+  const t = e.target;
+  if (t.id === "pzLayer") { fillAttr(""); return; }
+  const z = t.dataset.zid && P.site.tz.find(x => x.id === +t.dataset.zid);
+  if (z && t.dataset.tk && (t.type === "checkbox" || t.tagName === "SELECT")) {
+    z.gt[t.dataset.tk] = t.type === "checkbox" ? t.checked : t.value;
+    if (t.dataset.tk === "surOn" && t.checked && z.gt.tr === "") z.gt.tr = String(P.th || "");
+    zonesChanged("tz");
+  }
+});
+$("sitePanel").addEventListener("input", e => {
+  const t = e.target, kind = t.dataset.zk || (t.dataset.pk ? "pz" : t.dataset.tk && t.dataset.zid ? "tz" : null);
+  if (!kind || !t.dataset.zid) return;
+  const z = P.site[kind].find(x => x.id === +t.dataset.zid); if (!z) return;
+  if (t.classList.contains("zname")) { z.name = t.value; P.isExample = false; save(); syncZoneLayers(); renderProbe(); return; }
+  if (t.dataset.pk) { z.req = t.value; zonesChanged("pz", false); return; }
+  if (t.type !== "checkbox" && t.tagName !== "SELECT") {
+    z.gt[t.dataset.tk] = t.value;
+    const card = t.closest(".zcard"); if (card) card.querySelector(".zsum").textContent = gtSummary(z.gt);
+    zonesChanged("tz", false);
+  }
+});
+/* Sections */
+const xsGo = ch => { const g = lineGeom(); if (!g) return; XS.userCh = true; XS.ch = Math.max(0, Math.min(g.len, ch)); renderSectionControls(); updateSections(false); };
+$("xsCh").addEventListener("input", e => xsGo(+e.target.value));
+$("xsChNum").addEventListener("change", e => xsGo(+e.target.value));
+$("xsPrev").addEventListener("click", () => xsGo(XS.ch - (+$("xsCh").step || 10)));
+$("xsNext").addEventListener("click", () => xsGo(XS.ch + (+$("xsCh").step || 10)));
+let smLastW = 0;
+new ResizeObserver(() => { const w = $("xsLong").clientWidth; if (w && Math.abs(w - smLastW) > 20) { smLastW = w; drawSections(); } }).observe($("sitePanel"));
 
 P = normalizeProject(STORE.projects[STORE.current]);
 renderVersions(); showProject();
